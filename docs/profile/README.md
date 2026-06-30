@@ -4,6 +4,7 @@
 отложена, чтобы не править тексты дважды; см. memory). Отсюда потом вырастет `content/`.
 
 Файлы:
+
 - [`personal.md`](personal.md) — личные данные, контакты, локация, образование.
 - [`positioning.md`](positioning.md) — позиционирование, нарратив, tagline, грейд, тон, AI-подход.
 - [`experience.md`](experience.md) — опыт работы (студии): RedBoon, R-Studio.

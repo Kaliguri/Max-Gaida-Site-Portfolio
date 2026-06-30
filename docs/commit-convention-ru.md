@@ -4,10 +4,12 @@
 Держим её чистой и профессиональной.
 
 ## Язык и стиль
+
 - **Английский**, повелительное наклонение, subject в нижнем регистре, без точки в конце, ≤ 72 символа.
   - `add hero section` — да; `Added hero section.` / `добавил герой-секцию` — нет.
 
 ## Формат — Conventional Commits
+
 ```
 type(scope): subject
 
@@ -22,6 +24,7 @@ type(scope): subject
 - **body** (опционально): зачем сделано, контекст. Не пересказ диффа.
 
 ## Правила
+
 - **Атомарность.** Один логический change на коммит. Не мешать рефакторинг с фичей.
 - **`main` всегда деплоится.** GitHub Pages публикует из `main` — он обязан быть зелёным.
 - **Ветки.** Нетривиальные фичи — короткоживущие ветки `feat/<name>` → мердж в `main`
@@ -33,6 +36,7 @@ type(scope): subject
   (`includeCoAuthoredBy: false`), настройка Cursor, git-hook `.githooks/commit-msg`.
 
 ## Примеры
+
 ```
 chore: add gitignore for next.js static export
 docs: add profile content source
