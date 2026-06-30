@@ -1,13 +1,14 @@
 import { profile } from "@content/index";
 import { Projects } from "@/components/projects";
 import { ResumePreview } from "@/components/resume-preview";
+import { SiteChrome } from "@/components/site-chrome";
 
 const githubHref = profile.contacts.find((c) => c.icon === "github")?.href;
 
 export default async function Home({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
   return (
-    <>
+    <SiteChrome>
       <section className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-10 sm:py-32">
         <p className="text-accent fade-up text-sm font-medium tracking-wide uppercase">
           {profile.eyebrow}
@@ -112,6 +113,6 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
       <Projects />
 
       <ResumePreview lang={lang} />
-    </>
+    </SiteChrome>
   );
 }

@@ -1,8 +1,5 @@
 import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/site";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { BackToTop } from "@/components/back-to-top";
 
 // Static export: only pre-render locales we ship. EN is deferred — add "en"
 // to generateStaticParams when EN content lands.
@@ -12,6 +9,8 @@ export function generateStaticParams() {
   return [{ lang: "ru" }];
 }
 
+// Page chrome (header/footer) lives in <SiteChrome>, applied per page — so
+// print routes can opt out. This layout only validates the locale.
 export default async function LangLayout({
   children,
   params,
@@ -22,12 +21,5 @@ export default async function LangLayout({
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
 
-  return (
-    <div className="flex min-h-full flex-col">
-      <SiteHeader />
-      <main className="flex-1">{children}</main>
-      <SiteFooter />
-      <BackToTop />
-    </div>
-  );
+  return children;
 }

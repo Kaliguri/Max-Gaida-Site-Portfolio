@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
+import { profile } from "@content/index";
 
 const onest = Onest({
   subsets: ["latin", "cyrillic"],
@@ -9,9 +10,21 @@ const onest = Onest({
   display: "swap",
 });
 
+const description = `${profile.headline}. ${profile.eyebrow}.`;
+
 export const metadata: Metadata = {
-  title: SITE.name,
-  description: "Технический геймдизайнер · Unity / C# разработчик",
+  metadataBase: new URL(SITE.url),
+  title: { default: SITE.name, template: `%s · ${SITE.name}` },
+  description,
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    locale: "ru_RU",
+    url: SITE.url,
+    title: SITE.name,
+    description,
+  },
+  twitter: { card: "summary_large_image", title: SITE.name, description },
 };
 
 /**

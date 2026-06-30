@@ -36,6 +36,12 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ""
         run: npm run build
 
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Render résumé PDFs
+        run: npm run pdf
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:
