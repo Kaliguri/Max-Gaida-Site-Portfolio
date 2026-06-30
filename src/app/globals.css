@@ -22,20 +22,20 @@
   --accent-foreground: #1c1207; /* text on amber */
 }
 
-/* --- Light --- */
+/* --- Light — warm "paper", intentionally not bright white --- */
 .light {
   --color-scheme: light;
 
-  --background: #faf8f5; /* warm off-white */
-  --surface: #ffffff;
-  --surface-2: #f5f3ef;
-  --foreground: #1c1917;
-  --muted: #78716c; /* stone-500 */
-  --border: #e7e2da;
+  --background: #ece5d8; /* muted warm cream, easy on the eyes */
+  --surface: #f5f0e6; /* raised, still off-white */
+  --surface-2: #e2d9c8; /* hover / inset */
+  --foreground: #2b2723; /* soft warm near-black, not pure black */
+  --muted: #6f6358; /* warm taupe */
+  --border: #d8cdba;
 
-  --accent: #d97706; /* amber-600, darker for contrast on light */
-  --accent-hover: #b45309;
-  --accent-foreground: #ffffff;
+  --accent: #b45309; /* burnt amber, readable on cream (amber-700) */
+  --accent-hover: #92400e;
+  --accent-foreground: #fdf6ec; /* warm off-white on amber */
 }
 
 /* Expose semantic tokens to Tailwind utilities:
