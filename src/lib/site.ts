@@ -18,3 +18,17 @@ export type Locale = (typeof SITE.locales)[number];
 export function isLocale(value: string): value is Locale {
   return (SITE.locales as readonly string[]).includes(value);
 }
+
+/** Contact channels. Phone is intentionally never shown. */
+export const CONTACTS = [
+  { label: "Telegram", href: "https://t.me/kaliguri", external: true },
+  { label: "Email", href: "mailto:maxgaida.work@gmail.com", external: false },
+  { label: "GitHub", href: "https://github.com/Kaliguri", external: true },
+] as const;
+
+/**
+ * Top-nav items. Anchor links to home sections — the list grows as Phase 3
+ * adds sections (about/projects/resume). Labels are RU for now (RU-only ship);
+ * they move into i18n dictionaries when EN lands.
+ */
+export const NAV = [{ label: "Контакты", href: "#contacts" }] as const;
