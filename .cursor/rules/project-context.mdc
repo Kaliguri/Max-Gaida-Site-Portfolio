@@ -1,0 +1,18 @@
+---
+description: Project context for the portfolio site
+alwaysApply: true
+---
+
+# Project Context
+
+- Проект: персональный сайт-портфолио Макса Гайды + два резюме (Game Designer и Unity Developer).
+- Три основные страницы: главная и два резюме. Билингва RU/EN, тёмная (по умолчанию) и светлая темы.
+- Дизайн — code-first: дизайн-токены задаются в коде (CSS-переменные + Tailwind theme) по Dribbble-рефам. Figma-файла пока нет; если появится — подключим Figma MCP, как в Posleslovie.
+- Источник истины по статусу и роадмапу — auto-memory (`memory/MEMORY.md` + связанные заметки), а не доки. Доки в `docs/` — справочные.
+- Полный бриф и процесс: `docs/project-brief-ru.md`, `docs/process-ru.md`; структура резюме: `docs/resume-structure-ru.md`.
+
+# Conventions
+
+- Код, нейминг, коммиты — English. Доки дизайна/процесса — русские (`*-ru.md`). README — билингва.
+- Контент RU и EN держим синхронно.
+- НЕ добавлять co-author трейлеры (`Co-authored-by: Cursor`). Коммиты — от имени Max Gaida. См. `.cursor/README.md`.

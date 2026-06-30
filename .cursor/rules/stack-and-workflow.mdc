@@ -1,0 +1,19 @@
+---
+description: Stack constraints and implementation workflow
+alwaysApply: true
+---
+
+# Stack (locked)
+
+- Next.js 16 App Router + React 19 + TypeScript + Tailwind v4, статический экспорт (`output: "export"`, `images.unoptimized`). Деплой — GitHub Pages, папка `out/`.
+- Единый источник данных — `content/` (резюме, проекты), типизированный и валидируемый Zod. Из него растут страницы, PDF-резюме и OG-картинки. Не дублируй эти данные.
+- i18n — роут-сегмент `src/app/[lang]/...` (без middleware на статике). RU и EN держать синхронно.
+- Темы — тёмная (по умолчанию) и светлая через CSS-переменные; анти-flash инлайн-скрипт в `<head>`.
+- Анимации — Framer Motion; тяжёлый scroll-scrub hero — GSAP + ScrollTrigger. Уважать `prefers-reduced-motion`.
+- На static export Next image-оптимизатор отключён: ассеты жмём заранее, видео — с poster и lazy-load.
+
+# Workflow
+
+- Перед существенными изменениями — короткий план (рекомендуемый вариант + 1-2 альтернативы), затем код.
+- Большие задачи дроби на видимые фазы. Коммит + пуш после завершённой фазы, в конце фазы — чек-лист ручной проверки.
+- Перед коммитом фазы — `npm run check` (format:check + lint + typecheck + test) зелёный.

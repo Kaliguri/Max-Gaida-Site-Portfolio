@@ -1,0 +1,7 @@
+#!/bin/sh
+# Strip agent co-author trailers and "Generated with" lines.
+# Commits are authored as Max Gaida; no Claude/Cursor attribution.
+msg_file="$1"
+tmp="$msg_file.tmp"
+grep -viE '^Co-authored-by:.*(claude|cursor|anthropic)|generated with \[?(claude|cursor)' "$msg_file" > "$tmp" || true
+mv "$tmp" "$msg_file"
