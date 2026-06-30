@@ -11,9 +11,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-6">
           <div>
             <p className="text-foreground text-xl font-semibold tracking-tight">{SITE.name}</p>
-            <p className="text-muted mt-1.5 text-sm">
-              {profile.role} · {profile.roleSub}
-            </p>
+            <p className="text-muted mt-1.5 text-sm">{profile.eyebrow}</p>
           </div>
 
           <ul className="flex flex-wrap gap-3">

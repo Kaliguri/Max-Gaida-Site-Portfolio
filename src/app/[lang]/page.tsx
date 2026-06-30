@@ -1,4 +1,5 @@
 import { profile } from "@content/index";
+import { Projects } from "@/components/projects";
 
 const githubHref = profile.contacts.find((c) => c.icon === "github")?.href;
 
@@ -7,13 +8,13 @@ export default function Home() {
     <>
       <section className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-10 sm:py-32">
         <p className="text-accent fade-up text-sm font-medium tracking-wide uppercase">
-          {profile.roleSub}
+          {profile.eyebrow}
         </p>
         <h1
           className="text-foreground fade-up mt-5 max-w-3xl text-4xl leading-[1.05] font-semibold tracking-tight sm:text-6xl"
           style={{ animationDelay: "0.05s" }}
         >
-          {profile.role}
+          {profile.headline}
         </h1>
         <p
           className="text-muted fade-up mt-6 max-w-xl text-lg leading-relaxed"
@@ -105,6 +106,8 @@ export default function Home() {
           </dl>
         </div>
       </section>
+
+      <Projects />
     </>
   );
 }
