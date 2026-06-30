@@ -1,9 +1,11 @@
 import { profile } from "@content/index";
 import { Projects } from "@/components/projects";
+import { ResumePreview } from "@/components/resume-preview";
 
 const githubHref = profile.contacts.find((c) => c.icon === "github")?.href;
 
-export default function Home() {
+export default async function Home({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
+  const { lang } = await params;
   return (
     <>
       <section className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-10 sm:py-32">
@@ -108,6 +110,8 @@ export default function Home() {
       </section>
 
       <Projects />
+
+      <ResumePreview lang={lang} />
     </>
   );
 }

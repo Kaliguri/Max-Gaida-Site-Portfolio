@@ -12,6 +12,15 @@ test("ru home renders with the heading", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 });
 
+test("resume role page renders and cross-links the other role", async ({ page }) => {
+  const response = await page.goto("/ru/resume/unity-developer/");
+  expect(response?.ok()).toBeTruthy();
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Опыт" })).toBeVisible();
+  await page.getByRole("link", { name: "Game Designer" }).click();
+  await page.waitForURL("**/resume/game-designer/**");
+});
+
 test("theme toggle flips the html class", async ({ page }) => {
   await page.goto("/ru/");
   const html = page.locator("html");

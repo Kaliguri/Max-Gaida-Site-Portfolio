@@ -70,3 +70,27 @@ export const projectSchema = z.object({
 export type Project = z.infer<typeof projectSchema>;
 
 export const projectsSchema = z.array(projectSchema);
+
+export const experienceSchema = z.object({
+  company: z.string(),
+  role: z.string(),
+  period: z.string(),
+  bullets: z.array(z.string()).min(1),
+  stack: z.array(z.string()).default([]),
+});
+export type Experience = z.infer<typeof experienceSchema>;
+export const experiencesSchema = z.array(experienceSchema);
+
+export const resumeRoleSlugSchema = z.enum(["unity-developer", "game-designer"]);
+export type ResumeRoleSlug = z.infer<typeof resumeRoleSlugSchema>;
+
+export const resumeRoleSchema = z.object({
+  slug: resumeRoleSlugSchema,
+  title: z.string(),
+  /** Short framing of this facet. */
+  focus: z.string(),
+  /** Key skills for this role. */
+  skills: z.array(z.string()).min(1),
+});
+export type ResumeRole = z.infer<typeof resumeRoleSchema>;
+export const resumeRolesSchema = z.array(resumeRoleSchema);

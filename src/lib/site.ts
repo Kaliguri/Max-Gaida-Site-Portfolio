@@ -26,7 +26,8 @@ export function isLocale(value: string): value is Locale {
  * lives in `content/`, not here.
  */
 export const NAV = [
-  { label: "О себе", href: "#about" },
-  { label: "Проекты", href: "#projects" },
-  { label: "Контакты", href: "#contacts" },
+  { label: "О себе", id: "about" },
+  { label: "Проекты", id: "projects" },
+  { label: "Резюме", id: "resume" },
+  { label: "Контакты", id: "contacts" },
 ] as const;

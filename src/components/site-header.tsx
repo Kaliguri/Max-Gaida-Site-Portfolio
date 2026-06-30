@@ -16,9 +16,9 @@ export function SiteHeader() {
         <nav className="flex items-center gap-6">
           <ul className="hidden items-center gap-6 sm:flex">
             {NAV.map((item) => (
-              <li key={item.href}>
+              <li key={item.id}>
                 <a
-                  href={item.href}
+                  href={`/${SITE.defaultLocale}/#${item.id}`}
                   className="text-muted hover:text-foreground text-sm transition-colors"
                 >
                   {item.label}
