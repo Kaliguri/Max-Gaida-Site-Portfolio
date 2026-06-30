@@ -1,7 +1,9 @@
 import { profile } from "@content/index";
 import { Projects } from "@/components/projects";
 import { ResumePreview } from "@/components/resume-preview";
+import { Education } from "@/components/education";
 import { SiteChrome } from "@/components/site-chrome";
+import { PageToc } from "@/components/page-toc";
 
 const githubHref = profile.contacts.find((c) => c.icon === "github")?.href;
 
@@ -9,6 +11,7 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
   const { lang } = await params;
   return (
     <SiteChrome>
+      <PageToc />
       <section className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-10 sm:py-32">
         <p className="text-accent fade-up text-sm font-medium tracking-wide uppercase">
           {profile.eyebrow}
@@ -70,49 +73,73 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
           О себе
         </h2>
 
-        <div className="reveal mt-8 grid gap-12 lg:grid-cols-[1.5fr_1fr]">
-          <div className="space-y-5">
+        <div className="reveal mt-10">
+          <h3 className="text-muted text-sm font-medium tracking-wide uppercase">Основное</h3>
+          <div className="mt-5 space-y-5">
             {profile.summary.map((para, i) => (
               <p key={i} className="text-muted leading-relaxed">
                 {para}
               </p>
             ))}
           </div>
+        </div>
 
-          <dl className="space-y-5 text-sm">
-            <div>
-              <dt className="text-muted">Грейд</dt>
-              <dd className="text-foreground mt-1">{profile.grade}</dd>
-            </div>
-            <div>
-              <dt className="text-muted">Образование</dt>
-              <dd className="text-foreground mt-1">
-                {profile.education.program}
-                <span className="text-muted block">
-                  {profile.education.place} · {profile.education.year}
-                </span>
-              </dd>
-            </div>
-            <div>
-              <dt className="text-muted">Языки</dt>
-              <dd className="text-foreground mt-1">
-                {profile.languages.map((l) => `${l.name} — ${l.level}`).join(", ")}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-muted">Студия</dt>
-              <dd className="text-foreground mt-1">
-                {profile.brand.name}
-                <span className="text-muted block">{profile.brand.note}</span>
-              </dd>
-            </div>
+        <div className="reveal mt-12">
+          <h3 className="text-muted text-sm font-medium tracking-wide uppercase">
+            Поиск работы
+          </h3>
+          <div className="mt-5 flex flex-wrap items-center gap-2 text-sm">
+            <span className="text-foreground">{profile.location}</span>
+            <span className="text-border">·</span>
+            {profile.jobSearch.preferred.map((f) => (
+              <span
+                key={f}
+                className="border-border bg-surface text-foreground rounded-full border px-3 py-1 text-xs"
+              >
+                {f}
+              </span>
+            ))}
+            {profile.jobSearch.openTo.map((f) => (
+              <span
+                key={f}
+                className="border-border text-muted rounded-full border border-dashed px-3 py-1 text-xs"
+              >
+                {f}
+              </span>
+            ))}
+          </div>
+          {profile.jobSearch.note && (
+            <p className="text-muted mt-4 text-sm leading-relaxed">{profile.jobSearch.note}</p>
+          )}
+        </div>
+
+        <div className="reveal mt-12">
+          <h3 className="text-muted text-sm font-medium tracking-wide uppercase">
+            Soft Skills и прочее
+          </h3>
+          <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+            {profile.softSkills.map((skill) => (
+              <div key={skill.name}>
+                <dt className="text-foreground text-sm font-medium">{skill.name}</dt>
+                <dd className="text-muted mt-1 text-sm leading-relaxed">{skill.detail}</dd>
+              </div>
+            ))}
           </dl>
+
+          <div className="mt-8">
+            <p className="text-muted text-sm">Языки</p>
+            <p className="text-foreground mt-1 text-sm">
+              {profile.languages.map((l) => `${l.name} — ${l.level}`).join(", ")}
+            </p>
+          </div>
         </div>
       </section>
 
-      <Projects />
-
       <ResumePreview lang={lang} />
+
+      <Education />
+
+      <Projects />
     </SiteChrome>
   );
 }

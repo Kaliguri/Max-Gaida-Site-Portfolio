@@ -1,5 +1,6 @@
 import { projects } from "@content/index";
 import type { Project, ProjectStatus } from "@content/index";
+import { ProjectVideo } from "@/components/project-video";
 
 const STATUS_LABEL: Record<ProjectStatus, string> = {
   released: "Релиз",
@@ -27,7 +28,7 @@ function ArrowOut() {
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="border-border bg-surface hover:border-accent flex flex-col rounded-xl border p-6 transition-colors">
       <div className="flex items-start justify-between gap-3">
@@ -43,6 +44,14 @@ function ProjectCard({ project }: { project: Project }) {
       )}
 
       <p className="text-muted mt-3 text-sm leading-relaxed">{project.description}</p>
+
+      {project.video && (
+        <ProjectVideo
+          src={project.video.src}
+          poster={project.video.poster}
+          title={project.video.title ?? project.title}
+        />
+      )}
 
       <ul className="mt-4 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
@@ -76,8 +85,11 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export function Projects() {
-  const featured = projects.filter((p) => p.featured);
-  const more = projects.filter((p) => !p.featured);
+  // Educational-status projects (Few Seconds, The Silent Eclipse) are shown
+  // under "Образование" instead — exclude them here to avoid duplication.
+  const shelf = projects.filter((p) => p.status !== "educational");
+  const featured = shelf.filter((p) => p.featured);
+  const more = shelf.filter((p) => !p.featured);
 
   return (
     <section

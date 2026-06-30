@@ -30,13 +30,28 @@ export const profileSchema = z.object({
   /** "About" paragraphs, in order. */
   summary: z.array(z.string()).min(1),
   location: z.string(),
-  /** Work formats: relocation / remote / hybrid. */
+  /** Work formats: relocation / remote / hybrid. Shown as flat chips in the hero. */
   availability: z.array(z.string()).min(1),
   grade: z.string(),
+  /** "О себе" → "Поиск работы": same formats as `availability`, but weighted —
+   *  what's preferred vs merely considered — for the fuller write-up. */
+  jobSearch: z.object({
+    preferred: z.array(z.string()).min(1),
+    openTo: z.array(z.string()).default([]),
+    note: z.string().optional(),
+  }),
+  /** "О себе" → "Soft Skills и прочее". */
+  softSkills: z.array(z.object({ name: z.string(), detail: z.string() })).min(1),
   education: z.object({
     place: z.string(),
     program: z.string(),
+    faculty: z.string(),
+    direction: z.object({ name: z.string(), code: z.string() }),
     year: z.number().int(),
+    /** Concrete competencies the program covered, each with a one-line gloss of what it means in practice. */
+    skills: z.array(z.object({ name: z.string(), detail: z.string() })).default([]),
+    /** Intro line for the program's team-project list (ПД), shown above that list. */
+    note: z.string().optional(),
   }),
   languages: z.array(z.object({ name: z.string(), level: z.string() })).min(1),
   brand: z.object({ name: z.string(), note: z.string() }),
@@ -66,6 +81,11 @@ export const projectSchema = z.object({
   status: projectStatusSchema,
   /** Featured = first shelf (cards); others render as a compact "more" list. */
   featured: z.boolean().default(false),
+  /** Promo/gameplay clip — path under `public/`. No poster yet (placeholder; final media pass adds one). */
+  /** `title` overrides the lightbox header — falls back to the project title when absent. */
+  video: z
+    .object({ src: z.string(), poster: z.string().optional(), title: z.string().optional() })
+    .optional(),
 });
 export type Project = z.infer<typeof projectSchema>;
 

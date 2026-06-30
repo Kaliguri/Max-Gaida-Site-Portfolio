@@ -26,11 +26,11 @@ export function BackToTop() {
       type="button"
       onClick={toTop}
       aria-label="Наверх"
-      className="border-border bg-surface text-foreground hover:border-accent hover:text-accent fixed right-6 bottom-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border shadow-sm transition-colors"
+      className="border-border bg-surface text-foreground hover:border-accent hover:text-accent fixed right-8 bottom-8 z-40 flex h-[52px] w-[52px] items-center justify-center rounded-full border shadow-sm transition-colors"
     >
       <svg
-        width="18"
-        height="18"
+        width="21"
+        height="21"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"

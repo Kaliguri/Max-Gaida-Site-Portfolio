@@ -27,7 +27,16 @@ export function isLocale(value: string): value is Locale {
  */
 export const NAV = [
   { label: "О себе", id: "about" },
-  { label: "Проекты", id: "projects" },
   { label: "Резюме", id: "resume" },
+  {
+    label: "Образование",
+    id: "education",
+    children: [
+      { label: "Программа обучения", id: "education-program" },
+      { label: "Полученные навыки", id: "education-skills" },
+      { label: "Проекты в рамках ПД", id: "education-projects" },
+    ],
+  },
+  { label: "Проекты", id: "projects" },
   { label: "Контакты", id: "contacts" },
 ] as const;

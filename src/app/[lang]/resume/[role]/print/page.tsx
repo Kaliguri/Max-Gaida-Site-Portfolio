@@ -80,22 +80,29 @@ export default async function ResumePrintPage({
         </ul>
       </section>
 
-      <section className="mt-5 grid grid-cols-2 gap-6">
-        <div>
-          <h2 className="text-sm font-semibold tracking-wide text-neutral-900 uppercase">
-            Образование
-          </h2>
-          <p className="mt-2">{profile.education.program}</p>
-          <p className="text-neutral-600">
-            {profile.education.place} · {profile.education.year}
+      <section className="mt-5">
+        <h2 className="text-sm font-semibold tracking-wide text-neutral-900 uppercase">
+          Образование
+        </h2>
+        <p className="mt-2">{profile.education.program}</p>
+        <p className="text-neutral-600">
+          {profile.education.place} · {profile.education.year}
+        </p>
+        {profile.education.skills.length > 0 && (
+          <p className="mt-1.5 text-neutral-600">
+            {profile.education.skills.map((s) => s.name).join(" · ")}
           </p>
-        </div>
-        <div>
-          <h2 className="text-sm font-semibold tracking-wide text-neutral-900 uppercase">Языки</h2>
-          <p className="mt-2 text-neutral-800">
-            {profile.languages.map((l) => `${l.name} — ${l.level}`).join(", ")}
-          </p>
-        </div>
+        )}
+        {profile.education.note && (
+          <p className="mt-1.5 text-neutral-700">{profile.education.note}</p>
+        )}
+      </section>
+
+      <section className="mt-5">
+        <h2 className="text-sm font-semibold tracking-wide text-neutral-900 uppercase">Языки</h2>
+        <p className="mt-2 text-neutral-800">
+          {profile.languages.map((l) => `${l.name} — ${l.level}`).join(", ")}
+        </p>
       </section>
     </div>
   );

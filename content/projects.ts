@@ -3,6 +3,8 @@ import { projectsSchema } from "./schema";
 // Curated showcase. Order = docs/profile/projects.md (credibility → technical
 // depth). Featured items are the first shelf; the rest are a compact "more"
 // list. URLs only where a real public link exists (no invented links).
+// `status: "educational"` items (Few Seconds, The Silent Eclipse) are program
+// projects — the Projects section excludes them; they render under "Образование".
 export const projects = projectsSchema.parse([
   {
     slug: "knock-on-the-coffin-lid",
@@ -43,7 +45,6 @@ export const projects = projectsSchema.parse([
       { label: "GitHub", href: "https://github.com/Kaliguri/FewSeconds-ManyDeaths-Unity" },
     ],
     status: "educational",
-    featured: true,
   },
   {
     slug: "rstudio-multiplayer",
@@ -112,6 +113,10 @@ export const projects = projectsSchema.parse([
     description: "Игра на Unreal Engine 5 из проектной деятельности, с красивым промо-видео.",
     tags: ["UE5", "Команда"],
     status: "educational",
+    video: {
+      src: "/videos/the-silent-eclipse-promo.mp4",
+      title: "The Silent Eclipse - Unreal Engine 5 - Trailer",
+    },
   },
   {
     slug: "mospolyjam-3",

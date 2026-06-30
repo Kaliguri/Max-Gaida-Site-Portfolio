@@ -132,20 +132,34 @@ export default async function ResumePage({
           </ul>
         </section>
 
-        <section className="mt-10 grid gap-8 sm:grid-cols-2">
-          <div>
-            <h2 className="text-foreground text-xl font-semibold tracking-tight">Образование</h2>
-            <p className="text-foreground mt-3 text-sm">{profile.education.program}</p>
-            <p className="text-muted text-sm">
-              {profile.education.place} · {profile.education.year}
-            </p>
-          </div>
-          <div>
-            <h2 className="text-foreground text-xl font-semibold tracking-tight">Языки</h2>
-            <p className="text-muted mt-3 text-sm">
-              {profile.languages.map((l) => `${l.name} — ${l.level}`).join(", ")}
-            </p>
-          </div>
+        <section className="mt-10">
+          <h2 className="text-foreground text-xl font-semibold tracking-tight">Образование</h2>
+          <p className="text-foreground mt-3 text-sm">{profile.education.program}</p>
+          <p className="text-muted text-sm">
+            {profile.education.place} · {profile.education.year}
+          </p>
+          {profile.education.skills.length > 0 && (
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {profile.education.skills.map((s) => (
+                <li
+                  key={s.name}
+                  className="border-border text-muted rounded-full border px-2.5 py-0.5 text-xs"
+                >
+                  {s.name}
+                </li>
+              ))}
+            </ul>
+          )}
+          {profile.education.note && (
+            <p className="text-muted mt-3 text-sm leading-relaxed">{profile.education.note}</p>
+          )}
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-foreground text-xl font-semibold tracking-tight">Языки</h2>
+          <p className="text-muted mt-3 text-sm">
+            {profile.languages.map((l) => `${l.name} — ${l.level}`).join(", ")}
+          </p>
         </section>
 
         <aside className="border-border bg-surface mt-12 rounded-xl border p-5 text-sm">
