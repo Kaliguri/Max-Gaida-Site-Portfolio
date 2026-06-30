@@ -48,7 +48,7 @@ export const projects = projectsSchema.parse([
   {
     slug: "rstudio-multiplayer",
     title: "Мультиплеер (R-Studio)",
-    role: "Unity Developer · R-Studio",
+    role: "Unity Developer (C#) · Multiplayer",
     description:
       "P2P-мультиплеер для нескольких игр: система лобби, матчмейкинг и рабочий геймплей для 1×1 и кооператива на Photon и Netcode for GameObjects.",
     highlight: "P2P-нетворкинг: лобби и матчмейкинг",
@@ -62,7 +62,7 @@ export const projects = projectsSchema.parse([
     role: "Лид команды · геймджем",
     description:
       "Игра с межвузовского геймджема «Ctrl + Shift + Create 2.0», где команда из трёх человек заняла первое место. Был лидом команды.",
-    highlight: "1 место на геймджеме",
+    highlight: "1 место на межвузовском геймджеме среди студентов Москвы",
     tags: ["Unity", "Game Jam", "Тимлид"],
     links: [{ label: "GitHub", href: "https://github.com/Kaliguri/METALHEAD" }],
     status: "jam",
@@ -85,5 +85,50 @@ export const projects = projectsSchema.parse([
     tags: ["Figma", "Плагин", "Инструмент"],
     links: [{ label: "GitHub", href: "https://github.com/Kaliguri/Alebardium-Tint-Exporter" }],
     status: "released",
+  },
+  {
+    slug: "bloodlines-ui-2",
+    title: "Bloodlines UI 2.0",
+    role: "Соло · Alebardium",
+    description: "Новая версия UI-набора для Unity — в работе, релиз ориентировочно скоро.",
+    tags: ["Unity", "C#", "UI/UX", "Asset"],
+    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/Bloodlines-Dark-UI" }],
+    status: "in-progress",
+  },
+  {
+    slug: "posleslovie",
+    title: "«Послесловие»",
+    role: "Соло · веб",
+    description:
+      "Коммерческий сайт-визитка (лендинг). Заодно — эталон стека и тулинга для этого портфолио.",
+    tags: ["Веб", "Next.js", "Лендинг"],
+    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/Posleslovie" }],
+    status: "released",
+  },
+  {
+    slug: "the-silent-eclipse",
+    title: "The Silent Eclipse",
+    role: "Команда · Московский Политех",
+    description: "Игра на Unreal Engine 5 из проектной деятельности, с красивым промо-видео.",
+    tags: ["UE5", "Команда"],
+    status: "educational",
+  },
+  {
+    slug: "mospolyjam-3",
+    title: "MosPolyJam-3",
+    role: "Команда · геймджем",
+    description: "Игра с геймджема MosPolyJam (осень 2024), команда из двух человек.",
+    tags: ["Unity", "Game Jam"],
+    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/MosPolyJam-3" }],
+    status: "jam",
+  },
+  {
+    slug: "type-faster-mp",
+    title: "TYPE-FASTER-MP",
+    role: "Соло · геймджем",
+    description: "Соло-игра с геймджема MosPolyJam (весна 2026).",
+    tags: ["Unity", "Game Jam"],
+    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/TYPE-FASTER-MP" }],
+    status: "jam",
   },
 ]);
