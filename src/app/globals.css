@@ -94,3 +94,16 @@ body {
     animation: none;
   }
 }
+
+/* MVP scroll reveal — pure CSS scroll-driven, progressive enhancement.
+   Where unsupported or reduced-motion is set, content just shows (never hidden,
+   so no-JS and older browsers are fine). Each .reveal animates as it enters. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}

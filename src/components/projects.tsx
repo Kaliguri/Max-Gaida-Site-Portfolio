@@ -88,7 +88,7 @@ export function Projects() {
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         {featured.map((project, i) => (
-          <div key={project.slug} className={i === 0 ? "sm:col-span-2" : undefined}>
+          <div key={project.slug} className={i === 0 ? "reveal sm:col-span-2" : "reveal"}>
             <ProjectCard project={project} />
           </div>
         ))}

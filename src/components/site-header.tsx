@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { NAV, SITE } from "@/lib/site";
 import { ThemeToggle } from "./theme-toggle";
+import { MobileNav } from "./mobile-nav";
 
 export function SiteHeader() {
   return (
     <header className="border-border bg-background/70 sticky top-0 z-40 border-b backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 sm:px-10">
+      <div className="relative mx-auto flex max-w-5xl items-center justify-between px-6 py-4 sm:px-10">
         <Link
           href={`/${SITE.defaultLocale}`}
           className="text-foreground text-lg font-semibold tracking-tight"
@@ -27,6 +28,7 @@ export function SiteHeader() {
             ))}
           </ul>
           <ThemeToggle />
+          <MobileNav />
         </nav>
       </div>
     </header>

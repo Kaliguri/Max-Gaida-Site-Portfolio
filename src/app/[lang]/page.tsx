@@ -69,7 +69,7 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
           О себе
         </h2>
 
-        <div className="mt-8 grid gap-12 lg:grid-cols-[1.5fr_1fr]">
+        <div className="reveal mt-8 grid gap-12 lg:grid-cols-[1.5fr_1fr]">
           <div className="space-y-5">
             {profile.summary.map((para, i) => (
               <p key={i} className="text-muted leading-relaxed">
