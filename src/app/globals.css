@@ -1,26 +1,73 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Theme is class-driven (manual toggle), not prefers-color-scheme.
+   `dark:` utilities map to an explicit `.dark` on <html>. Dark is the default:
+   :root carries dark values so SSR + pre-hydration paint match the default. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* --- Dark (default) — warm amber on charcoal --- */
+:root,
+.dark {
+  --color-scheme: dark;
+
+  --background: #0c0a09; /* warm near-black (stone-950) */
+  --surface: #1c1917; /* card / raised (stone-900) */
+  --surface-2: #292524; /* hover / inset (stone-800) */
+  --foreground: #f5f4f2; /* warm white */
+  --muted: #a8a29e; /* secondary text (stone-400) */
+  --border: #2a2522; /* hairlines */
+
+  --accent: #f5a524; /* warm amber */
+  --accent-hover: #fbbf24;
+  --accent-foreground: #1c1207; /* text on amber */
 }
 
+/* --- Light --- */
+.light {
+  --color-scheme: light;
+
+  --background: #faf8f5; /* warm off-white */
+  --surface: #ffffff;
+  --surface-2: #f5f3ef;
+  --foreground: #1c1917;
+  --muted: #78716c; /* stone-500 */
+  --border: #e7e2da;
+
+  --accent: #d97706; /* amber-600, darker for contrast on light */
+  --accent-hover: #b45309;
+  --accent-foreground: #ffffff;
+}
+
+/* Expose semantic tokens to Tailwind utilities:
+   bg-background, text-foreground, text-muted, border-border, bg-accent, etc. */
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --font-sans: var(--font-onest);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: var(--color-scheme);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-onest), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
