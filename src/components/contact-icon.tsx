@@ -1,4 +1,4 @@
-import type { ContactIcon as ContactIconName } from "@/lib/site";
+import type { ContactIcon as ContactIconName } from "@content/index";
 
 const PATHS: Record<ContactIconName, React.ReactNode> = {
   telegram: <path d="M21 5 3 12l6 2m12-9-9 14-3-5m12-9-9 9" />,

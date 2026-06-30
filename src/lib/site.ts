@@ -19,18 +19,13 @@ export function isLocale(value: string): value is Locale {
   return (SITE.locales as readonly string[]).includes(value);
 }
 
-/** Contact channels. Phone is intentionally never shown. */
-export const CONTACTS = [
-  { label: "Telegram", href: "https://t.me/kaliguri", external: true, icon: "telegram" },
-  { label: "Email", href: "mailto:maxgaida.work@gmail.com", external: false, icon: "mail" },
-  { label: "GitHub", href: "https://github.com/Kaliguri", external: true, icon: "github" },
-] as const;
-
-export type ContactIcon = (typeof CONTACTS)[number]["icon"];
-
 /**
  * Top-nav items. Anchor links to home sections — the list grows as Phase 3
- * adds sections (about/projects/resume). Labels are RU for now (RU-only ship);
- * they move into i18n dictionaries when EN lands.
+ * adds sections (projects/resume). Labels are RU for now (RU-only ship);
+ * they move into i18n dictionaries when EN lands. Profile data (incl. contacts)
+ * lives in `content/`, not here.
  */
-export const NAV = [{ label: "Контакты", href: "#contacts" }] as const;
+export const NAV = [
+  { label: "О себе", href: "#about" },
+  { label: "Контакты", href: "#contacts" },
+] as const;

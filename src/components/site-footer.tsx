@@ -1,4 +1,5 @@
-import { CONTACTS, SITE } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { profile } from "@content/index";
 import { ContactIcon } from "./contact-icon";
 
 export function SiteFooter() {
@@ -10,11 +11,13 @@ export function SiteFooter() {
         <div className="flex flex-col gap-6">
           <div>
             <p className="text-foreground text-xl font-semibold tracking-tight">{SITE.name}</p>
-            <p className="text-muted mt-1.5 text-sm">Технический геймдизайнер · Unity / C#</p>
+            <p className="text-muted mt-1.5 text-sm">
+              {profile.role} · {profile.roleSub}
+            </p>
           </div>
 
           <ul className="flex flex-wrap gap-3">
-            {CONTACTS.map((c) => (
+            {profile.contacts.map((c) => (
               <li key={c.href}>
                 <a
                   href={c.href}
