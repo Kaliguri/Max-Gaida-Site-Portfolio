@@ -21,10 +21,12 @@ export function isLocale(value: string): value is Locale {
 
 /** Contact channels. Phone is intentionally never shown. */
 export const CONTACTS = [
-  { label: "Telegram", href: "https://t.me/kaliguri", external: true },
-  { label: "Email", href: "mailto:maxgaida.work@gmail.com", external: false },
-  { label: "GitHub", href: "https://github.com/Kaliguri", external: true },
+  { label: "Telegram", href: "https://t.me/kaliguri", external: true, icon: "telegram" },
+  { label: "Email", href: "mailto:maxgaida.work@gmail.com", external: false, icon: "mail" },
+  { label: "GitHub", href: "https://github.com/Kaliguri", external: true, icon: "github" },
 ] as const;
+
+export type ContactIcon = (typeof CONTACTS)[number]["icon"];
 
 /**
  * Top-nav items. Anchor links to home sections — the list grows as Phase 3
