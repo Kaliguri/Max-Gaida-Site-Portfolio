@@ -5,6 +5,7 @@ import { ResumePreview } from "@/components/resume-preview";
 import { Education } from "@/components/education";
 import { SiteChrome } from "@/components/site-chrome";
 import { PageToc } from "@/components/page-toc";
+import { HeroPortrait } from "@/components/hero-portrait";
 import { bentoSpan } from "@/lib/bento";
 
 // Bento spans for the "Основное" facets, by index. Lead facet is a wide hero,
@@ -22,7 +23,8 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
   return (
     <SiteChrome>
       <PageToc />
-      <section className="mx-auto w-full max-w-5xl px-6 pt-24 pb-10 sm:px-10 sm:pt-32 sm:pb-12">
+      <section className="relative isolate mx-auto w-full max-w-5xl overflow-hidden px-6 pt-24 pb-10 sm:px-10 sm:pt-32 sm:pb-12">
+        <HeroPortrait />
         <p className="text-accent fade-up text-sm font-medium tracking-wide uppercase">
           {profile.eyebrow}
         </p>

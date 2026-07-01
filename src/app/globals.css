@@ -72,6 +72,29 @@ body {
   }
 }
 
+/* Hero code-art portrait (see hero-portrait.tsx). Two masks composited via
+   `intersect`: fade to transparent toward the left (into the text column) and
+   soft top/bottom feathering so it never touches the section edges. `screen`
+   blend turns the near-black ground transparent, leaving the amber glyphs to
+   glow against --background. Dark-only, so it's hidden under the light theme. */
+.hero-portrait-img {
+  object-position: right center;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  -webkit-mask-image:
+    linear-gradient(to left, #000 0%, #000 34%, transparent 90%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  mask-image:
+    linear-gradient(to left, #000 0%, #000 34%, transparent 90%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.light .hero-portrait {
+  display: none;
+}
+
 /* MVP reveal — simple on-load fade-up. Stagger via inline animation-delay.
    Intentionally cheap and swappable; final motion polish comes later. */
 @keyframes fade-up {
