@@ -108,6 +108,31 @@ body {
   }
 }
 
+/* Showcase text block: gentle fade+rise when the slide changes. The image
+   layers crossfade via opacity; the caption is remounted (key={active}) so it
+   plays this on every switch. Paired with the image crossfade it reads as one
+   coordinated transition. */
+@keyframes carousel-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.carousel-fade {
+  animation: carousel-fade 0.4s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-fade {
+    animation: none;
+  }
+}
+
 /* Momentary highlight for a project card jumped to from the showcase carousel. */
 @keyframes project-highlight {
   0% {

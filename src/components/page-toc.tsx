@@ -7,14 +7,20 @@ import { NAV } from "@/lib/site";
  * Left-side section nav for the home page's long scroll. Only fits on very
  * wide viewports (content is a centered max-w-5xl column); hidden below that.
  * NAV entries may carry `children` (currently "О себе", "Образование" and
- * "Проекты") — those render as a nested sub-list and are tracked by the same
- * observer, so a parent item lights up whenever any of its children is in view.
+ * "Проекты"); a parent lights up whenever any of its children is active.
+ *
+ * Scroll-spy: we observe ONLY the leaf targets — each item's children, or the
+ * item itself when it has none. Observing the parent wrappers too was the old
+ * bug: a wrapper `<section>` spans its whole subtree, so it and its child were
+ * intersecting at once and the "topmost" pick flickered between them, leaving
+ * the active subchapter randomly unlit. Leaves don't overlap, so the topmost
+ * intersecting leaf in document order is unambiguous.
  */
 export function PageToc() {
   const observedIds = NAV.flatMap((item) =>
-    "children" in item && item.children ? [item.id, ...item.children.map((c) => c.id)] : [item.id],
+    "children" in item && item.children ? item.children.map((c) => c.id) : [item.id],
   );
-  const [active, setActive] = useState<string>(NAV[0].id);
+  const [active, setActive] = useState<string>(observedIds[0]);
 
   useEffect(() => {
     const sections = observedIds
@@ -22,18 +28,39 @@ export function PageToc() {
       .filter((el): el is HTMLElement => el !== null);
     if (sections.length === 0) return;
 
+    // Track every observed leaf's visibility, then pick the topmost visible one
+    // in document order. Using the full map (not just the changed entries) keeps
+    // the active item stable no matter which boundary a scroll step crosses.
+    const visible = new Map<string, boolean>();
+
+    const pickActive = () => {
+      // The last, short section can never scroll high enough to become the
+      // topmost in the detection band — the preceding section stays pinned
+      // there. At page bottom, force-activate the final leaf so it still lights.
+      const atBottom =
+        window.innerHeight + Math.ceil(window.scrollY) >= document.documentElement.scrollHeight - 2;
+      if (atBottom) {
+        setActive(observedIds[observedIds.length - 1]);
+        return;
+      }
+      const topmost = observedIds.find((id) => visible.get(id));
+      if (topmost) setActive(topmost);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-        if (visible) setActive(visible.target.id);
+        for (const e of entries) visible.set(e.target.id, e.isIntersecting);
+        pickActive();
       },
       { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
     );
 
     sections.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    window.addEventListener("scroll", pickActive, { passive: true });
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", pickActive);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

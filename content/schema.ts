@@ -27,8 +27,9 @@ export const profileSchema = z.object({
   eyebrow: z.string(),
   /** Hero one-liner under the headline. */
   lead: z.string(),
-  /** "About" paragraphs, in order. */
-  summary: z.array(z.string()).min(1),
+  /** "About" → "Основное": self-contained facets, in order. Each is a labelled
+   *  block rendered as a bento card (label = short kicker, body = the prose). */
+  summary: z.array(z.object({ label: z.string(), body: z.string() })).min(1),
   location: z.string(),
   /** Work formats: relocation / remote / hybrid. Shown as flat chips in the hero. */
   availability: z.array(z.string()).min(1),
