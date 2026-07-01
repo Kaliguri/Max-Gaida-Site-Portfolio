@@ -52,14 +52,14 @@ export function Education() {
         <h3 className="text-accent text-sm font-medium tracking-wide uppercase">
           Полученные навыки
         </h3>
-        <dl className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <dl className="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
           {education.skills.map((skill, i) => (
             <div
               key={skill.name}
-              className={`${bentoSpan(i)} border-border bg-surface/40 rounded-xl border p-5`}
+              className={`${bentoSpan(i)} border-border bg-surface/40 rounded-lg border p-3`}
             >
-              <dt className="text-foreground text-sm font-medium">{skill.name}</dt>
-              <dd className="text-muted mt-2 text-sm leading-relaxed">{skill.detail}</dd>
+              <dt className="text-foreground text-xs font-medium">{skill.name}</dt>
+              <dd className="text-muted mt-1 text-xs leading-snug">{skill.detail}</dd>
             </div>
           ))}
         </dl>
