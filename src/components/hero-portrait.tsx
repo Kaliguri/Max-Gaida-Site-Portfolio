@@ -1,17 +1,20 @@
 /**
- * Code-art self-portrait bleeding from the right edge of the hero. Pure
- * decoration: dark-theme only (the near-black source would fight the light
- * "paper" background), masked so it dissolves into `--background`, and
- * screen-blended so the amber glyphs glow instead of sitting as a hard photo.
- * Styling lives in globals.css (`.hero-portrait*`) — the mask uses multiple
- * gradients + compositing that don't read well as Tailwind arbitraries.
+ * Code-art self-portrait — the right column of the hero. Pure decoration and
+ * dark-theme only (the near-black source would fight the light "paper" bg).
+ *
+ * Duotone treatment (see globals.css `.hero-portrait*`): the JPG renders as a
+ * grayscale portrait so the *face stays legible* — that's the point, it should
+ * read as Max — while an accent-colored overlay in `color` blend mode tints it
+ * amber, tying it to the theme without dissolving the features (the earlier
+ * luminance-mask approach erased the face). Edge masks feather it into the
+ * background so it's a soft focal element, not a hard photo box. A one-shot
+ * "decode" reveal resolves it from blur on load.
  */
 export function HeroPortrait() {
   return (
     <div
       aria-hidden="true"
-      className="hero-portrait fade-up pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[68%] max-w-xl select-none sm:w-[58%] dark:block"
-      style={{ animationDelay: "0.15s" }}
+      className="hero-portrait hero-portrait-decode pointer-events-none hidden h-72 select-none lg:h-[420px] dark:block"
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimizer */}
       <img

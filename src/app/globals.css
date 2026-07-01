@@ -72,23 +72,101 @@ body {
   }
 }
 
-/* Hero code-art portrait (see hero-portrait.tsx). Two masks composited via
-   `intersect`: fade to transparent toward the left (into the text column) and
-   soft top/bottom feathering so it never touches the section edges. `screen`
-   blend turns the near-black ground transparent, leaving the amber glyphs to
-   glow against --background. Dark-only, so it's hidden under the light theme. */
-.hero-portrait-img {
-  object-position: right center;
-  opacity: 0.6;
-  mix-blend-mode: screen;
+/* Hero two-column layout: text + code-art portrait. The portrait is dark-only
+   decoration, so the second column only exists in dark theme (and lg+) — in the
+   light theme the hero collapses to a single text column with no empty gap. */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+@media (min-width: 1024px) {
+  .dark .hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+  }
+}
+
+/* Hero code-art portrait (see hero-portrait.tsx). Duotone: the JPG stays a
+   grayscale portrait (face legible) while `::after` floods accent over it in
+   `color` blend mode — recolors to amber at the photo's own luminance, so the
+   features survive. `isolation: isolate` keeps the blend inside the box; edge
+   masks feather it into --background so it reads as a soft focal element, not a
+   hard rectangle. A subtle accent glow sits behind for depth. Dark-only. */
+.hero-portrait {
+  position: relative;
+  isolation: isolate;
   -webkit-mask-image:
-    linear-gradient(to left, #000 0%, #000 34%, transparent 90%),
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
+    linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%),
+    linear-gradient(to left, #000 52%, transparent 100%);
   mask-image:
-    linear-gradient(to left, #000 0%, #000 34%, transparent 90%),
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
+    linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%),
+    linear-gradient(to left, #000 52%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
+}
+
+.hero-portrait-img {
+  object-position: 50% 22%;
+  filter: grayscale(1) contrast(1.06) brightness(0.98);
+}
+
+/* Directional amber tint (key/rim light): a RADIAL accent glow anchored at the
+   upper-right, so the warm light glances across the face from a believable
+   source and falls off in a circle — more dimensional than a flat vertical
+   band. The face center/left stays neutral grayscale (a real photo); `color`
+   blend recolors hue at the photo's own luminance. Since the amber is confined
+   to the corner, opacity can run high without yellowing the face. Knobs: move
+   the `at 100% 28%` anchor (light source), the `transparent 60%` stop (reach),
+   or `opacity` (strength). */
+.hero-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(125% 120% at 100% 28%, var(--accent) 0%, transparent 60%);
+  mix-blend-mode: color;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.hero-portrait::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  z-index: -1;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    transparent 72%
+  );
+}
+
+/* One-shot "decode" reveal: the glyph field resolves from a blurred, bottom-
+   clipped state — reads as the portrait assembling out of noise on load. */
+@keyframes hero-decode {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    filter: blur(7px);
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: blur(0);
+  }
+}
+
+.hero-portrait-decode {
+  animation: hero-decode 1.1s cubic-bezier(0.2, 0.6, 0.2, 1) 0.15s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-portrait-decode {
+    animation: none;
+  }
 }
 
 .light .hero-portrait {

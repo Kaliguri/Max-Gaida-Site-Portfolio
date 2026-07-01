@@ -26,6 +26,8 @@ export function isLocale(value: string): value is Locale {
  * nav is a separate, deliberately shorter set defined in SiteHeader/MobileNav.
  */
 export const NAV = [
+  { label: "Приветствие", id: "intro" },
+  { label: "Витрина проектов", id: "showcase" },
   {
     label: "О себе",
     id: "about",

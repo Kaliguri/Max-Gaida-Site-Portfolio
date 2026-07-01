@@ -123,14 +123,23 @@ export function ProjectShowcase() {
 
   return (
     <section
+      id="showcase"
       aria-label="Витрина проектов"
-      className="reveal mx-auto w-full max-w-6xl px-6 pb-4 sm:px-10"
+      className="reveal scroll-mt-20 pb-4"
       onMouseEnter={beginInteract}
       onMouseLeave={endInteract}
       onFocus={beginInteract}
       onBlur={endInteract}
     >
-      <div className="flex items-center gap-3 sm:gap-6">
+      {/* Heading + divider align to the main max-w-5xl column (like the other
+          section headers); the carousel below is intentionally wider (max-w-6xl). */}
+      <div className="border-border mx-auto w-full max-w-5xl border-t px-6 pt-8 sm:px-10 sm:pt-10">
+        <h2 className="text-foreground text-2xl font-semibold tracking-tight sm:text-3xl">
+          Витрина проектов
+        </h2>
+      </div>
+
+      <div className="mx-auto mt-8 flex w-full max-w-6xl items-center gap-3 px-6 sm:gap-6 sm:px-10">
         <button
           type="button"
           aria-label="Предыдущий проект"

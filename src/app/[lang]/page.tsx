@@ -23,23 +23,42 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
   return (
     <SiteChrome>
       <PageToc />
-      <section className="relative isolate mx-auto w-full max-w-5xl overflow-hidden px-6 pt-24 pb-10 sm:px-10 sm:pt-32 sm:pb-12">
-        <HeroPortrait />
-        <p className="text-accent fade-up text-sm font-medium tracking-wide uppercase">
-          {profile.eyebrow}
-        </p>
-        <h1
-          className="text-foreground fade-up mt-5 max-w-3xl text-4xl leading-[1.05] font-semibold tracking-tight sm:text-6xl"
-          style={{ animationDelay: "0.05s" }}
-        >
-          {profile.headline}
-        </h1>
-        <p
-          className="text-muted fade-up mt-6 max-w-xl text-lg leading-relaxed"
-          style={{ animationDelay: "0.1s" }}
-        >
-          {profile.lead}
-        </p>
+      <section
+        id="intro"
+        className="relative isolate mx-auto w-full max-w-5xl scroll-mt-20 overflow-hidden px-6 pt-24 pb-10 sm:px-10 sm:pt-32 sm:pb-12"
+      >
+        <div className="hero-grid">
+          <div>
+            <p className="text-muted fade-up text-base sm:text-lg">
+              Hi, I&apos;m <span className="text-foreground font-medium">{profile.name}</span>
+            </p>
+            <p
+              className="text-foreground/90 fade-up mt-1 text-sm sm:text-base"
+              style={{ animationDelay: "0.05s" }}
+            >
+              Game Developer &amp; Game Designer
+            </p>
+            <h1
+              className="text-foreground fade-up mt-5 text-4xl leading-[1.06] font-semibold tracking-tight sm:text-5xl"
+              style={{ animationDelay: "0.1s" }}
+            >
+              {profile.headline}
+            </h1>
+            <p
+              className="text-muted fade-up mt-6 max-w-xl text-lg leading-relaxed"
+              style={{ animationDelay: "0.15s" }}
+            >
+              {profile.lead}
+            </p>
+            <p
+              className="text-accent fade-up mt-6 text-sm font-medium tracking-wide uppercase"
+              style={{ animationDelay: "0.2s" }}
+            >
+              {profile.eyebrow}
+            </p>
+          </div>
+          <HeroPortrait />
+        </div>
       </section>
 
       <ProjectShowcase />
