@@ -74,7 +74,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="border-border mx-auto w-full max-w-5xl scroll-mt-20 border-t px-6 py-20 sm:px-10"
+      className="border-border mx-auto w-full max-w-5xl scroll-mt-20 border-t px-6 pt-8 pb-20 sm:px-10 sm:pt-10"
     >
       <h2 className="text-foreground text-2xl font-semibold tracking-tight sm:text-3xl">Проекты</h2>
 

@@ -6,14 +6,12 @@ import { Education } from "@/components/education";
 import { SiteChrome } from "@/components/site-chrome";
 import { PageToc } from "@/components/page-toc";
 
-const githubHref = profile.contacts.find((c) => c.icon === "github")?.href;
-
 export default async function Home({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
   return (
     <SiteChrome>
       <PageToc />
-      <section className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-10 sm:py-32">
+      <section className="mx-auto w-full max-w-5xl px-6 pt-24 pb-10 sm:px-10 sm:pt-32 sm:pb-12">
         <p className="text-accent fade-up text-sm font-medium tracking-wide uppercase">
           {profile.eyebrow}
         </p>
@@ -29,36 +27,13 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
         >
           {profile.lead}
         </p>
-
-        <p className="text-muted fade-up mt-8 text-sm" style={{ animationDelay: "0.15s" }}>
-          <span className="text-foreground">{profile.location}</span> · {profile.jobSearch.summary}
-        </p>
-
-        <div className="fade-up mt-10 flex flex-wrap gap-4" style={{ animationDelay: "0.2s" }}>
-          <a
-            href="#contacts"
-            className="bg-accent text-accent-foreground hover:bg-accent-hover inline-flex items-center rounded-full px-6 py-3 text-sm font-medium transition-colors"
-          >
-            Связаться
-          </a>
-          {githubHref && (
-            <a
-              href={githubHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border-border text-foreground hover:border-accent inline-flex items-center rounded-full border px-6 py-3 text-sm font-medium transition-colors"
-            >
-              GitHub
-            </a>
-          )}
-        </div>
       </section>
 
       <ProjectShowcase />
 
       <section
         id="about"
-        className="border-border mx-auto w-full max-w-5xl scroll-mt-20 border-t px-6 py-20 sm:px-10"
+        className="border-border mx-auto w-full max-w-5xl scroll-mt-20 border-t px-6 pt-8 pb-10 sm:px-10 sm:pt-10 sm:pb-12"
       >
         <h2 className="text-foreground text-2xl font-semibold tracking-tight sm:text-3xl">
           О себе

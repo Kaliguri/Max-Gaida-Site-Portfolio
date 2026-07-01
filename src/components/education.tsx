@@ -13,7 +13,7 @@ export function Education() {
   return (
     <section
       id="education"
-      className="border-border mx-auto w-full max-w-5xl scroll-mt-20 border-t px-6 py-20 sm:px-10"
+      className="border-border mx-auto w-full max-w-5xl scroll-mt-20 border-t px-6 pt-8 pb-10 sm:px-10 sm:pt-10 sm:pb-12"
     >
       <h2 className="text-foreground text-2xl font-semibold tracking-tight sm:text-3xl">
         Образование

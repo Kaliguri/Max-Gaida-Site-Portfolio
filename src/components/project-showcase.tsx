@@ -81,71 +81,86 @@ export function ProjectShowcase() {
   return (
     <section
       aria-label="Витрина проектов"
-      className="reveal mx-auto w-full max-w-5xl px-6 pb-16 sm:px-10"
+      className="reveal mx-auto w-full max-w-6xl px-6 pb-4 sm:px-10"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="border-border bg-surface overflow-hidden rounded-2xl border">
-        <div className="relative aspect-video w-full">
+      <div className="flex items-center gap-3 sm:gap-6">
+        <button
+          type="button"
+          aria-label="Предыдущий проект"
+          onClick={() => setActive((i) => (i - 1 + items.length) % items.length)}
+          className="border-border bg-surface text-foreground hover:border-accent hover:text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors sm:h-12 sm:w-12"
+        >
+          <ChevronIcon direction="left" />
+        </button>
+
+        <div className="border-border bg-surface min-w-0 flex-1 overflow-hidden rounded-2xl border">
           <button
             type="button"
             onClick={() => jumpToProject(project.slug)}
             aria-label={`Смотреть: ${project.title}`}
-            className="group absolute inset-0 block h-full w-full text-left"
+            className="group block w-full p-6 text-left sm:p-10"
           >
-            {project.image && (
-              // eslint-disable-next-line @next/next/no-img-element -- static export, no image optimizer
-              <img
-                src={project.image}
-                alt={project.title}
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                style={{ objectPosition: IMAGE_POSITION[project.slug] ?? "center" }}
-              />
-            )}
-            <div className="from-background/95 via-background/25 absolute inset-0 bg-gradient-to-t to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8">
-              <p className="text-foreground text-lg font-semibold tracking-tight drop-shadow-sm sm:text-2xl">
-                {project.title}
-              </p>
-              <p className="text-muted mt-1 text-xs sm:text-sm">{project.role}</p>
-              <p className="text-muted mt-2 hidden max-w-xl text-sm leading-relaxed sm:block">
-                {project.description}
-              </p>
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
+              <div className="order-1 shrink-0 sm:order-2 sm:w-[46%]">
+                {project.image && (
+                  <div className="border-border group-hover:border-accent group-hover:shadow-accent/20 aspect-[4/3] w-full overflow-hidden rounded-xl border-2 transition-colors duration-300 group-hover:shadow-lg">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimizer */}
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      style={{ objectPosition: IMAGE_POSITION[project.slug] ?? "center" }}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div className="order-2 flex flex-col gap-4 sm:order-1 sm:flex-1">
+                <div>
+                  <p className="text-accent text-xs font-medium tracking-widest uppercase">
+                    {project.role}
+                  </p>
+                  <p className="text-foreground mt-1.5 text-2xl font-semibold tracking-tight sm:text-3xl">
+                    {project.title}
+                  </p>
+                </div>
+                <p className="text-muted max-w-lg text-sm leading-relaxed sm:text-base">
+                  {project.description}
+                </p>
+                <span className="text-accent mt-1 inline-flex items-center gap-1.5 text-sm font-medium transition-transform group-hover:translate-x-1">
+                  Смотреть проект
+                  <ChevronIcon direction="right" />
+                </span>
+              </div>
             </div>
           </button>
 
-          <button
-            type="button"
-            aria-label="Предыдущий проект"
-            onClick={() => setActive((i) => (i - 1 + items.length) % items.length)}
-            className="bg-background/40 text-foreground hover:bg-background/70 absolute top-1/2 left-2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full backdrop-blur-sm transition-colors sm:left-4"
-          >
-            <ChevronIcon direction="left" />
-          </button>
-          <button
-            type="button"
-            aria-label="Следующий проект"
-            onClick={() => setActive((i) => (i + 1) % items.length)}
-            className="bg-background/40 text-foreground hover:bg-background/70 absolute top-1/2 right-2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full backdrop-blur-sm transition-colors sm:right-4"
-          >
-            <ChevronIcon direction="right" />
-          </button>
+          <div className="flex items-center justify-center gap-2 py-5">
+            {items.map((p, i) => (
+              <button
+                key={p.slug}
+                type="button"
+                aria-label={p.title}
+                aria-current={i === active ? "true" : undefined}
+                onClick={() => setActive(i)}
+                className={`h-2 rounded-full transition-all ${
+                  i === active ? "bg-accent w-6" : "bg-border hover:bg-muted w-2"
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="flex items-center justify-center gap-2 py-4">
-          {items.map((p, i) => (
-            <button
-              key={p.slug}
-              type="button"
-              aria-label={p.title}
-              aria-current={i === active ? "true" : undefined}
-              onClick={() => setActive(i)}
-              className={`h-2 rounded-full transition-all ${
-                i === active ? "bg-accent w-6" : "bg-border hover:bg-muted w-2"
-              }`}
-            />
-          ))}
-        </div>
+        <button
+          type="button"
+          aria-label="Следующий проект"
+          onClick={() => setActive((i) => (i + 1) % items.length)}
+          className="border-border bg-surface text-foreground hover:border-accent hover:text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors sm:h-12 sm:w-12"
+        >
+          <ChevronIcon direction="right" />
+        </button>
       </div>
     </section>
   );
