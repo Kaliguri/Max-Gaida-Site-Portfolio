@@ -30,6 +30,17 @@ export const profileSchema = z.object({
   /** "About" → "Основное": self-contained facets, in order. Each is a labelled
    *  block rendered as a bento card (label = short kicker, body = the prose). */
   summary: z.array(z.object({ label: z.string(), body: z.string() })).min(1),
+  /** "О себе" → "Стек": dev-stack chips. Dev-focused only — design competencies
+   *  (systems, balance, level) live in Projects, not here. `core` is the
+   *  emphasized headline tier (large chips, conceptual, each with an optional
+   *  detail subtitle); `groups` are labelled chip clusters with the concrete
+   *  tech. A `muted` group (e.g. web) renders dimmed as a secondary strength. */
+  stack: z.object({
+    core: z.array(z.object({ name: z.string(), detail: z.string().optional() })).min(1),
+    groups: z
+      .array(z.object({ label: z.string(), items: z.array(z.string()).min(1), muted: z.boolean().optional() }))
+      .min(1),
+  }),
   location: z.string(),
   /** Work formats: relocation / remote / hybrid. Shown as flat chips in the hero. */
   availability: z.array(z.string()).min(1),

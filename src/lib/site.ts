@@ -33,6 +33,7 @@ export const NAV = [
     id: "about",
     children: [
       { label: "Основное", id: "about-summary" },
+      { label: "Стек", id: "about-stack" },
       { label: "Поиск работы", id: "about-job-search" },
       { label: "Soft Skills и прочее", id: "about-soft-skills" },
     ],

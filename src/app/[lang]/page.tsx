@@ -18,6 +18,24 @@ const SUMMARY_SPANS = [
   "sm:col-span-2 lg:col-span-1", // Работа с ИИ
 ];
 
+// Asymmetric bento spans for the stack mosaic. Index 0 is the accent "Ядро"
+// anchor tile; indices 1..n map to `profile.stack.groups` in order. The grid is
+// `grid-flow-row-dense`, so wide tiles (the content-heavy ones) get span-2 and
+// the browser backfills the leftover column with the next narrow tile — no gaps
+// without hand-placing every cell. Keep in sync with content order, like above.
+const STACK_SPANS = [
+  "sm:col-span-2 lg:col-span-2", // 0 Ядро — accent anchor
+  "", // 1 Сеть и мультиплеер
+  "sm:col-span-2 lg:col-span-2", // 2 Архитектура и паттерны
+  "sm:col-span-2 lg:col-span-2", // 3 Unity-инструментарий
+  "", // 4 Тестирование и профилирование
+  "", // 5 Платформы и сервисы
+  "sm:col-span-2 lg:col-span-2", // 6 Инструменты и процесс
+  "", // 7 ИИ в пайплайне
+  "", // 8 Геймдизайн
+  "sm:col-span-2 lg:col-span-2", // 9 Веб
+];
+
 export default async function Home({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
   return (
@@ -93,6 +111,59 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
                 >
                   {facet.body}
                 </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="about-stack" className="reveal mt-12 scroll-mt-24">
+          <h3 className="text-accent text-sm font-medium tracking-wide uppercase">Стек</h3>
+          {/* Dev-focused stack as the same asymmetric "bento" mosaic used for
+              "Основное": each category is a tile with an uneven span (STACK_SPANS),
+              the accent "Ядро" tile anchors it, and a `muted` group (web) reads as
+              a secondary strength. Tech tokens sit inside the tiles. */}
+          <div className="mt-6 grid auto-rows-min grid-flow-row-dense grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div
+              className={`${STACK_SPANS[0]} border-accent/40 bg-accent/[0.06] rounded-xl border p-5`}
+            >
+              <p className="text-accent text-xs font-medium tracking-wide uppercase">Ядро</p>
+              <div className="mt-3 flex flex-wrap gap-2.5">
+                {profile.stack.core.map((tech) => (
+                  <div
+                    key={tech.name}
+                    className="border-accent/25 flex flex-col rounded-lg border px-3 py-2"
+                  >
+                    <span className="text-foreground text-sm font-medium">{tech.name}</span>
+                    {tech.detail && (
+                      <span className="text-muted mt-0.5 text-xs leading-snug">{tech.detail}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {profile.stack.groups.map((group, i) => (
+              <div
+                key={group.label}
+                className={`${STACK_SPANS[i + 1] ?? ""} border-border bg-surface/40 rounded-xl border p-5`}
+              >
+                <p className="text-accent text-xs font-medium tracking-wide uppercase">
+                  {group.label}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {group.items.map((name) => (
+                    <span
+                      key={name}
+                      className={
+                        group.muted
+                          ? "border-border/50 text-muted rounded-md border px-2.5 py-1 text-xs"
+                          : "border-border/70 text-foreground/85 rounded-md border px-2.5 py-1 text-xs font-medium"
+                      }
+                    >
+                      {name}
+                    </span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

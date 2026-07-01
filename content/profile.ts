@@ -25,6 +25,83 @@ export const profile = profileSchema.parse({
       body: "Активно и осознанно работаю с ИИ-инструментами (Cursor, Claude, Codex): архитектуру и ключевые решения держу на себе, реализацию отдаю ИИ. Это контроль над проектом, а не «вайбкодинг».",
     },
   ],
+  stack: {
+    core: [
+      { name: "Unity 6", detail: "основной движок" },
+      { name: "C#", detail: "язык · .NET" },
+      { name: "Multiplayer", detail: "host-authoritative co-op" },
+    ],
+    groups: [
+      {
+        label: "Сеть и мультиплеер",
+        items: ["Netcode for GameObjects", "Photon Fusion"],
+      },
+      {
+        label: "Архитектура и паттерны",
+        items: [
+          "DI (VContainer / Zenject)",
+          "MVVM",
+          "MVP",
+          "State Machine",
+          "Command",
+          "Strategy",
+          "Factory",
+          "Object Pool",
+          "EventBus",
+          "Data-driven (ScriptableObject)",
+        ],
+      },
+      {
+        label: "Unity-инструментарий",
+        items: [
+          "Addressables",
+          "UniTask",
+          "UI Toolkit",
+          "UGUI",
+          "Odin",
+          "DOTween",
+          "LitMotion",
+          "Unity Localization",
+          "FMOD",
+          "asmdef",
+        ],
+      },
+      {
+        label: "Тестирование и профилирование",
+        items: ["Unity Test Framework", "NUnit", "Unity Profiler"],
+      },
+      {
+        label: "Платформы и сервисы",
+        items: ["Steamworks", "Yandex Games SDK", "Firebase"],
+      },
+      {
+        label: "Инструменты и процесс",
+        items: ["Git / GitHub Actions", "Git LFS", "Figma", "Obsidian", "Notion"],
+      },
+      {
+        label: "ИИ в пайплайне",
+        items: ["Cursor", "Claude", "Codex"],
+      },
+      {
+        label: "Геймдизайн",
+        items: ["Google Sheets / Excel"],
+      },
+      {
+        label: "Веб",
+        muted: true,
+        items: [
+          "TypeScript",
+          "React",
+          "Next.js",
+          "Vite",
+          "Tailwind",
+          "Feature-Sliced Design",
+          "Python",
+          "Cloudflare Workers",
+        ],
+      },
+    ],
+  },
   location: "Москва",
   availability: ["Релокация", "Удалёнка", "Гибрид"],
   grade: "Middle",
