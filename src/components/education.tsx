@@ -20,7 +20,7 @@ export function Education() {
       </h2>
 
       <div id="education-program" className="reveal mt-10 scroll-mt-24">
-        <h3 className="text-muted text-sm font-medium tracking-wide uppercase">
+        <h3 className="text-accent text-sm font-medium tracking-wide uppercase">
           Программа обучения
         </h3>
         <dl className="mt-5 grid gap-5 text-sm sm:grid-cols-2">
@@ -48,7 +48,7 @@ export function Education() {
       </div>
 
       <div id="education-skills" className="reveal mt-12 scroll-mt-24">
-        <h3 className="text-muted text-sm font-medium tracking-wide uppercase">
+        <h3 className="text-accent text-sm font-medium tracking-wide uppercase">
           Полученные навыки
         </h3>
         <dl className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -63,7 +63,7 @@ export function Education() {
 
       {educationProjects.length > 0 && (
         <div id="education-projects" className="mt-12 scroll-mt-24">
-          <h3 className="text-muted text-sm font-medium tracking-wide uppercase">
+          <h3 className="text-accent text-sm font-medium tracking-wide uppercase">
             Проекты в рамках ПД
           </h3>
           {education.note && (

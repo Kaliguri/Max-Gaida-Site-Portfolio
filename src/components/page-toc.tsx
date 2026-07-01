@@ -6,15 +6,13 @@ import { NAV } from "@/lib/site";
 /**
  * Left-side section nav for the home page's long scroll. Only fits on very
  * wide viewports (content is a centered max-w-5xl column); hidden below that.
- * NAV entries may carry `children` (currently only "Образование") — those
- * render as a nested sub-list and are tracked by the same observer, so a
- * parent item lights up whenever any of its children is in view.
+ * NAV entries may carry `children` (currently "О себе", "Образование" and
+ * "Проекты") — those render as a nested sub-list and are tracked by the same
+ * observer, so a parent item lights up whenever any of its children is in view.
  */
 export function PageToc() {
   const observedIds = NAV.flatMap((item) =>
-    "children" in item && item.children
-      ? [item.id, ...item.children.map((c) => c.id)]
-      : [item.id],
+    "children" in item && item.children ? [item.id, ...item.children.map((c) => c.id)] : [item.id],
   );
   const [active, setActive] = useState<string>(NAV[0].id);
 
@@ -47,8 +45,7 @@ export function PageToc() {
       <ul className="space-y-4">
         {NAV.map((item) => {
           const children = "children" in item ? item.children : undefined;
-          const isActive =
-            item.id === active || (children?.some((c) => c.id === active) ?? false);
+          const isActive = item.id === active || (children?.some((c) => c.id === active) ?? false);
           return (
             <li key={item.id}>
               <a

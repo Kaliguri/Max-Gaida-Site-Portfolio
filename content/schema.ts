@@ -33,12 +33,10 @@ export const profileSchema = z.object({
   /** Work formats: relocation / remote / hybrid. Shown as flat chips in the hero. */
   availability: z.array(z.string()).min(1),
   grade: z.string(),
-  /** "О себе" → "Поиск работы": same formats as `availability`, but weighted —
-   *  what's preferred vs merely considered — for the fuller write-up. */
+  /** "О себе" → "Поиск работы": prose write-up (format, relocation stance) —
+   *  shown instead of chips, also reused on the résumé-picker cards. */
   jobSearch: z.object({
-    preferred: z.array(z.string()).min(1),
-    openTo: z.array(z.string()).default([]),
-    note: z.string().optional(),
+    summary: z.string(),
   }),
   /** "О себе" → "Soft Skills и прочее". */
   softSkills: z.array(z.object({ name: z.string(), detail: z.string() })).min(1),
@@ -76,7 +74,8 @@ export const projectSchema = z.object({
   description: z.string(),
   /** One-line standout fact (commercial release, award, metric). */
   highlight: z.string().optional(),
-  tags: z.array(z.string()).min(1),
+  /** Cover art for the homepage showcase carousel — path under `public/`. */
+  image: z.string().optional(),
   links: z.array(projectLinkSchema).default([]),
   status: projectStatusSchema,
   /** Featured = first shelf (cards); others render as a compact "more" list. */

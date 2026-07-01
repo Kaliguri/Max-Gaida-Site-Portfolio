@@ -20,13 +20,21 @@ export function isLocale(value: string): value is Locale {
 }
 
 /**
- * Top-nav items. Anchor links to home sections — the list grows as Phase 3
- * adds sections (projects/resume). Labels are RU for now (RU-only ship);
- * they move into i18n dictionaries when EN lands. Profile data (incl. contacts)
- * lives in `content/`, not here.
+ * Left-side page TOC (PageToc). Anchor links to home sections. Labels are RU
+ * for now (RU-only ship); they move into i18n dictionaries when EN lands.
+ * Profile data (incl. contacts) lives in `content/`, not here. The top header
+ * nav is a separate, deliberately shorter set defined in SiteHeader/MobileNav.
  */
 export const NAV = [
-  { label: "О себе", id: "about" },
+  {
+    label: "О себе",
+    id: "about",
+    children: [
+      { label: "Основное", id: "about-summary" },
+      { label: "Поиск работы", id: "about-job-search" },
+      { label: "Soft Skills и прочее", id: "about-soft-skills" },
+    ],
+  },
   { label: "Резюме", id: "resume" },
   {
     label: "Образование",
@@ -37,6 +45,12 @@ export const NAV = [
       { label: "Проекты в рамках ПД", id: "education-projects" },
     ],
   },
-  { label: "Проекты", id: "projects" },
-  { label: "Контакты", id: "contacts" },
+  {
+    label: "Проекты",
+    id: "projects",
+    children: [
+      { label: "Основное", id: "projects-featured" },
+      { label: "Дополнительно", id: "projects-more" },
+    ],
+  },
 ] as const;

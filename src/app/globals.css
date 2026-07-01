@@ -107,3 +107,30 @@ body {
     }
   }
 }
+
+/* Momentary highlight for a project card jumped to from the showcase carousel. */
+@keyframes project-highlight {
+  0% {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+  70% {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent) 0%, transparent);
+  }
+  100% {
+    border-color: var(--border);
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.project-highlight {
+  animation: project-highlight 1.6s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-highlight {
+    animation: none;
+    border-color: var(--accent);
+  }
+}

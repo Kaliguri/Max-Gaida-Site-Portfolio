@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { NAV, SITE } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { profile, resumeRoles } from "@content/index";
+import { ContactIcon } from "./contact-icon";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -60,14 +62,51 @@ export function MobileNav() {
           />
           <nav className="border-border bg-background absolute inset-x-0 top-full z-40 border-b">
             <ul className="mx-auto flex max-w-5xl flex-col px-6 py-2">
-              {NAV.map((item) => (
-                <li key={item.id}>
+              <li>
+                <a
+                  href={`/${SITE.defaultLocale}/#about`}
+                  onClick={() => setOpen(false)}
+                  className="text-muted hover:text-foreground block py-3 text-sm transition-colors"
+                >
+                  Основное
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`/${SITE.defaultLocale}/#resume`}
+                  onClick={() => setOpen(false)}
+                  className="text-muted hover:text-foreground block py-3 text-sm transition-colors"
+                >
+                  Резюме
+                </a>
+                <ul className="border-border ml-3 space-y-1 border-l pb-2 pl-3">
+                  {resumeRoles.map((role) => (
+                    <li key={role.slug}>
+                      <a
+                        href={`/${SITE.defaultLocale}/resume/${role.slug}`}
+                        onClick={() => setOpen(false)}
+                        className="text-muted hover:text-foreground block py-2 text-sm transition-colors"
+                      >
+                        {role.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            </ul>
+
+            <ul className="border-border mx-auto flex max-w-5xl flex-wrap gap-2 border-t px-6 py-4">
+              {profile.contacts.map((c) => (
+                <li key={c.href}>
                   <a
-                    href={`/${SITE.defaultLocale}/#${item.id}`}
+                    href={c.href}
+                    target={c.external ? "_blank" : undefined}
+                    rel={c.external ? "noopener noreferrer" : undefined}
                     onClick={() => setOpen(false)}
-                    className="text-muted hover:text-foreground block py-3 text-sm transition-colors"
+                    className="border-border text-muted hover:border-accent hover:text-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm transition-colors"
                   >
-                    {item.label}
+                    <ContactIcon name={c.icon} />
+                    {c.label}
                   </a>
                 </li>
               ))}

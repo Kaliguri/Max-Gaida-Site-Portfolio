@@ -1,5 +1,6 @@
 import { profile } from "@content/index";
 import { Projects } from "@/components/projects";
+import { ProjectShowcase } from "@/components/project-showcase";
 import { ResumePreview } from "@/components/resume-preview";
 import { Education } from "@/components/education";
 import { SiteChrome } from "@/components/site-chrome";
@@ -29,21 +30,9 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
           {profile.lead}
         </p>
 
-        <div
-          className="fade-up mt-8 flex flex-wrap items-center gap-2 text-sm"
-          style={{ animationDelay: "0.15s" }}
-        >
-          <span className="text-foreground">{profile.location}</span>
-          <span className="text-border">·</span>
-          {profile.availability.map((a) => (
-            <span
-              key={a}
-              className="border-border text-muted rounded-full border px-3 py-1 text-xs"
-            >
-              {a}
-            </span>
-          ))}
-        </div>
+        <p className="text-muted fade-up mt-8 text-sm" style={{ animationDelay: "0.15s" }}>
+          <span className="text-foreground">{profile.location}</span> · {profile.jobSearch.summary}
+        </p>
 
         <div className="fade-up mt-10 flex flex-wrap gap-4" style={{ animationDelay: "0.2s" }}>
           <a
@@ -65,6 +54,8 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
         </div>
       </section>
 
+      <ProjectShowcase />
+
       <section
         id="about"
         className="border-border mx-auto w-full max-w-5xl scroll-mt-20 border-t px-6 py-20 sm:px-10"
@@ -73,8 +64,8 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
           О себе
         </h2>
 
-        <div className="reveal mt-10">
-          <h3 className="text-muted text-sm font-medium tracking-wide uppercase">Основное</h3>
+        <div id="about-summary" className="reveal mt-10 scroll-mt-24">
+          <h3 className="text-accent text-sm font-medium tracking-wide uppercase">Основное</h3>
           <div className="mt-5 space-y-5">
             {profile.summary.map((para, i) => (
               <p key={i} className="text-muted leading-relaxed">
@@ -84,37 +75,16 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
           </div>
         </div>
 
-        <div className="reveal mt-12">
-          <h3 className="text-muted text-sm font-medium tracking-wide uppercase">
-            Поиск работы
-          </h3>
-          <div className="mt-5 flex flex-wrap items-center gap-2 text-sm">
-            <span className="text-foreground">{profile.location}</span>
-            <span className="text-border">·</span>
-            {profile.jobSearch.preferred.map((f) => (
-              <span
-                key={f}
-                className="border-border bg-surface text-foreground rounded-full border px-3 py-1 text-xs"
-              >
-                {f}
-              </span>
-            ))}
-            {profile.jobSearch.openTo.map((f) => (
-              <span
-                key={f}
-                className="border-border text-muted rounded-full border border-dashed px-3 py-1 text-xs"
-              >
-                {f}
-              </span>
-            ))}
-          </div>
-          {profile.jobSearch.note && (
-            <p className="text-muted mt-4 text-sm leading-relaxed">{profile.jobSearch.note}</p>
-          )}
+        <div id="about-job-search" className="reveal mt-12 scroll-mt-24">
+          <h3 className="text-accent text-sm font-medium tracking-wide uppercase">Поиск работы</h3>
+          <p className="text-muted mt-5 text-sm leading-relaxed">
+            <span className="text-foreground">{profile.location}</span> ·{" "}
+            {profile.jobSearch.summary}
+          </p>
         </div>
 
-        <div className="reveal mt-12">
-          <h3 className="text-muted text-sm font-medium tracking-wide uppercase">
+        <div id="about-soft-skills" className="reveal mt-12 scroll-mt-24">
+          <h3 className="text-accent text-sm font-medium tracking-wide uppercase">
             Soft Skills и прочее
           </h3>
           <dl className="mt-5 grid gap-4 sm:grid-cols-2">
