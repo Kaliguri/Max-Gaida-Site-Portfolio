@@ -1,0 +1,159 @@
+/* ============================================================================
+   xGaida — itch.io profile theme
+   Ported from the portfolio site's dark theme (warm amber on charcoal).
+
+   How it works (per the itch.io CSS guide):
+   - Overrides itch's own theme variables (--itchio_*), the robust way itch
+     recommends, so links / "gray back" / radius follow the site tokens.
+   - Everything else is scoped under the #wrapper ID to raise specificity above
+     the built-in theme-editor rules (e.g. `.game_grid_widget .game_cell`,
+     `.game_title a.title`) — single-class selectors were losing to those.
+   - No @import and no color-mix(): itch's CSS sanitizer may strip them, so the
+     web font is intentionally avoided and all glows use plain rgba().
+
+   Paste the whole block (wrapped in <style id="custom_css">) into
+   itch.io -> Edit theme -> Custom CSS.
+   ============================================================================ */
+
+/* Site design tokens mapped onto itch's theme variables. Set on both the
+   content root (#wrapper) and the theming class (.user_page) so descendants
+   inherit them regardless of which one carries the built-ins. */
+#wrapper,
+.user_page {
+  --itchio_link_color: #f5a524;        /* was #bb49dd (purple) */
+  --itchio_gray_back: #1c1917;         /* card / raised surface */
+  --itchio_ui_bg: #0c0a09;             /* page canvas */
+  --itchio_border_color: #2a2522;      /* hairlines */
+  --itchio_border_radius: 14px;        /* was 19px */
+  --itchio_button_color: #f5a524;
+  --itchio_button_fg_color: #1c1207;
+  --itchio_button_hover_color: #fbbf24;
+}
+
+/* Page canvas — warm near-black. body fills the viewport behind the wrapper;
+   #wrapper carries the scrolling content background. */
+body.user_layout_widget {
+  background-color: #0c0a09 !important;
+  background-image: none !important;
+}
+
+#wrapper {
+  background-color: #0c0a09;
+  color: #f5f4f2;
+  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system,
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Subtle warm glow behind the profile header, echoing the site hero. */
+#wrapper .user_profile {
+  background: radial-gradient(65% 55% at 50% -8%,
+    rgba(245, 165, 36, 0.1) 0%, transparent 70%);
+  color: #f5f4f2;
+}
+
+#wrapper .user_profile h1,
+#wrapper .user_profile h2,
+#wrapper .user_profile h3,
+#wrapper .user_profile strong {
+  color: #f5f4f2;
+  letter-spacing: -0.01em;
+}
+
+#wrapper a {
+  color: #f5a524;
+  transition: color 150ms ease;
+}
+#wrapper a:hover {
+  color: #fbbf24;
+}
+
+/* Separators. */
+#wrapper hr {
+  background-color: #2a2522 !important;
+  border-color: #2a2522 !important;
+}
+#wrapper .footer {
+  border-color: #2a2522 !important;
+}
+
+/* ---- Game grid cards ----
+   #wrapper prefix (1,0,1,0) beats itch's `.game_grid_widget .game_cell`. */
+#wrapper .game_cell {
+  background-color: #1c1917;
+  padding: 10px;
+  border: 1px solid #2a2522;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.8);
+  transform: translateY(0);
+  transition: transform 180ms ease, border-color 180ms ease,
+    box-shadow 180ms ease, background-color 180ms ease;
+}
+
+#wrapper .game_cell:hover {
+  background-color: #292524;
+  border-color: #f5a524;
+  box-shadow:
+    0 0 0 1px rgba(245, 165, 36, 0.45),
+    0 0 22px -4px rgba(245, 165, 36, 0.4),
+    0 16px 34px -14px rgba(0, 0, 0, 0.9);
+  transform: translateY(-3px);
+  z-index: 2;
+}
+
+#wrapper .game_cell .game_thumb {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Titles: light by default, amber on hover. Beats `.game_title a.title`. */
+#wrapper .game_cell .game_title a.title {
+  color: #f5f4f2;
+  transition: color 150ms ease;
+}
+#wrapper .game_cell:hover .game_title a.title {
+  color: #f5a524;
+}
+
+/* Secondary card text. */
+#wrapper .game_cell .game_text {
+  color: #a8a29e;
+}
+#wrapper .game_cell .game_author {
+  color: rgba(245, 244, 242, 0.65);
+}
+#wrapper .game_cell .game_author a {
+  color: #a8a29e;
+}
+#wrapper .game_cell .game_genre {
+  color: rgba(245, 244, 242, 0.45);
+}
+
+/* Price / sale pills, web flag. */
+#wrapper .game_cell .price_value,
+#wrapper .game_cell .sale_tag {
+  background: #3a2a12;
+  color: #fbbf24;
+  border-radius: 6px;
+}
+#wrapper .web_flag {
+  color: #1c1207 !important;
+  background: #f5a524 !important;
+}
+
+/* Buttons (follow, etc.). */
+#wrapper .button,
+#wrapper .buy_btn,
+#wrapper .follow_btn {
+  background: #f5a524 !important;
+  color: #1c1207 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600;
+  transition: background 150ms ease, transform 150ms ease;
+}
+#wrapper .button:hover,
+#wrapper .buy_btn:hover,
+#wrapper .follow_btn:hover {
+  background: #fbbf24 !important;
+  transform: translateY(-1px);
+}
