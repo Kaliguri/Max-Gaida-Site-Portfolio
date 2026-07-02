@@ -56,7 +56,7 @@ export function Education() {
           {education.skills.map((skill, i) => (
             <div
               key={skill.name}
-              className={`${bentoSpan(i)} border-border bg-surface/40 rounded-lg border p-3`}
+              className={`${bentoSpan(i)} surface-chip p-3`}
             >
               <dt className="text-foreground text-xs font-medium">{skill.name}</dt>
               <dd className="text-muted mt-1 text-xs leading-snug">{skill.detail}</dd>

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/site";
 import { experience, profile, resumeRoles } from "@content/index";
-import { ContactIcon } from "@/components/contact-icon";
+import { ContactLink } from "@/components/contact-link";
 import { SiteChrome } from "@/components/site-chrome";
 
 export const dynamicParams = false;
@@ -70,15 +70,7 @@ export default async function ResumePage({
           <ul className="mt-4 flex flex-wrap gap-3">
             {profile.contacts.map((c) => (
               <li key={c.href}>
-                <a
-                  href={c.href}
-                  target={c.external ? "_blank" : undefined}
-                  rel={c.external ? "noopener noreferrer" : undefined}
-                  className="text-muted hover:text-accent inline-flex items-center gap-1.5 text-sm transition-colors"
-                >
-                  <ContactIcon name={c.icon} />
-                  {c.label}
-                </a>
+                <ContactLink contact={c} variant="text" />
               </li>
             ))}
           </ul>

@@ -54,6 +54,21 @@
   --font-sans: var(--font-onest);
 }
 
+/* Surface primitives — one source for the card/tile look so padding, radius and
+   fill can't drift per-usage (they did). `surface-card` = interactive (solid
+   fill, accent border on hover); `surface-tile` = static info block (dimmed
+   fill); `surface-chip` = the small dense variant (skills grids). Padding stays
+   a utility on the element so each call site keeps its size. */
+@utility surface-card {
+  @apply border-border bg-surface hover:border-accent rounded-xl border transition-colors;
+}
+@utility surface-tile {
+  @apply border-border bg-surface/40 rounded-xl border;
+}
+@utility surface-chip {
+  @apply border-border bg-surface/40 rounded-lg border;
+}
+
 html {
   color-scheme: var(--color-scheme);
 }

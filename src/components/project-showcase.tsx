@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { projects } from "@content/index";
+import { prefersReducedMotion, useReducedMotion } from "@/lib/motion";
+import { ChevronIcon } from "@/components/icons";
 
 // Curated set for the top-of-page carousel — credibility-first, mirrors the
 // "Основное" shelf order. Keep in sync with content/projects.ts slugs.
@@ -17,10 +19,6 @@ const AUTO_ROTATE_MS = 6000;
 // quick pass over the carousel doesn't yank the timer back to life instantly.
 const RESUME_DELAY_MS = 500;
 
-function prefersReducedMotion() {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
 function jumpToProject(slug: string) {
   const el = document.getElementById(`project-${slug}`);
   if (!el) return;
@@ -28,24 +26,6 @@ function jumpToProject(slug: string) {
   el.classList.remove("project-highlight");
   void el.offsetWidth; // reflow so the animation can restart on repeat clicks
   el.classList.add("project-highlight");
-}
-
-function ChevronIcon({ direction }: { direction: "left" | "right" }) {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d={direction === "left" ? "M15 6 9 12l6 6" : "M9 6l6 6-6 6"} />
-    </svg>
-  );
 }
 
 /**
@@ -61,41 +41,36 @@ export function ProjectShowcase() {
   // `interacting` = pointer over / keyboard focus inside the carousel. It pauses
   // the countdown and hides the timer bar; auto-rotate resumes after leaving.
   const [interacting, setInteracting] = useState(false);
-  const [reduced, setReduced] = useState(false);
+  const reduced = useReducedMotion();
   const barRef = useRef<HTMLDivElement>(null);
   const resumeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const elapsedRef = useRef(0);
 
-  // Track reduced-motion reactively so the timer bar and auto-rotate stay in
-  // sync with the OS setting even if it changes mid-session.
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduced(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  // Single clock for the whole auto-rotate: one interval fills the progress bar
-  // (imperatively, no per-frame re-render) AND flips to the next slide when it
-  // reaches the end. Bar and switch share this timer by construction, so the
-  // pager and the countdown can never drift apart. Restarts from zero whenever
-  // `active` changes — auto-advance and manual dot/arrow clicks alike. An
-  // interval (not rAF) so it keeps counting in a backgrounded tab.
+  // Single clock for the whole auto-rotate: one requestAnimationFrame loop fills
+  // the progress bar (imperatively, no per-frame re-render) AND flips to the
+  // next slide when it reaches the end. Bar and switch share this loop by
+  // construction, so the pager and the countdown can never drift apart. Progress
+  // is derived from a wall-clock timestamp delta, so it stays smooth (~60fps)
+  // and frame-rate independent. Restarts whenever `active` changes — auto-advance
+  // and manual dot/arrow clicks alike.
   useEffect(() => {
     const bar = barRef.current;
     if (interacting || reduced || items.length <= 1) return;
-    elapsedRef.current = 0;
-    if (bar) bar.style.transform = "scaleX(0)";
 
-    const TICK_MS = 40;
-    const id = setInterval(() => {
-      elapsedRef.current += TICK_MS;
-      const p = Math.min(elapsedRef.current / AUTO_ROTATE_MS, 1);
+    let raf = 0;
+    let start = 0;
+    const tick = (now: number) => {
+      if (!start) start = now;
+      const p = Math.min((now - start) / AUTO_ROTATE_MS, 1);
       if (bar) bar.style.transform = `scaleX(${p})`;
-      if (p >= 1) setActive((i) => (i + 1) % items.length);
-    }, TICK_MS);
-    return () => clearInterval(id);
+      if (p >= 1) {
+        setActive((i) => (i + 1) % items.length);
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    if (bar) bar.style.transform = "scaleX(0)";
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [interacting, reduced, items.length, active]);
 
   // Enter pauses immediately; leave waits RESUME_DELAY_MS before resuming.

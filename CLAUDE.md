@@ -38,6 +38,12 @@ bilingual (RU/EN), dark/light themes, animation-heavy. Audience includes RF.
 
 ## Conventions
 
+- **Before feature/UI work, read [`docs/architecture-ru.md`](docs/architecture-ru.md) (code
+  conventions: shared primitives, single-source, basePath) and
+  [`docs/design-system-ru.md`](docs/design-system-ru.md) (visual tokens).** They exist to stop
+  parallel re-implementations of the same thing. When you add or change a shared pattern (a new
+  primitive, token, or single-source rule), update the matching doc in the same change — the docs
+  are a living contract, not a snapshot.
 - Code, naming, commits: **English**. README / user-facing docs: **bilingual (RU + EN)**.
   Design / process docs in `docs/` are Russian (`*-ru.md`).
 - **i18n content: keep RU + EN in sync** — this site ships both by default (unlike the Unity repos).

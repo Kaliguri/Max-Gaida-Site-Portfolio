@@ -8,33 +8,26 @@ import { PageToc } from "@/components/page-toc";
 import { HeroPortrait } from "@/components/hero-portrait";
 import { bentoSpan } from "@/lib/bento";
 
-// Bento spans for the "Основное" facets, by index. Lead facet is a wide hero,
-// second is a tall column, the last fills the remaining width — an intentionally
-// uneven mosaic. Order-coupled to `profile.summary`.
-const SUMMARY_SPANS = [
-  "sm:col-span-2 lg:col-span-2", // Подход — wide lead
-  "lg:row-span-2", // Стек и склад ума — tall column (longest body)
-  "", // UI/UX и веб
-  "sm:col-span-2 lg:col-span-1", // Работа с ИИ
-];
+// Bento spans for the "Основное" facets, keyed by label (not index) so
+// reordering `profile.summary` can't silently shift the mosaic. Any facet not
+// listed gets a default 1×1 cell. Wide lead + one tall column = uneven mosaic.
+const SUMMARY_SPANS: Record<string, string> = {
+  Подход: "sm:col-span-2 lg:col-span-2", // wide lead
+  "Стек и склад ума": "lg:row-span-2", // tall column (longest body)
+  "Работа с ИИ": "sm:col-span-2 lg:col-span-1",
+};
 
-// Asymmetric bento spans for the stack mosaic. Index 0 is the accent "Ядро"
-// anchor tile; indices 1..n map to `profile.stack.groups` in order. The grid is
+// Asymmetric bento spans for the stack mosaic, keyed by group label. The accent
+// "Ядро" anchor tile carries its own span inline. The grid is
 // `grid-flow-row-dense`, so wide tiles (the content-heavy ones) get span-2 and
 // the browser backfills the leftover column with the next narrow tile — no gaps
-// without hand-placing every cell. Keep in sync with content order, like above.
-const STACK_SPANS = [
-  "sm:col-span-2 lg:col-span-2", // 0 Ядро — accent anchor
-  "", // 1 Сеть и мультиплеер
-  "sm:col-span-2 lg:col-span-2", // 2 Архитектура и паттерны
-  "sm:col-span-2 lg:col-span-2", // 3 Unity-инструментарий
-  "", // 4 Тестирование и профилирование
-  "", // 5 Платформы и сервисы
-  "sm:col-span-2 lg:col-span-2", // 6 Инструменты и процесс
-  "", // 7 ИИ в пайплайне
-  "", // 8 Геймдизайн
-  "sm:col-span-2 lg:col-span-2", // 9 Веб
-];
+// without hand-placing every cell. Keyed, so content order is free to change.
+const STACK_SPANS: Record<string, string> = {
+  "Архитектура и паттерны": "sm:col-span-2 lg:col-span-2",
+  "Unity-инструментарий": "sm:col-span-2 lg:col-span-2",
+  "Инструменты и процесс": "sm:col-span-2 lg:col-span-2",
+  Веб: "sm:col-span-2 lg:col-span-2",
+};
 
 export default async function Home({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
@@ -54,7 +47,7 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
               className="text-foreground/90 fade-up mt-1 text-sm sm:text-base"
               style={{ animationDelay: "0.05s" }}
             >
-              Game Developer &amp; Game Designer
+              {profile.roleLine}
             </p>
             <h1
               className="text-foreground fade-up mt-5 text-4xl leading-[1.06] font-semibold tracking-tight sm:text-5xl"
@@ -99,7 +92,7 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
             {profile.summary.map((facet, i) => (
               <div
                 key={facet.label}
-                className={`${SUMMARY_SPANS[i] ?? ""} border-border bg-surface/40 flex flex-col rounded-xl border p-6`}
+                className={`${SUMMARY_SPANS[facet.label] ?? ""} surface-tile flex flex-col p-6`}
               >
                 <span className="text-accent text-xs font-medium tracking-wide uppercase">
                   {facet.label}
@@ -123,9 +116,9 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
               the accent "Ядро" tile anchors it, and a `muted` group (web) reads as
               a secondary strength. Tech tokens sit inside the tiles. */}
           <div className="mt-6 grid auto-rows-min grid-flow-row-dense grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <div
-              className={`${STACK_SPANS[0]} border-accent/40 bg-accent/[0.06] rounded-xl border p-5`}
-            >
+            {/* Accent "Ядро" anchor — its own span (not in STACK_SPANS). */}
+            <div className="border-accent/40 bg-accent/[0.06] rounded-xl border p-5 sm:col-span-2 lg:col-span-2">
+
               <p className="text-accent text-xs font-medium tracking-wide uppercase">Ядро</p>
               <div className="mt-3 flex flex-wrap gap-2.5">
                 {profile.stack.core.map((tech) => (
@@ -142,10 +135,10 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
               </div>
             </div>
 
-            {profile.stack.groups.map((group, i) => (
+            {profile.stack.groups.map((group) => (
               <div
                 key={group.label}
-                className={`${STACK_SPANS[i + 1] ?? ""} border-border bg-surface/40 rounded-xl border p-5`}
+                className={`${STACK_SPANS[group.label] ?? ""} surface-tile p-5`}
               >
                 <p className="text-accent text-xs font-medium tracking-wide uppercase">
                   {group.label}
@@ -185,7 +178,7 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
             {profile.softSkills.map((skill, i) => (
               <div
                 key={skill.name}
-                className={`${bentoSpan(i)} border-border bg-surface/40 rounded-lg border p-3`}
+                className={`${bentoSpan(i)} surface-chip p-3`}
               >
                 <dt className="text-foreground text-xs font-medium">{skill.name}</dt>
                 <dd className="text-muted mt-1 text-xs leading-snug">{skill.detail}</dd>

@@ -1,31 +1,13 @@
 import { projects } from "@content/index";
 import type { Project } from "@content/index";
 import { ProjectVideo } from "@/components/project-video";
-
-function ArrowOut() {
-  return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M7 17 17 7" />
-      <path d="M8 7h9v9" />
-    </svg>
-  );
-}
+import { ArrowUpRightIcon } from "@/components/icons";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article
       id={`project-${project.slug}`}
-      className="border-border bg-surface hover:border-accent flex scroll-mt-24 flex-col rounded-xl border p-6 transition-colors"
+      className="surface-card flex scroll-mt-24 flex-col p-6"
     >
       <h3 className="text-foreground text-lg font-semibold tracking-tight">{project.title}</h3>
       <p className="text-muted mt-1 text-sm">{project.role}</p>
@@ -55,7 +37,7 @@ export function ProjectCard({ project }: { project: Project }) {
               className="text-foreground hover:text-accent inline-flex items-center gap-1 text-sm font-medium transition-colors"
             >
               {link.label}
-              <ArrowOut />
+              <ArrowUpRightIcon />
             </a>
           ))}
         </div>
@@ -110,7 +92,7 @@ export function Projects() {
                     className="text-foreground hover:text-accent inline-flex shrink-0 items-center gap-1 text-sm font-medium transition-colors"
                   >
                     {project.links[0].label}
-                    <ArrowOut />
+                    <ArrowUpRightIcon />
                   </a>
                 )}
               </li>

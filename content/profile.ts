@@ -5,6 +5,7 @@ import { profileSchema } from "./schema";
 export const profile = profileSchema.parse({
   name: "Max Gaida",
   headline: "Делаю игры на стыке кода, механик и опыта игрока",
+  roleLine: "Game Developer & Game Designer",
   eyebrow: "Unity / C# · Game Design · UI/UX",
   lead: "Смотрю на игру как на цельную систему: код, геймдизайн, UI/UX, ощущения игрока и реальные ограничения разработки.",
   summary: [

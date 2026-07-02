@@ -15,7 +15,7 @@ export function ResumePreview({ lang }: { lang: string }) {
           <Link
             key={role.slug}
             href={`/${lang}/resume/${role.slug}`}
-            className="group reveal border-border bg-surface hover:border-accent flex flex-col rounded-xl border p-6 transition-colors"
+            className="group reveal surface-card flex flex-col p-6"
           >
             <h3 className="text-foreground text-lg font-semibold tracking-tight">{role.title}</h3>
             <p className="text-muted mt-2 text-sm leading-relaxed">{role.focus}</p>

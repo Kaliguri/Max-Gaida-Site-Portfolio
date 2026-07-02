@@ -23,7 +23,10 @@ export const profileSchema = z.object({
   name: z.string(),
   /** Hero headline (h1). */
   headline: z.string(),
-  /** Small kicker above the headline — the facets. */
+  /** Role line directly under the greeting, above the headline (e.g. "Game
+   *  Developer & Game Designer"). */
+  roleLine: z.string(),
+  /** Facet kicker rendered under the hero lead (the "Unity / C# · …" line). */
   eyebrow: z.string(),
   /** Hero one-liner under the headline. */
   lead: z.string(),
@@ -81,7 +84,7 @@ export type ProjectLink = z.infer<typeof projectLinkSchema>;
 export const projectSchema = z.object({
   slug: z.string(),
   title: z.string(),
-  /** Max's role + context, e.g. "Технический геймдизайнер · RedBoon". */
+  /** Max's role + context, e.g. "Game Designer · RedBoon". */
   role: z.string(),
   description: z.string(),
   /** One-line standout fact (commercial release, award, metric). */

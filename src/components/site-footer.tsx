@@ -1,6 +1,6 @@
 import { SITE } from "@/lib/site";
 import { profile } from "@content/index";
-import { ContactIcon } from "./contact-icon";
+import { ContactLink } from "./contact-link";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -17,15 +17,7 @@ export function SiteFooter() {
           <ul className="flex flex-wrap gap-3">
             {profile.contacts.map((c) => (
               <li key={c.href}>
-                <a
-                  href={c.href}
-                  target={c.external ? "_blank" : undefined}
-                  rel={c.external ? "noopener noreferrer" : undefined}
-                  className="border-border text-muted hover:border-accent hover:text-foreground inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors"
-                >
-                  <ContactIcon name={c.icon} />
-                  {c.label}
-                </a>
+                <ContactLink contact={c} variant="pill" />
               </li>
             ))}
           </ul>
