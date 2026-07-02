@@ -197,9 +197,9 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
 
       <ResumePreview lang={lang} />
 
-      <Education />
+      <Education lang={lang} />
 
-      <Projects />
+      <Projects lang={lang} />
     </SiteChrome>
   );
 }

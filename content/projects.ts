@@ -40,7 +40,7 @@ export const projects = projectsSchema.parse([
     title: "Few Seconds, Many Deaths",
     role: "Лид и инициатор · Московский Политех",
     description:
-      "Учебный проект со страницей в Steam. Вёл команду из 10 человек как тех-лид и проджект-менеджер, освоил Steamworks API и собрал реальную международную аудиторию.",
+      "Учебный проект со страницей в Steam. Вёл команду из 10 человек (тех-лид + PM) и держал на себе связку дисциплин: арт-дирекшн и дизайн персонажей, VFX, свет и 2D-нормали, кастомный пиксельный шейдер, боевые системы и локализацию. Освоил Steamworks и собрал реальную международную аудиторию.",
     highlight: "Лид команды 10 · ~77k показов в Steam",
     image: "/images/projects/few-seconds-many-deaths/cover.jpg",
     links: [
@@ -56,6 +56,141 @@ export const projects = projectsSchema.parse([
       src: "/videos/few-seconds-many-deaths-trailer.mp4",
       poster: "/videos/few-seconds-many-deaths-trailer.jpg",
       title: "Few Seconds, Many Deaths — Trailer",
+    },
+    gallery: [
+      {
+        src: "/images/projects/few-seconds-many-deaths/gameplay.jpg",
+        caption: "Геймплей — пошаговые бои в подземелье",
+      },
+      {
+        src: "/images/projects/few-seconds-many-deaths/tech-shader-graph.jpg",
+        caption: "Кастомный пиксельный шейдер (Shader Graph)",
+      },
+      {
+        src: "/images/projects/few-seconds-many-deaths/tech-normalmap-layer.jpg",
+        caption: "2D normal maps — свет на спрайтах",
+      },
+      {
+        src: "/images/projects/few-seconds-many-deaths/tech-localization.jpg",
+        caption: "Локализация EN/RU (Unity Localization)",
+      },
+      {
+        src: "/images/projects/few-seconds-many-deaths/design-combat-cardinalline.jpg",
+        caption: "Дизайн боевых систем — логика линий атаки",
+      },
+      {
+        src: "/images/projects/few-seconds-many-deaths/design-style-guide.jpg",
+        caption: "Арт-дирекшн — стайлгайд пиксель-арта",
+      },
+      {
+        src: "/images/projects/few-seconds-many-deaths/process-discord-pm.jpg",
+        caption: "Ведение команды — недельные отчёты (PM)",
+      },
+      {
+        src: "/images/projects/few-seconds-many-deaths/proof-steam-stats.jpg",
+        caption: "Steam: ~77k показов, 27.8k визитов, 36% CTR",
+      },
+    ],
+    caseStudy: {
+      intro:
+        "Учебный, но доведённый до публичной страницы в Steam пошаговый рогалик. Я вёл команду из 10 человек как тех-лид и проджект-менеджер и одновременно держал на себе визуальный и системный слой: арт-дирекшн, дизайн персонажей, VFX, свет и 2D-нормали, кастомный пиксельный шейдер, боевые системы и локализацию.",
+      facts: [
+        { label: "Роль", value: "Тех-лид · PM · арт-дирекшн · дизайн систем" },
+        { label: "Команда", value: "10 человек" },
+        { label: "Движок", value: "Unity · C#" },
+        { label: "Платформа", value: "Steam (страница + Steamworks)" },
+        { label: "Охват", value: "~77k показов · 27.8k визитов · 36% CTR" },
+      ],
+      sections: [
+        {
+          heading: "Что это за игра",
+          body: [
+            "Пошаговый рогалик в мрачном пиксельном сеттинге: игрок ведёт отряд героев по подземелью, планируя ходы на сетке. Проект вырос из учебной задачи в полноценную витрину со страницей в Steam и реальной международной аудиторией.",
+          ],
+          images: [
+            {
+              src: "/images/projects/few-seconds-many-deaths/gameplay.jpg",
+              caption: "Пошаговый бой на сетке",
+            },
+          ],
+        },
+        {
+          heading: "Роль и охват",
+          body: [
+            "Я был тех-лидом и проджект-менеджером команды из 10 человек: планирование, декомпозиция задач, недельные отчёты, сведение работы дизайнеров, художников и программистов в единый билд.",
+            "Параллельно вёл визуальный и системный слой игры — то, что обычно размазано по нескольким людям, здесь держал на себе: от общего стиля до боевой математики.",
+          ],
+          images: [
+            {
+              src: "/images/projects/few-seconds-many-deaths/process-discord-pm.jpg",
+              caption: "Недельные отчёты и координация команды",
+            },
+          ],
+        },
+        {
+          heading: "Арт-дирекшн и дизайн персонажей",
+          body: [
+            "Отвечал за общий стиль и правила пиксель-арта: палитра, outline, пропорции, ограничение оттенков — собрал стайлгайд, по которому работала команда.",
+            "Сам спрайты отрисовывал редко — моя зона это идея и дизайн образов персонажей: кто они, как читаются, какие силуэты и детали делают их узнаваемыми.",
+          ],
+          images: [
+            {
+              src: "/images/projects/few-seconds-many-deaths/design-style-guide.jpg",
+              caption: "Стайлгайд пиксель-арта",
+            },
+          ],
+        },
+        {
+          heading: "VFX, свет и 2D-нормали",
+          body: [
+            "Чтобы плоский пиксель-арт ожил, добавил динамический свет через карты нормалей, нарисованные под каждый тайл и спрайт.",
+            "Написал кастомный пиксельный шейдер в Shader Graph, который приводит любые эффекты и текстуры к нужному разрешению пикселя — так VFX остаётся в едином стилизованном ключе, а не выбивается «гладкими» текстурами.",
+          ],
+          images: [
+            {
+              src: "/images/projects/few-seconds-many-deaths/tech-shader-graph.jpg",
+              caption: "Пиксельный шейдер в Shader Graph",
+            },
+            {
+              src: "/images/projects/few-seconds-many-deaths/tech-normalmap-layer.jpg",
+              caption: "Слой 2D normal maps для света",
+            },
+          ],
+        },
+        {
+          heading: "Техническая анимация",
+          body: [
+            "Персонажи собраны из независимых суб-анимаций, живущих отдельно от базового цикла: ядро голема Aegis, кот у Skeleton Priest, гало за Rifleman, фигуры вокруг Chess Master.",
+            "Анимация стрельбы учитывает выстрелы подряд — разбита на фазы start / repeat / end, чтобы серия выстрелов читалась естественно, без рывков на стыках.",
+          ],
+        },
+        {
+          heading: "Боевые системы",
+          body: [
+            "Спроектировал логику зон атаки: методы вроде CardinalLine и DiagonalLine с настройкой ширины и дальности, с перегрузками под разные правила (строгая линия / все доступные стороны).",
+            "Каждый метод описан диаграммами и заложен так, чтобы дизайнер мог собирать новые способности из готовых кирпичей, а не переписывать логику под каждую.",
+          ],
+          images: [
+            {
+              src: "/images/projects/few-seconds-many-deaths/design-combat-cardinalline.jpg",
+              caption: "Логика линий атаки (CardinalLine)",
+            },
+          ],
+        },
+        {
+          heading: "Локализация и Steam",
+          body: [
+            "Настроил локализацию на Unity Localization (EN/RU) и освоил Steamworks для публикации страницы.",
+            "Результат для учебного проекта без маркетингового бюджета: ~77k показов, 27.8k визитов и 36% коэффициент переходов, аудитория из США, России, Франции и дальше — реальный международный охват.",
+          ],
+          images: [
+            {
+              src: "/images/projects/few-seconds-many-deaths/proof-steam-stats.jpg",
+              caption: "Steam-аналитика страницы",
+            },
+          ],
+        },
+      ],
     },
   },
   {
@@ -85,6 +220,11 @@ export const projects = projectsSchema.parse([
     links: [{ label: "itch.io", href: "https://xgaida.itch.io/metalhead" }],
     status: "jam",
     featured: true,
+    video: {
+      src: "/videos/metalhead-gameplay.mp4",
+      poster: "/videos/metalhead-gameplay.jpg",
+      title: "METALHEAD — Gameplay",
+    },
   },
   {
     slug: "guildmaster",

@@ -73,7 +73,7 @@ export const profile = profileSchema.parse({
       },
       {
         label: "Платформы и сервисы",
-        items: ["Steamworks", "Yandex Games SDK", "Firebase"],
+        items: ["Steamworks", "Google Play Games Services", "Yandex Games SDK", "Firebase"],
       },
       {
         label: "Инструменты и процесс",

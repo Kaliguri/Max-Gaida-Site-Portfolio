@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { projects } from "@content/index";
 import type { Project } from "@content/index";
 import { ProjectVideo } from "@/components/project-video";
@@ -6,12 +7,15 @@ import { ArrowUpRightIcon } from "@/components/icons";
 export function ProjectCard({
   project,
   detailHref,
+  detailLabel = "Подробнее в проектах",
   anchored = true,
 }: {
   project: Project;
-  /** When set, render a "Подробнее в проектах →" link jumping to the canonical
-   *  entry (used by the Education section for its cross-listed study projects). */
+  /** When set, render a detail link — to the case-study page or (fallback) the
+   *  canonical `#project-<slug>` anchor for cross-listed study projects. */
   detailHref?: string;
+  /** Label for the detail link (e.g. "Читать разбор" for a case study). */
+  detailLabel?: string;
   /** Owns the canonical `#project-<slug>` anchor. Set false for a duplicate
    *  render (Education) so the id stays unique to the Projects-section card. */
   anchored?: boolean;
@@ -56,21 +60,21 @@ export function ProjectCard({
       )}
 
       {detailHref && (
-        <a
+        <Link
           href={detailHref}
           className={`text-accent hover:text-foreground inline-flex items-center gap-1 text-sm font-medium transition-colors ${
-            project.links.length > 0 ? "mt-4" : "mt-auto pt-5"
+            project.links.length > 0 || project.video ? "mt-4" : "mt-auto pt-5"
           }`}
         >
-          Подробнее в проектах
+          {detailLabel}
           <span aria-hidden="true">→</span>
-        </a>
+        </Link>
       )}
     </article>
   );
 }
 
-export function Projects() {
+export function Projects({ lang }: { lang: string }) {
   // Educational-status projects (Few Seconds, The Silent Eclipse) are shown
   // under "Образование" instead — exclude them here to avoid duplication.
   const shelf = projects.filter((p) => p.status !== "educational" || p.inShowcase);
@@ -89,7 +93,11 @@ export function Projects() {
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
           {featured.map((project, i) => (
             <div key={project.slug} className={i === 0 ? "reveal sm:col-span-2" : "reveal"}>
-              <ProjectCard project={project} />
+              <ProjectCard
+                project={project}
+                detailHref={project.caseStudy ? `/${lang}/projects/${project.slug}` : undefined}
+                detailLabel="Читать разбор"
+              />
             </div>
           ))}
         </div>

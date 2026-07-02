@@ -162,7 +162,7 @@ export function ProjectVideo({
         type="button"
         onClick={() => setOpen(true)}
         aria-label={`Смотреть видео: ${title}`}
-        className="group border-border bg-background relative mt-4 block aspect-video w-full overflow-hidden rounded-lg border"
+        className="group border-border bg-background hover:border-accent relative mt-4 block aspect-video w-full overflow-hidden rounded-lg border transition-colors"
       >
         <video
           src={src}
@@ -171,9 +171,14 @@ export function ProjectVideo({
           muted
           playsInline
           tabIndex={-1}
-          className="pointer-events-none h-full w-full object-cover"
+          className="pointer-events-none h-full w-full object-cover blur-[3px] brightness-[.6] transition duration-300 group-hover:blur-[0px] group-hover:brightness-100 group-focus-visible:blur-[0px] group-focus-visible:brightness-100 motion-reduce:transition-none"
         />
-        <span className="bg-foreground/10 group-hover:bg-foreground/20 absolute inset-0 flex items-center justify-center transition-colors">
+        {/* Video title — top-left, over a scrim so it stays legible once the
+            poster clears on hover. */}
+        <span className="pointer-events-none absolute inset-x-0 top-0 flex items-start bg-gradient-to-b from-black/70 to-transparent px-3.5 pt-2.5 pb-6">
+          <span className="line-clamp-1 text-xs font-medium text-white/90">{title}</span>
+        </span>
+        <span className="absolute inset-0 flex items-center justify-center">
           <span className="bg-accent text-accent-foreground flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform group-hover:scale-105">
             <PlayIcon className="ml-0.5 h-6 w-6" />
           </span>

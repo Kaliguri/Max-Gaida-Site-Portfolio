@@ -55,12 +55,15 @@
 }
 
 /* Surface primitives — one source for the card/tile look so padding, radius and
-   fill can't drift per-usage (they did). `surface-card` = interactive (solid
-   fill, accent border on hover); `surface-tile` = static info block (dimmed
-   fill); `surface-chip` = the small dense variant (skills grids). Padding stays
-   a utility on the element so each call site keeps its size. */
+   fill can't drift per-usage (they did). `surface-card` = solid-fill card;
+   `surface-tile` = static info block (dimmed fill); `surface-chip` = the small
+   dense variant (skills grids). Padding stays a utility on the element so each
+   call site keeps its size. NOTE: no hover-border here — an accent outline on
+   hover reads as noise unless the whole card is clickable. Add
+   `hover:border-accent transition-colors` at the call site only for cards that
+   act as a button/link. */
 @utility surface-card {
-  @apply border-border bg-surface hover:border-accent rounded-xl border transition-colors;
+  @apply border-border bg-surface rounded-xl border;
 }
 @utility surface-tile {
   @apply border-border bg-surface/40 rounded-xl border;

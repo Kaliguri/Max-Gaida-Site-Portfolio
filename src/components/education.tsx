@@ -10,7 +10,7 @@ const educationProjects = projects.filter((p) => p.status === "educational");
  * subsections (program / skills / ПД projects) so the left-side TOC
  * (PageToc, fed by NAV's `education.children`) can deep-link into each.
  */
-export function Education() {
+export function Education({ lang }: { lang: string }) {
   return (
     <section
       id="education"
@@ -79,7 +79,14 @@ export function Education() {
                 <ProjectCard
                   project={project}
                   anchored={false}
-                  detailHref={project.inShowcase ? `#project-${project.slug}` : undefined}
+                  detailHref={
+                    project.caseStudy
+                      ? `/${lang}/projects/${project.slug}`
+                      : project.inShowcase
+                        ? `#project-${project.slug}`
+                        : undefined
+                  }
+                  detailLabel={project.caseStudy ? "Читать разбор" : "Подробнее в проектах"}
                 />
               </div>
             ))}

@@ -104,6 +104,30 @@ export const projectSchema = z.object({
   video: z
     .object({ src: z.string(), poster: z.string().optional(), title: z.string().optional() })
     .optional(),
+  /** Proof-shot gallery (gameplay / tech / design / metrics), each with a
+   *  caption. Rendered on the case-study page as blur-until-hover thumbnails
+   *  that open a lightbox. */
+  gallery: z.array(z.object({ src: z.string(), caption: z.string() })).default([]),
+  /** Full case-study article. When present the project gets a dedicated static
+   *  page at `/[lang]/projects/[slug]` and a "Читать разбор →" link on its card. */
+  caseStudy: z
+    .object({
+      /** One-paragraph standfirst under the page header. */
+      intro: z.string(),
+      /** Quick-facts strip (role, team, engine, result …). */
+      facts: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
+      /** Ordered article sections: heading + prose paragraphs + optional images. */
+      sections: z
+        .array(
+          z.object({
+            heading: z.string(),
+            body: z.array(z.string()).default([]),
+            images: z.array(z.object({ src: z.string(), caption: z.string() })).default([]),
+          }),
+        )
+        .default([]),
+    })
+    .optional(),
 });
 export type Project = z.infer<typeof projectSchema>;
 
