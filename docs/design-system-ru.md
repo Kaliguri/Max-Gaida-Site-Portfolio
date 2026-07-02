@@ -62,7 +62,7 @@ Tailwind-утилиты, которые мапятся на CSS-переменн
   Это единый токен надзаголовка — тот же в hero, в секциях и в карусели
   (`tracking-wide`, не `tracking-widest`; `text-sm`, не `text-xs`).
 - **Тело**: базовый размер, `leading-relaxed`, `text-muted`.
-- **Заголовок H1 (hero)**: `text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.05]`.
+- **Заголовок H1 (hero)**: `text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.06]`.
 
 ---
 
@@ -92,6 +92,9 @@ Tailwind-утилиты, которые мапятся на CSS-переменн
 rounded-full border`, `hover:border-accent hover:text-accent`.
 - **Пилюля-контакт** (шапка/футер): `border-border rounded-full border text-muted`,
   `hover:border-accent hover:text-foreground`.
+- **Пилюля-ссылка на стор** (Steam/itch/Asset Store/Google Play на карточке проекта):
+  та же пилюля, но hover в акцент-текст (`hover:border-accent hover:text-accent`) — читается
+  как CTA «в магазин». В плотном списке «Дополнительно» вместо неё — компактная текст-ссылка.
 - **Индикатор-точка / линия** (пейджер, таймер, TOC-риска): активный `bg-accent`,
   неактивный `bg-border`.
 - **Фокус**: если весь блок — одна большая кнопка, гасим нативный контур на кнопке

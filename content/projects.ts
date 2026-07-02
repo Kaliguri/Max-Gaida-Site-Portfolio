@@ -2,7 +2,7 @@ import { projectsSchema } from "./schema";
 
 // Curated showcase. Order = docs/profile/projects.md (credibility → technical
 // depth). Featured items are the first shelf; the rest are a compact "more"
-// list. URLs only where a real public link exists (no invented links).
+// list. Links point at public store/live pages only (no GitHub repos here).
 // `status: "educational"` items (Few Seconds, The Silent Eclipse) are program
 // projects — the Projects section excludes them; they render under "Образование".
 export const projects = projectsSchema.parse([
@@ -14,6 +14,9 @@ export const projects = projectsSchema.parse([
       "Коммерческая rogue-like в Steam с DLC. Делал контент на ScriptableObject (существа, карты, ивенты), провёл глобальный реворк всех ивентов, собрал новую локацию с уникальной механикой и достижения.",
     highlight: "Коммерческий релиз · Steam + DLC",
     image: "/images/showcase/knock-on-the-coffin-lid.jpg",
+    links: [
+      { label: "Steam", href: "https://store.steampowered.com/app/1232580/Knock_on_the_Coffin_Lid/" },
+    ],
     status: "released",
     featured: true,
   },
@@ -25,7 +28,10 @@ export const projects = projectsSchema.parse([
       "Собственный тёмный UI-набор для Unity, выпущен в Unity Asset Store и на itch.io. Доказывает, что довожу продукты до релиза сам — связка dev и UI/UX.",
     highlight: "Свой продукт в Asset Store",
     image: "/images/showcase/bloodlines-ui.jpg",
-    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/Bloodlines-Dark-UI" }],
+    links: [
+      { label: "Asset Store", href: "https://assetstore.unity.com/packages/slug/328721" },
+      { label: "itch.io", href: "https://xgaida.itch.io/bloodlines-ui" },
+    ],
     status: "released",
     featured: true,
   },
@@ -42,17 +48,22 @@ export const projects = projectsSchema.parse([
         label: "Steam",
         href: "https://store.steampowered.com/app/3259720/Few_Seconds__Many_Deaths/",
       },
-      { label: "GitHub", href: "https://github.com/Kaliguri/FewSeconds-ManyDeaths-Unity" },
     ],
     status: "educational",
   },
   {
     slug: "rstudio-multiplayer",
-    title: "Мультиплеер (R-Studio)",
-    role: "Unity Developer (C#) · Multiplayer",
+    title: "Guardian Royale",
+    role: "Unity Developer (C#) · R-Studio",
     description:
-      "P2P-мультиплеер для нескольких игр: система лобби, матчмейкинг и рабочий геймплей для 1×1 и кооператива на Photon и Netcode for GameObjects.",
-    highlight: "P2P-нетворкинг: лобби и матчмейкинг",
+      "PvP-мультиплеер merge-стратегии в релизе на Google Play. Отвечал за нетворкинг: система лобби, матчмейкинг и геймплей 1×1 и кооператив на Photon и Netcode for GameObjects.",
+    highlight: "P2P-мультиплеер в релизе · Google Play",
+    links: [
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.xp101.guardian.merge.strategy.pvp",
+      },
+    ],
     status: "released",
     featured: true,
   },
@@ -64,7 +75,7 @@ export const projects = projectsSchema.parse([
       "Игра с межвузовского геймджема «Ctrl + Shift + Create 2.0», где команда из трёх человек заняла первое место. Был лидом команды.",
     highlight: "1 место на межвузовском геймджеме среди студентов Москвы",
     image: "/images/showcase/metalhead.jpg",
-    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/METALHEAD" }],
+    links: [{ label: "itch.io", href: "https://xgaida.itch.io/metalhead" }],
     status: "jam",
     featured: true,
   },
@@ -73,7 +84,6 @@ export const projects = projectsSchema.parse([
     title: "Guildmaster",
     role: "Соло · Alebardium",
     description: "Автобаттлер в работе — проект-витрина паттернов и архитектуры игровых систем.",
-    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/Guildmaster-Autobattler" }],
     status: "in-progress",
   },
   {
@@ -81,7 +91,6 @@ export const projects = projectsSchema.parse([
     title: "Tint Exporter",
     role: "Соло · Alebardium",
     description: "Плагин для Figma из серии собственных инструментов.",
-    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/Alebardium-Tint-Exporter" }],
     status: "released",
   },
   {
@@ -89,7 +98,6 @@ export const projects = projectsSchema.parse([
     title: "Bloodlines UI 2.0",
     role: "Соло · Alebardium",
     description: "Новая версия UI-набора для Unity — в работе, релиз ориентировочно скоро.",
-    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/Bloodlines-Dark-UI" }],
     status: "in-progress",
   },
   {
@@ -98,7 +106,7 @@ export const projects = projectsSchema.parse([
     role: "Соло · веб",
     description:
       "Коммерческий сайт-визитка (лендинг). Заодно — эталон стека и тулинга для этого портфолио.",
-    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/Posleslovie" }],
+    links: [{ label: "Сайт", href: "https://posleslovie.online/" }],
     status: "released",
   },
   {
@@ -114,18 +122,18 @@ export const projects = projectsSchema.parse([
   },
   {
     slug: "mospolyjam-3",
-    title: "MosPolyJam-3",
+    title: "Parry This",
     role: "Команда · геймджем",
     description: "Игра с геймджема MosPolyJam (осень 2024), команда из двух человек.",
-    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/MosPolyJam-3" }],
+    links: [{ label: "itch.io", href: "https://xgaida.itch.io/parry-this" }],
     status: "jam",
   },
   {
     slug: "type-faster-mp",
-    title: "TYPE-FASTER-MP",
+    title: "TYPE FASTER",
     role: "Соло · геймджем",
     description: "Соло-игра с геймджема MosPolyJam (весна 2026).",
-    links: [{ label: "GitHub", href: "https://github.com/Kaliguri/TYPE-FASTER-MP" }],
+    links: [{ label: "itch.io", href: "https://xgaida.itch.io/type-faster" }],
     status: "jam",
   },
 ]);

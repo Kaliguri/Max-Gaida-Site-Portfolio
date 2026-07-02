@@ -27,14 +27,14 @@ export function ProjectCard({ project }: { project: Project }) {
       )}
 
       {project.links.length > 0 && (
-        <div className="mt-auto flex flex-wrap gap-4 pt-5">
+        <div className="mt-auto flex flex-wrap gap-2.5 pt-5">
           {project.links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground hover:text-accent inline-flex items-center gap-1 text-sm font-medium transition-colors"
+              className="border-border text-muted hover:border-accent hover:text-accent inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors"
             >
               {link.label}
               <ArrowUpRightIcon />
