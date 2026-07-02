@@ -76,7 +76,11 @@ export function Education() {
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             {educationProjects.map((project) => (
               <div key={project.slug} className="reveal">
-                <ProjectCard project={project} />
+                <ProjectCard
+                  project={project}
+                  anchored={false}
+                  detailHref={project.inShowcase ? `#project-${project.slug}` : undefined}
+                />
               </div>
             ))}
           </div>

@@ -13,7 +13,7 @@ export const projects = projectsSchema.parse([
     description:
       "Коммерческая rogue-like в Steam с DLC. Делал контент на ScriptableObject (существа, карты, ивенты), провёл глобальный реворк всех ивентов, собрал новую локацию с уникальной механикой и достижения.",
     highlight: "Коммерческий релиз · Steam + DLC",
-    image: "/images/showcase/knock-on-the-coffin-lid.jpg",
+    image: "/images/projects/knock-on-the-coffin-lid/cover.jpg",
     links: [
       { label: "Steam", href: "https://store.steampowered.com/app/1232580/Knock_on_the_Coffin_Lid/" },
     ],
@@ -27,7 +27,7 @@ export const projects = projectsSchema.parse([
     description:
       "Собственный тёмный UI-набор для Unity, выпущен в Unity Asset Store и на itch.io. Доказывает, что довожу продукты до релиза сам — связка dev и UI/UX.",
     highlight: "Свой продукт в Asset Store",
-    image: "/images/showcase/bloodlines-ui.jpg",
+    image: "/images/projects/bloodlines-ui/cover.jpg",
     links: [
       { label: "Asset Store", href: "https://assetstore.unity.com/packages/slug/328721" },
       { label: "itch.io", href: "https://xgaida.itch.io/bloodlines-ui" },
@@ -42,7 +42,7 @@ export const projects = projectsSchema.parse([
     description:
       "Учебный проект со страницей в Steam. Вёл команду из 10 человек как тех-лид и проджект-менеджер, освоил Steamworks API и собрал реальную международную аудиторию.",
     highlight: "Лид команды 10 · ~77k показов в Steam",
-    image: "/images/showcase/few-seconds-many-deaths.jpg",
+    image: "/images/projects/few-seconds-many-deaths/cover.jpg",
     links: [
       {
         label: "Steam",
@@ -50,6 +50,13 @@ export const projects = projectsSchema.parse([
       },
     ],
     status: "educational",
+    featured: true,
+    inShowcase: true,
+    video: {
+      src: "/videos/few-seconds-many-deaths-trailer.mp4",
+      poster: "/videos/few-seconds-many-deaths-trailer.jpg",
+      title: "Few Seconds, Many Deaths — Trailer",
+    },
   },
   {
     slug: "rstudio-multiplayer",
@@ -74,7 +81,7 @@ export const projects = projectsSchema.parse([
     description:
       "Игра с межвузовского геймджема «Ctrl + Shift + Create 2.0», где команда из трёх человек заняла первое место. Был лидом команды.",
     highlight: "1 место на межвузовском геймджеме среди студентов Москвы",
-    image: "/images/showcase/metalhead.jpg",
+    image: "/images/projects/metalhead/cover.jpg",
     links: [{ label: "itch.io", href: "https://xgaida.itch.io/metalhead" }],
     status: "jam",
     featured: true,
@@ -115,8 +122,10 @@ export const projects = projectsSchema.parse([
     role: "Команда · Московский Политех",
     description: "Игра на Unreal Engine 5 из проектной деятельности, с красивым промо-видео.",
     status: "educational",
+    inShowcase: true,
     video: {
       src: "/videos/the-silent-eclipse-promo.mp4",
+      poster: "/videos/the-silent-eclipse-promo.jpg",
       title: "The Silent Eclipse - Unreal Engine 5 - Trailer",
     },
   },

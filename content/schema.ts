@@ -95,6 +95,10 @@ export const projectSchema = z.object({
   status: projectStatusSchema,
   /** Featured = first shelf (cards); others render as a compact "more" list. */
   featured: z.boolean().default(false),
+  /** Surface this project in the homepage Projects section even when its status
+   *  is "educational" (which is otherwise Education-only). Lets a study project
+   *  be showcased in Projects while still listed under «Образование». */
+  inShowcase: z.boolean().default(false),
   /** Promo/gameplay clip — path under `public/`. No poster yet (placeholder; final media pass adds one). */
   /** `title` overrides the lightbox header — falls back to the project title when absent. */
   video: z
