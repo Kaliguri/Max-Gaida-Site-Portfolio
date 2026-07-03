@@ -60,7 +60,7 @@ export function ProjectGallery({
       {open && (
         <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {images.map((img, i) => (
-            <li key={img.src}>
+            <li key={img.src} className="reveal">
               <button
                 type="button"
                 onClick={() => setActive(i)}
@@ -88,7 +88,7 @@ export function ProjectGallery({
       {active !== null &&
         createPortal(
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-6 sm:px-16"
+            className="lightbox-fade fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-6 sm:px-16"
             role="dialog"
             aria-modal="true"
             aria-label={`${title} — ${images[active].caption}`}
@@ -116,7 +116,7 @@ export function ProjectGallery({
               </button>
             )}
 
-            <figure className="flex max-h-full flex-col items-center gap-3">
+            <figure className="lightbox-pop flex max-h-full flex-col items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimizer */}
               <img
                 src={images[active].src}

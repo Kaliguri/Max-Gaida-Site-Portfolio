@@ -227,6 +227,80 @@ body {
   }
 }
 
+/* Directional scroll reveal for the case-study zig-zag — each column slides in
+   from its own side. Gated to lg (where the two-column layout exists) so the
+   horizontal offset can't cause overflow on the stacked mobile layout. */
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    @media (min-width: 64rem) {
+      .reveal-left,
+      .reveal-right {
+        animation: fade-up linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 40%;
+      }
+      .reveal-left {
+        animation-name: slide-in-left;
+      }
+      .reveal-right {
+        animation-name: slide-in-right;
+      }
+    }
+  }
+}
+
+/* Lightbox entrance — backdrop fades, panel fades + scales. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes lightbox-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.lightbox-fade {
+  animation: fade-in 0.2s ease both;
+}
+.lightbox-pop {
+  animation: lightbox-pop 0.22s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-fade,
+  .lightbox-pop {
+    animation: none;
+  }
+}
+
 /* Showcase text block: gentle fade+rise when the slide changes. The image
    layers crossfade via opacity; the caption is remounted (key={active}) so it
    plays this on every switch. Paired with the image crossfade it reads as one

@@ -7,18 +7,22 @@ import { ArrowUpRightIcon } from "@/components/icons";
 export function ProjectCard({
   project,
   detailHref,
-  detailLabel = "Подробнее в проектах",
+  detailLabel = "Подробнее о проекте",
   anchored = true,
+  compact = false,
 }: {
   project: Project;
   /** When set, render a detail link — to the case-study page or (fallback) the
    *  canonical `#project-<slug>` anchor for cross-listed study projects. */
   detailHref?: string;
-  /** Label for the detail link (e.g. "Читать разбор" for a case study). */
+  /** Label for the detail link. */
   detailLabel?: string;
   /** Owns the canonical `#project-<slug>` anchor. Set false for a duplicate
    *  render (Education) so the id stays unique to the Projects-section card. */
   anchored?: boolean;
+  /** Lean variant (Education): drop the highlight and use the short `blurb`, so
+   *  the full write-up lives only in the Projects section / case study. */
+  compact?: boolean;
 }) {
   return (
     <article
@@ -28,11 +32,13 @@ export function ProjectCard({
       <h3 className="text-foreground text-lg font-semibold tracking-tight">{project.title}</h3>
       <p className="text-muted mt-1 text-sm">{project.role}</p>
 
-      {project.highlight && (
+      {!compact && project.highlight && (
         <p className="text-accent mt-3 text-sm font-medium">{project.highlight}</p>
       )}
 
-      <p className="text-muted mt-3 text-sm leading-relaxed">{project.description}</p>
+      <p className="text-muted mt-3 text-sm leading-relaxed">
+        {compact ? (project.blurb ?? project.description) : project.description}
+      </p>
 
       {project.video && (
         <ProjectVideo
@@ -96,7 +102,7 @@ export function Projects({ lang }: { lang: string }) {
               <ProjectCard
                 project={project}
                 detailHref={project.caseStudy ? `/${lang}/projects/${project.slug}` : undefined}
-                detailLabel="Читать разбор"
+                detailLabel="Подробнее о проекте"
               />
             </div>
           ))}

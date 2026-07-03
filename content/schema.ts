@@ -87,6 +87,9 @@ export const projectSchema = z.object({
   /** Max's role + context, e.g. "Game Designer · RedBoon". */
   role: z.string(),
   description: z.string(),
+  /** Short one-liner for compact/list contexts (e.g. the Education card). Falls
+   *  back to `description` when absent. */
+  blurb: z.string().optional(),
   /** One-line standout fact (commercial release, award, metric). */
   highlight: z.string().optional(),
   /** Cover art for the homepage showcase carousel — path under `public/`. */

@@ -84,5 +84,6 @@ export const NAV = [
  */
 export const HEADER_NAV = [
   { label: "Основное", hash: "about" },
+  { label: "Проекты", hash: "projects", submenu: "caseStudies" },
   { label: "Резюме", hash: "resume", submenu: "resumeRoles" },
 ] as const;

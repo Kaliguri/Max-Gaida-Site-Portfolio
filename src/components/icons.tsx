@@ -50,6 +50,14 @@ export function ChevronUpIcon() {
   );
 }
 
+export function ChevronDownIcon({ size = 11 }: { size?: number }) {
+  return (
+    <StrokeIcon size={size} strokeWidth={2.5}>
+      <path d="m6 9 6 6 6-6" />
+    </StrokeIcon>
+  );
+}
+
 export function ArrowUpRightIcon() {
   return (
     <StrokeIcon size={12}>
