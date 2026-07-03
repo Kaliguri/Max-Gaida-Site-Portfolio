@@ -162,7 +162,7 @@ export function ProjectVideo({
         type="button"
         onClick={() => setOpen(true)}
         aria-label={`Смотреть видео: ${title}`}
-        className="group border-border bg-background hover:border-accent relative mt-4 block aspect-video w-full overflow-hidden rounded-lg border transition-colors"
+        className="group media-frame hover:border-accent relative mt-4 block aspect-video w-full overflow-hidden transition-colors"
       >
         <video
           src={src}

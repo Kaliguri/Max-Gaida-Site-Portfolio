@@ -128,7 +128,7 @@ export function ProjectShowcase() {
             The hover/focus accent outline lives here, on the entire carousel body
             (focus-within catches keyboard focus of the inner button); the native
             button outline is suppressed so we don't get a double ring. */}
-        <div className="border-border bg-surface hover:border-accent focus-within:border-accent min-w-0 flex-1 overflow-hidden rounded-2xl border transition-colors">
+        <div className="surface-card hover:border-accent focus-within:border-accent min-w-0 flex-1 overflow-hidden transition-colors">
           <button
             type="button"
             onClick={() => jumpToProject(project.slug)}
@@ -143,7 +143,7 @@ export function ProjectShowcase() {
                     letterboxing reads as an intentional frame and the blur hides
                     low-res softness. All slides are stacked and crossfaded on
                     opacity; only the active one is visible. */}
-                <div className="border-border relative aspect-[3/2] w-full overflow-hidden rounded-xl border-2">
+                <div className="media-frame relative aspect-[3/2] w-full overflow-hidden">
                   {items.map((p, i) =>
                     p.image ? (
                       <div

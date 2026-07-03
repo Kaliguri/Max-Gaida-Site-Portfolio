@@ -52,6 +52,12 @@
   --color-accent-foreground: var(--accent-foreground);
 
   --font-sans: var(--font-onest);
+
+  /* Radius scale — one source so card/media corners can't drift per-usage.
+     `rounded-card` = content plates (surface-*); `rounded-media` = image/video
+     frames (media-frame). Don't hand-pick rounded-lg/xl/2xl on card call sites. */
+  --radius-card: 0.75rem; /* was rounded-xl */
+  --radius-media: 0.5rem; /* was rounded-lg */
 }
 
 /* Surface primitives — one source for the card/tile look so padding, radius and
@@ -63,13 +69,21 @@
    `hover:border-accent transition-colors` at the call site only for cards that
    act as a button/link. */
 @utility surface-card {
-  @apply border-border bg-surface rounded-xl border;
+  @apply border-border bg-surface rounded-card border;
 }
 @utility surface-tile {
-  @apply border-border bg-surface/40 rounded-xl border;
+  @apply border-border bg-surface/40 rounded-card border;
 }
 @utility surface-chip {
-  @apply border-border bg-surface/40 rounded-lg border;
+  @apply border-border bg-surface/40 rounded-media border;
+}
+
+/* Media frame — the backing for object-contain images/video. Deliberately on
+   `bg-background` (a neutral dark plate), NOT `bg-surface`: it reads as a frame
+   around the art, not as a mismatched content card. One source so image frames
+   in the gallery, case studies and showcase stop hand-rolling border/radius. */
+@utility media-frame {
+  @apply border-border bg-background rounded-media border;
 }
 
 html {

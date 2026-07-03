@@ -65,7 +65,7 @@ export function ProjectGallery({
                 type="button"
                 onClick={() => setActive(i)}
                 aria-label={`Открыть: ${img.caption}`}
-                className="group border-border bg-background hover:border-accent block w-full overflow-hidden rounded-lg border text-left transition-colors"
+                className="group media-frame hover:border-accent block w-full overflow-hidden text-left transition-colors"
               >
                 <span className="block aspect-video overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimizer */}
@@ -121,7 +121,7 @@ export function ProjectGallery({
               <img
                 src={images[active].src}
                 alt={images[active].caption}
-                className="border-border max-h-[80vh] w-auto max-w-full rounded-lg border object-contain"
+                className="media-frame max-h-[80vh] w-auto max-w-full object-contain"
               />
               <figcaption className="text-muted text-center text-sm">
                 {images[active].caption}

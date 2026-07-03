@@ -81,13 +81,21 @@ Tailwind-утилиты, которые мапятся на CSS-переменн
 повторяемые строки классов — паддинг/радиус/фон не должны разъезжаться по вызовам.
 Задаём поверхность утилитой, паддинг — обычной утилитой на элементе.
 
+Радиус берём **только** из токенов, а не литералами: `rounded-card`
+(`--radius-card`, контентные плашки) и `rounded-media` (`--radius-media`, рамки под
+медиа). Не подбирать `rounded-lg/xl/2xl` руками на call-site карточек/рамок.
+
 - **Интерактивная карточка** (проект, резюме, витрина) → `surface-card` (`bg-surface`,
-  `rounded-xl`, `hover:border-accent`, `transition-colors`). Кликается целиком — одна
+  `rounded-card`, `hover:border-accent`, `transition-colors`). Кликается целиком — одна
   большая кнопка/ссылка. Реакция на hover обязательна (акцентный контур на **всей** карточке).
 - **Статичная инфо-карточка** (грани «Основное», стек) → `surface-tile` (`bg-surface/40`,
-  `rounded-xl`). **Без** hover — она ничего не открывает.
+  `rounded-card`). **Без** hover — она ничего не открывает.
 - **Плотный чип-тайл** (soft skills, навыки образования) → `surface-chip` (`bg-surface/40`,
-  `rounded-lg`) + `p-3`. Тот же смысл, что `surface-tile`, но компактнее для плотных сеток.
+  `rounded-media`) + `p-3`. Тот же смысл, что `surface-tile`, но компактнее для плотных сеток.
+- **Рамка под медиа** (превью галереи, картинки в кейсах, кадр витрины, постер видео) →
+  `media-frame` (`bg-background`, `rounded-media`). Намеренно на `bg-background`, а **не**
+  `bg-surface`: это рамка вокруг арта под `object-contain`, а не контентная карточка. Для
+  кликабельных превью добавляем `hover:border-accent transition-colors` на call-site.
 - **Круглая контрол-кнопка** (стрелки карусели, «наверх»): `border-border bg-surface
 rounded-full border`, `hover:border-accent hover:text-accent`.
 - **Пилюля-контакт** (шапка/футер): `border-border rounded-full border text-muted`,

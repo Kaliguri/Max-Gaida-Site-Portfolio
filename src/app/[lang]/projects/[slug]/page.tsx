@@ -180,7 +180,7 @@ export default async function ProjectCaseStudyPage({
                     >
                       {section.images.map((img) => (
                         <figure key={img.src} className="min-w-0">
-                          <div className="border-border bg-background overflow-hidden rounded-lg border">
+                          <div className="media-frame overflow-hidden">
                             {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimizer */}
                             <img
                               src={img.src}

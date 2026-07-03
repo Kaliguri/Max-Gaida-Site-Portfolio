@@ -154,7 +154,7 @@ export default async function ResumePage({
           </p>
         </section>
 
-        <aside className="border-border bg-surface mt-12 rounded-xl border p-5 text-sm">
+        <aside className="surface-card mt-12 p-5 text-sm">
           <span className="text-muted">Я также работаю как </span>
           <Link href={`/${lang}/resume/${other.slug}`} className="text-accent hover:underline">
             {other.title}
