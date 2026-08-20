@@ -20,11 +20,11 @@
    inherit them regardless of which one carries the built-ins. */
 #wrapper,
 .user_page {
-  --itchio_link_color: #f5a524;        /* was #bb49dd (purple) */
-  --itchio_gray_back: #1c1917;         /* card / raised surface */
-  --itchio_ui_bg: #0c0a09;             /* page canvas */
-  --itchio_border_color: #2a2522;      /* hairlines */
-  --itchio_border_radius: 14px;        /* was 19px */
+  --itchio_link_color: #f5a524; /* was #bb49dd (purple) */
+  --itchio_gray_back: #1c1917; /* card / raised surface */
+  --itchio_ui_bg: #0c0a09; /* page canvas */
+  --itchio_border_color: #2a2522; /* hairlines */
+  --itchio_border_radius: 14px; /* was 19px */
   --itchio_button_color: #f5a524;
   --itchio_button_fg_color: #1c1207;
   --itchio_button_hover_color: #fbbf24;
@@ -40,14 +40,20 @@ body.user_layout_widget {
 #wrapper {
   background-color: #0c0a09;
   color: #f5f4f2;
-  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system,
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    "Segoe UI Variable Text",
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
 }
 
 /* Subtle warm glow behind the profile header, echoing the site hero. */
 #wrapper .user_profile {
-  background: radial-gradient(65% 55% at 50% -8%,
-    rgba(245, 165, 36, 0.1) 0%, transparent 70%);
+  background: radial-gradient(65% 55% at 50% -8%, rgba(245, 165, 36, 0.1) 0%, transparent 70%);
   color: #f5f4f2;
 }
 
@@ -85,8 +91,11 @@ body.user_layout_widget {
   border-radius: 14px;
   box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.8);
   transform: translateY(0);
-  transition: transform 180ms ease, border-color 180ms ease,
-    box-shadow 180ms ease, background-color 180ms ease;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
 }
 
 #wrapper .game_cell:hover {
@@ -149,7 +158,9 @@ body.user_layout_widget {
   border: none !important;
   border-radius: 10px !important;
   font-weight: 600;
-  transition: background 150ms ease, transform 150ms ease;
+  transition:
+    background 150ms ease,
+    transform 150ms ease;
 }
 #wrapper .button:hover,
 #wrapper .buy_btn:hover,

@@ -32,16 +32,16 @@ Based on the official
 
 ## Design tokens (mirror of the site's dark theme)
 
-| Token        | Value     | Role                    |
-| ------------ | --------- | ----------------------- |
-| background   | `#0c0a09` | page canvas             |
-| surface      | `#1c1917` | card                    |
-| surface-2    | `#292524` | card hover              |
-| foreground   | `#f5f4f2` | text                    |
-| muted        | `#a8a29e` | secondary text          |
-| border       | `#2a2522` | hairlines               |
-| accent       | `#f5a524` | links, hover, buttons   |
-| accent-hover | `#fbbf24` | hover accent            |
+| Token        | Value     | Role                  |
+| ------------ | --------- | --------------------- |
+| background   | `#0c0a09` | page canvas           |
+| surface      | `#1c1917` | card                  |
+| surface-2    | `#292524` | card hover            |
+| foreground   | `#f5f4f2` | text                  |
+| muted        | `#a8a29e` | secondary text        |
+| border       | `#2a2522` | hairlines             |
+| accent       | `#f5a524` | links, hover, buttons |
+| accent-hover | `#fbbf24` | hover accent          |
 
 Kept in sync with `src/app/globals.css`. If the site tokens change, update both.
 

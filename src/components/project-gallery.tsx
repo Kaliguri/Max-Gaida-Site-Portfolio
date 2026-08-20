@@ -125,7 +125,10 @@ export function ProjectGallery({
               />
               <figcaption className="text-muted text-center text-sm">
                 {images[active].caption}
-                <span className="text-border"> · {active + 1}/{images.length}</span>
+                <span className="text-border">
+                  {" "}
+                  · {active + 1}/{images.length}
+                </span>
               </figcaption>
             </figure>
 

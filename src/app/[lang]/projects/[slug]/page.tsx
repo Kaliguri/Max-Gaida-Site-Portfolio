@@ -56,7 +56,7 @@ export default async function ProjectCaseStudyPage({
             ← К проектам
           </Link>
           <div className="border-border min-w-0 border-l pl-4">
-            <p className="text-accent truncate text-sm font-semibold leading-tight">
+            <p className="text-accent truncate text-sm leading-tight font-semibold">
               {project.title}
             </p>
             <p className="text-muted truncate text-xs leading-tight">
@@ -208,7 +208,9 @@ export default async function ProjectCaseStudyPage({
 
           {project.gallery.length > 0 && (
             <section className="reveal border-border mt-16 border-t pt-8">
-              <h2 className="text-foreground text-xl font-semibold tracking-tight">Все материалы</h2>
+              <h2 className="text-foreground text-xl font-semibold tracking-tight">
+                Все материалы
+              </h2>
               <p className="text-muted mt-2 text-sm">
                 Скриншоты, дев-кадры и метрики проекта — наведи, чтобы рассмотреть.
               </p>

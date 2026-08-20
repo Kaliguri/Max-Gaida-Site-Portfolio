@@ -43,7 +43,7 @@ export function SiteHeader() {
                   >
                     {item.label}
                     {submenu && (
-                      <span className="mt-px opacity-60 transition-transform duration-200 group-hover:-rotate-180 group-focus-within:-rotate-180">
+                      <span className="mt-px opacity-60 transition-transform duration-200 group-focus-within:-rotate-180 group-hover:-rotate-180">
                         <ChevronDownIcon />
                       </span>
                     )}

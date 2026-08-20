@@ -15,7 +15,10 @@ export const projects = projectsSchema.parse([
     highlight: "Коммерческий релиз · Steam + DLC",
     image: "/images/projects/knock-on-the-coffin-lid/cover.jpg",
     links: [
-      { label: "Steam", href: "https://store.steampowered.com/app/1232580/Knock_on_the_Coffin_Lid/" },
+      {
+        label: "Steam",
+        href: "https://store.steampowered.com/app/1232580/Knock_on_the_Coffin_Lid/",
+      },
     ],
     status: "released",
     featured: true,
@@ -173,7 +176,8 @@ export const projects = projectsSchema.parse([
     role: "Лид и инициатор · Московский Политех",
     description:
       "Учебный проект со страницей в Steam. Вёл команду из 10 человек (тех-лид + PM) и держал на себе связку дисциплин: арт-дирекшн и дизайн персонажей, VFX, свет и 2D-нормали, кастомный пиксельный шейдер, боевые системы и локализацию. Освоил Steamworks и собрал реальную международную аудиторию.",
-    blurb: "Учебный пошаговый рогалик со страницей в Steam — тимлид и весь визуально-системный слой.",
+    blurb:
+      "Учебный пошаговый рогалик со страницей в Steam — тимлид и весь визуально-системный слой.",
     highlight: "Лид команды 10 · ~77k показов в Steam",
     image: "/images/projects/few-seconds-many-deaths/cover.jpg",
     links: [

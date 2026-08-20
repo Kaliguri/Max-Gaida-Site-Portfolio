@@ -26,14 +26,14 @@ Code conventions: the single-source map, so patterns don't get re-implemented.
 
 Прежде чем писать инлайн — проверь, нет ли уже:
 
-| Нужно | Бери | Не делай |
-| --- | --- | --- |
-| Иконка (outline) | `components/icons.tsx` (`StrokeIcon` + именованные) | Инлайн `<svg>` в компоненте |
-| Ссылка-контакт | `<ContactLink contact variant>` (`icon`/`pill`/`text`) | Свою `<a>` с `target/rel` логикой |
-| Поверхность карточки | `surface-card` / `surface-tile` / `surface-chip` | `border bg-surface… rounded-… ` строкой |
-| Reduced-motion | `motion.ts` | `window.matchMedia("(prefers-reduced-motion…")` инлайн |
-| Пункты шапки/меню | `HEADER_NAV` из `site.ts` | Хардкод списка ссылок в компоненте |
-| Якорь на секцию (raw `<a>`) | `localeHash("about")` | `` `/${locale}/#about` `` вручную |
+| Нужно                       | Бери                                                   | Не делай                                               |
+| --------------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
+| Иконка (outline)            | `components/icons.tsx` (`StrokeIcon` + именованные)    | Инлайн `<svg>` в компоненте                            |
+| Ссылка-контакт              | `<ContactLink contact variant>` (`icon`/`pill`/`text`) | Свою `<a>` с `target/rel` логикой                      |
+| Поверхность карточки        | `surface-card` / `surface-tile` / `surface-chip`       | `border bg-surface… rounded-… ` строкой                |
+| Reduced-motion              | `motion.ts`                                            | `window.matchMedia("(prefers-reduced-motion…")` инлайн |
+| Пункты шапки/меню           | `HEADER_NAV` из `site.ts`                              | Хардкод списка ссылок в компоненте                     |
+| Якорь на секцию (raw `<a>`) | `localeHash("about")`                                  | `` `/${locale}/#about` `` вручную                      |
 
 Если понадобилось третье использование чего-то — это сигнал вынести в примитив и вписать сюда.
 
