@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { isLocale } from "@/lib/site";
-import { experience, profile, resumeRoles } from "@content/index";
+import { experience, profile, projects, resumeRoles } from "@content/index";
 
 // Print/PDF source: always light, single-column, ATS-friendly, no site chrome.
 // Rendered to PDF by scripts/render-pdf.mjs. Not for indexing.
@@ -24,6 +24,7 @@ export default async function ResumePrintPage({
 
   const role = resumeRoles.find((r) => r.slug === roleSlug);
   if (!role) notFound();
+  const keyProjects = projects.filter((p) => p.featured).slice(0, 4);
 
   return (
     <div className="min-h-screen bg-white px-10 py-8 text-[12.5px] leading-normal text-neutral-900">
@@ -46,6 +47,15 @@ export default async function ResumePrintPage({
           ))}
         </p>
       </header>
+
+      <section className="mt-5">
+        <h2 className="text-sm font-semibold tracking-wide text-neutral-900 uppercase">Навыки</h2>
+        <ul className="mt-2 list-disc space-y-1 pl-5 text-neutral-800">
+          {role.skills.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
+      </section>
 
       <section className="mt-5">
         <h2 className="text-sm font-semibold tracking-wide text-neutral-900 uppercase">Опыт</h2>
@@ -71,14 +81,31 @@ export default async function ResumePrintPage({
         </div>
       </section>
 
-      <section className="mt-5">
-        <h2 className="text-sm font-semibold tracking-wide text-neutral-900 uppercase">Навыки</h2>
-        <ul className="mt-2 list-disc space-y-1 pl-5 text-neutral-800">
-          {role.skills.map((s) => (
-            <li key={s}>{s}</li>
-          ))}
-        </ul>
-      </section>
+      {keyProjects.length > 0 && (
+        <section className="mt-5">
+          <h2 className="text-sm font-semibold tracking-wide text-neutral-900 uppercase">
+            Ключевые проекты
+          </h2>
+          <div className="mt-3 space-y-2.5">
+            {keyProjects.map((project) => (
+              <div key={project.slug}>
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="font-semibold">
+                    {project.title} · {project.role}
+                  </h3>
+                  {project.links[0] && (
+                    <span className="text-neutral-600">{readable(project.links[0].href)}</span>
+                  )}
+                </div>
+                <p className="text-neutral-800">
+                  {project.highlight ? `${project.highlight}. ` : ""}
+                  {project.blurb ?? project.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="mt-5">
         <h2 className="text-sm font-semibold tracking-wide text-neutral-900 uppercase">

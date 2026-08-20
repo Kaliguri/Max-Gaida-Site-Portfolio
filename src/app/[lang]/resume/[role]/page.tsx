@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/site";
-import { experience, profile, resumeRoles } from "@content/index";
+import { experience, profile, projects, resumeRoles } from "@content/index";
 import { ContactLink } from "@/components/contact-link";
 import { SiteChrome } from "@/components/site-chrome";
 
@@ -33,6 +33,9 @@ export default async function ResumePage({
   const role = resumeRoles.find((r) => r.slug === roleSlug);
   if (!role) notFound();
   const other = resumeRoles.find((r) => r.slug !== roleSlug)!;
+  // Key projects: the featured shelf, trimmed to the résumé-length 4. Shared
+  // across both role résumés — the credibility (shipped titles) is the same.
+  const keyProjects = projects.filter((p) => p.featured).slice(0, 4);
 
   return (
     <SiteChrome>
@@ -77,6 +80,18 @@ export default async function ResumePage({
         </header>
 
         <section className="mt-10">
+          <h2 className="text-foreground text-xl font-semibold tracking-tight">Навыки</h2>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            {role.skills.map((s) => (
+              <li key={s} className="text-muted flex gap-2.5 text-sm">
+                <span className="text-accent mt-2 h-1 w-1 shrink-0 rounded-full bg-current" />
+                <span>{s}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
           <h2 className="text-foreground text-xl font-semibold tracking-tight">Опыт</h2>
           <div className="mt-6 space-y-8">
             {experience.map((job) => (
@@ -112,17 +127,43 @@ export default async function ResumePage({
           </div>
         </section>
 
-        <section className="mt-10">
-          <h2 className="text-foreground text-xl font-semibold tracking-tight">Навыки</h2>
-          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-            {role.skills.map((s) => (
-              <li key={s} className="text-muted flex gap-2.5 text-sm">
-                <span className="text-accent mt-2 h-1 w-1 shrink-0 rounded-full bg-current" />
-                <span>{s}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {keyProjects.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-foreground text-xl font-semibold tracking-tight">
+              Ключевые проекты
+            </h2>
+            <div className="mt-6 space-y-6">
+              {keyProjects.map((project) => {
+                const link = project.links[0];
+                return (
+                  <div key={project.slug}>
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                      <h3 className="text-foreground font-medium">
+                        {project.title} · {project.role}
+                      </h3>
+                      {link && (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-accent hover:text-accent-hover text-sm transition-colors"
+                        >
+                          {link.label} →
+                        </a>
+                      )}
+                    </div>
+                    {project.highlight && (
+                      <p className="text-accent mt-1.5 text-sm font-medium">{project.highlight}</p>
+                    )}
+                    <p className="text-muted mt-1.5 text-sm leading-relaxed">
+                      {project.blurb ?? project.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         <section className="mt-10">
           <h2 className="text-foreground text-xl font-semibold tracking-tight">Образование</h2>
