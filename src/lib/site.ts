@@ -47,6 +47,14 @@ export const NAV = [
   { label: "Приветствие", id: "intro" },
   { label: "Витрина проектов", id: "showcase" },
   {
+    label: "Проекты",
+    id: "projects",
+    children: [
+      { label: "Основное", id: "projects-featured" },
+      { label: "Дополнительно", id: "projects-more" },
+    ],
+  },
+  {
     label: "О себе",
     id: "about",
     children: [
@@ -66,14 +74,7 @@ export const NAV = [
       { label: "Проекты в рамках ПД", id: "education-projects" },
     ],
   },
-  {
-    label: "Проекты",
-    id: "projects",
-    children: [
-      { label: "Основное", id: "projects-featured" },
-      { label: "Дополнительно", id: "projects-more" },
-    ],
-  },
+  { label: "Контакты", id: "contacts" },
 ] as const;
 
 /**
@@ -83,7 +84,8 @@ export const NAV = [
  * content. `hash` targets a home-page section via `localeHash`.
  */
 export const HEADER_NAV = [
-  { label: "Основное", hash: "about" },
   { label: "Проекты", hash: "projects", submenu: "caseStudies" },
+  { label: "Основное", hash: "about" },
   { label: "Резюме", hash: "resume", submenu: "resumeRoles" },
+  { label: "Контакты", hash: "contacts" },
 ] as const;

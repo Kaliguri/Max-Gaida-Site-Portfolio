@@ -8,6 +8,12 @@ export const profile = profileSchema.parse({
   roleLine: "Game Developer & Game Designer",
   eyebrow: "Unity / C# · Game Design · UI/UX",
   lead: "Смотрю на игру как на цельную систему: код, геймдизайн, UI/UX, ощущения игрока и реальные ограничения разработки.",
+  highlights: [
+    { value: "2", label: "коммерческих релиза — Steam и Google Play" },
+    { value: "5.0", label: "рейтинг UI-набора в Unity Asset Store" },
+    { value: "1 место", label: "межвузовский геймджем в Москве" },
+    { value: "~77k", label: "показов страницы игры в Steam" },
+  ],
   summary: [
     {
       label: "Подход",

@@ -30,6 +30,10 @@ export const profileSchema = z.object({
   eyebrow: z.string(),
   /** Hero one-liner under the headline. */
   lead: z.string(),
+  /** Hero credibility strip: a few standout numbers/facts for the quick scan.
+   *  `value` may carry non-numeric chars (~, k, "место") — CountUpText animates
+   *  only the digits. */
+  highlights: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
   /** "About" → "Основное": self-contained facets, in order. Each is a labelled
    *  block rendered as a bento card (label = short kicker, body = the prose). */
   summary: z.array(z.object({ label: z.string(), body: z.string() })).min(1),
@@ -41,7 +45,13 @@ export const profileSchema = z.object({
   stack: z.object({
     core: z.array(z.object({ name: z.string(), detail: z.string().optional() })).min(1),
     groups: z
-      .array(z.object({ label: z.string(), items: z.array(z.string()).min(1), muted: z.boolean().optional() }))
+      .array(
+        z.object({
+          label: z.string(),
+          items: z.array(z.string()).min(1),
+          muted: z.boolean().optional(),
+        }),
+      )
       .min(1),
   }),
   location: z.string(),

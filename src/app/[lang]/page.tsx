@@ -6,7 +6,10 @@ import { Education } from "@/components/education";
 import { SiteChrome } from "@/components/site-chrome";
 import { PageToc } from "@/components/page-toc";
 import { HeroPortrait } from "@/components/hero-portrait";
+import { ContactIcon } from "@/components/contact-icon";
+import { CountUpText } from "@/components/count-up-text";
 import { bentoSpan } from "@/lib/bento";
+import { localeHash } from "@/lib/site";
 
 // Bento spans for the "Основное" facets, keyed by label (not index) so
 // reordering `profile.summary` can't silently shift the mosaic. Any facet not
@@ -31,6 +34,9 @@ const STACK_SPANS: Record<string, string> = {
 
 export default async function Home({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
+  // Primary hero CTA points at Telegram (Max's fastest channel); fall back to
+  // the first listed contact if the telegram entry is ever removed.
+  const primaryContact = profile.contacts.find((c) => c.icon === "telegram") ?? profile.contacts[0];
   return (
     <SiteChrome>
       <PageToc />
@@ -67,12 +73,55 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
             >
               {profile.eyebrow}
             </p>
+
+            {/* Hero CTA: primary = fastest contact channel (Telegram), secondary
+                jumps to the résumé picker. Raw in-site anchor → localeHash. */}
+            <div
+              className="fade-up mt-8 flex flex-wrap items-center gap-3"
+              style={{ animationDelay: "0.25s" }}
+            >
+              <a
+                href={primaryContact.href}
+                target={primaryContact.external ? "_blank" : undefined}
+                rel={primaryContact.external ? "noopener noreferrer" : undefined}
+                className="bg-accent text-accent-foreground hover:bg-accent-hover inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors"
+              >
+                <ContactIcon name={primaryContact.icon} />
+                Написать
+              </a>
+              <a
+                href={localeHash("resume")}
+                className="border-border text-foreground hover:border-accent inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-colors"
+              >
+                Смотреть резюме
+              </a>
+            </div>
           </div>
           <HeroPortrait />
         </div>
+
+        {/* Credibility strip — the quick-scan proof points a recruiter catches
+            before reading anything. Numbers count up on scroll-in. */}
+        {profile.highlights.length > 0 && (
+          <div
+            className="fade-up mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4"
+            style={{ animationDelay: "0.3s" }}
+          >
+            {profile.highlights.map((h) => (
+              <div key={h.label} className="surface-tile p-4 sm:p-5">
+                <CountUpText className="text-accent block text-2xl font-semibold tracking-tight sm:text-3xl">
+                  {h.value}
+                </CountUpText>
+                <p className="text-muted mt-1.5 text-xs leading-snug">{h.label}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       <ProjectShowcase />
+
+      <Projects lang={lang} />
 
       <section
         id="about"
@@ -115,10 +164,9 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
               "Основное": each category is a tile with an uneven span (STACK_SPANS),
               the accent "Ядро" tile anchors it, and a `muted` group (web) reads as
               a secondary strength. Tech tokens sit inside the tiles. */}
-          <div className="mt-6 grid auto-rows-min grid-flow-row-dense grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid grid-flow-row-dense auto-rows-min grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {/* Accent "Ядро" anchor — its own span (not in STACK_SPANS). */}
             <div className="border-accent/40 bg-accent/[0.06] rounded-xl border p-5 sm:col-span-2 lg:col-span-2">
-
               <p className="text-accent text-xs font-medium tracking-wide uppercase">Ядро</p>
               <div className="mt-3 flex flex-wrap gap-2.5">
                 {profile.stack.core.map((tech) => (
@@ -176,10 +224,7 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
           </h3>
           <dl className="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
             {profile.softSkills.map((skill, i) => (
-              <div
-                key={skill.name}
-                className={`${bentoSpan(i)} surface-chip p-3`}
-              >
+              <div key={skill.name} className={`${bentoSpan(i)} surface-chip p-3`}>
                 <dt className="text-foreground text-xs font-medium">{skill.name}</dt>
                 <dd className="text-muted mt-1 text-xs leading-snug">{skill.detail}</dd>
               </div>
@@ -198,8 +243,6 @@ export default async function Home({ params }: Readonly<{ params: Promise<{ lang
       <ResumePreview lang={lang} />
 
       <Education />
-
-      <Projects lang={lang} />
     </SiteChrome>
   );
 }
