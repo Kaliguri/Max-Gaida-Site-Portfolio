@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
+import { ogImageMeta, ogName } from "@/lib/og";
 import { profile } from "@content/index";
 
 const onest = Onest({
@@ -11,6 +12,9 @@ const onest = Onest({
 });
 
 const description = `${profile.headline}. ${profile.eyebrow}.`;
+
+// Default social card; sub-routes with their own card override this.
+const ogImages = ogImageMeta(SITE.defaultLocale, ogName.home());
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -23,8 +27,9 @@ export const metadata: Metadata = {
     url: SITE.url,
     title: SITE.name,
     description,
+    images: ogImages,
   },
-  twitter: { card: "summary_large_image", title: SITE.name, description },
+  twitter: { card: "summary_large_image", title: SITE.name, description, images: ogImages },
 };
 
 /**

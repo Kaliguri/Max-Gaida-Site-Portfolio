@@ -17,8 +17,10 @@ Code conventions: the single-source map, so patterns don't get re-implemented.
   - `site.ts` — метаданные сайта, локали, `NAV` (TOC), `HEADER_NAV` (шапка), `localeHash()`.
   - `motion.ts` — reduced-motion (`prefersReducedMotion()` + хук `useReducedMotion()`).
   - `bento.ts` — `bentoSpan(i)` для равновесных мозаик (soft skills, навыки).
+  - `og.ts` — пути и `<meta>`-записи соц-картинок (`ogName`, `ogImagePath`, `ogImageMeta`).
 - `src/components/` — UI. Общие примитивы (ниже) не переизобретаем.
-- `src/app/` — роутинг (App Router), `[lang]/` — локаль-сегмент, `resume/[role]/print/` — PDF-исходник.
+- `src/app/` — роутинг (App Router), `[lang]/` — локаль-сегмент, `resume/[role]/print/` — PDF-исходник,
+  `[lang]/og/...` — исходники соц-картинок (см. §7).
 
 ---
 
@@ -34,6 +36,7 @@ Code conventions: the single-source map, so patterns don't get re-implemented.
 | Reduced-motion              | `motion.ts`                                            | `window.matchMedia("(prefers-reduced-motion…")` инлайн |
 | Пункты шапки/меню           | `HEADER_NAV` из `site.ts`                              | Хардкод списка ссылок в компоненте                     |
 | Якорь на секцию (raw `<a>`) | `localeHash("about")`                                  | `` `/${locale}/#about` `` вручную                      |
+| Соц-картинка роута          | `ogImageMeta(lang, ogName.X())` из `lib/og.ts`         | `opengraph-image.tsx` (см. §7) или свой путь к png     |
 
 Если понадобилось третье использование чего-то — это сигнал вынести в примитив и вписать сюда.
 
@@ -78,3 +81,27 @@ github.io (задаётся CI через `NEXT_PUBLIC_BASE_PATH`, см. `next.c
 - [ ] Рукописные `<a>`-якоря — через `localeHash()`.
 - [ ] Спаны/списки ключуются по стабильному ключу, не по позиции.
 - [ ] `npm run check` зелёный; проверено в обеих темах.
+
+---
+
+## 7. Соц-картинки (OG)
+
+Картинки **не** генерирует Next. Файловая конвенция `opengraph-image.tsx` под
+`output: "export"` пишет файл **без расширения**, а GitHub Pages отдаёт такие как
+`application/octet-stream` — мессенджеры превью не рисуют (проверено на `/CNAME`, 2026-08-21).
+
+Схема вместо неё — та же, что у PDF-резюме:
+
+1. `src/app/[lang]/og/...` — обычные HTML-роуты, рисующие `<OgCard>` размером ровно 1200×630.
+   `robots: noindex`, в `sitemap.ts` их нет, со страниц сайта на них не ссылаемся.
+2. `scripts/render-og.mjs` (`npm run og`) — после `next build` скриншотит их Playwright'ом
+   в `out/og/<lang>/<name>.png`. В CI шаг стоит рядом с `npm run pdf`, до загрузки артефакта.
+3. Метаданные роутов берут путь из `ogImageMeta(lang, ogName.X())`, а не пишут его руками.
+
+Следствие: в `next dev` соц-картинки — 404, они появляются только в собранном `out/`. Это
+ожидаемо. Новый тип карточки = новый роут под `[lang]/og/` + имя в `ogName` + ветка дискавери
+в `render-og.mjs`.
+
+Цвета в `<OgCard>` захардкожены (не токены темы): картинка обязана выглядеть одинаково,
+с какой бы темой ни стартовал рендерящий браузер. Крупные `stats` — только короткие значения
+(≈10 символов); фразы идут в `facts`, они рисуются мелкой строкой.

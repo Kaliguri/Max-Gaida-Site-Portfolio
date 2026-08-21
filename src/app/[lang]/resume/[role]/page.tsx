@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/site";
+import { ogImageMeta, ogName } from "@/lib/og";
 import { experience, profile, projects, resumeRoles } from "@content/index";
 import { ContactLink } from "@/components/contact-link";
 import { SiteChrome } from "@/components/site-chrome";
@@ -14,13 +15,16 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: Readonly<{ params: Promise<{ role: string }> }>): Promise<Metadata> {
-  const { role: roleSlug } = await params;
+}: Readonly<{ params: Promise<{ lang: string; role: string }> }>): Promise<Metadata> {
+  const { lang, role: roleSlug } = await params;
   const role = resumeRoles.find((r) => r.slug === roleSlug);
   if (!role) return {};
+  const images = ogImageMeta(lang, ogName.resume(role.slug));
   return {
     title: `Резюме — ${role.title}`,
     description: role.focus,
+    openGraph: { title: `Резюме — ${role.title}`, description: role.focus, images },
+    twitter: { images },
   };
 }
 

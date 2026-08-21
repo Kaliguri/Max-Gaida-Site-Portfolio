@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/site";
+import { ogImageMeta, ogName } from "@/lib/og";
 import { projects } from "@content/index";
 import { ProjectVideo } from "@/components/project-video";
 import { ProjectGallery } from "@/components/project-gallery";
@@ -21,13 +22,18 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: Readonly<{ params: Promise<{ slug: string }> }>): Promise<Metadata> {
-  const { slug } = await params;
+}: Readonly<{ params: Promise<{ lang: string; slug: string }> }>): Promise<Metadata> {
+  const { lang, slug } = await params;
   const project = caseStudies.find((p) => p.slug === slug);
   if (!project) return {};
+  const title = `${project.title} — разбор проекта`;
+  const description = project.caseStudy?.intro ?? project.description;
+  const images = ogImageMeta(lang, ogName.project(project.slug));
   return {
-    title: `${project.title} — разбор проекта`,
-    description: project.caseStudy?.intro ?? project.description,
+    title,
+    description,
+    openGraph: { title, description, images },
+    twitter: { images },
   };
 }
 
