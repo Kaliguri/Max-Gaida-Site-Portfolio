@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { CrossIcon } from "@/components/icons";
+import { prefersReducedMotion } from "@/lib/motion";
 
 function PlayIcon({ className }: { className?: string }) {
   return (
@@ -86,18 +87,26 @@ function formatTime(seconds: number) {
  * The lightbox player uses custom controls (not the browser's native
  * `<video controls>` chrome) so the seek/volume bars pick up the site's
  * accent color instead of the browser default.
+ *
+ * When a `loop` preview is supplied the trigger plays it (silent, ~12s) on
+ * hover/focus instead of sitting on a still poster — the full clip still only
+ * loads on click. Nothing plays under `prefers-reduced-motion`.
  */
 export function ProjectVideo({
   src,
   poster,
+  loop,
   title,
 }: {
   src: string;
   poster?: string;
+  /** Short silent preview, played on hover in place of the poster. */
+  loop?: string;
   title: string;
 }) {
   const [open, setOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const previewRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -118,6 +127,20 @@ export function ProjectVideo({
       document.removeEventListener("fullscreenchange", onFullscreenChange);
     };
   }, [open]);
+
+  // Hover preview: rewind on leave so the next hover starts from the top.
+  function startPreview() {
+    const preview = previewRef.current;
+    if (!preview || !loop || prefersReducedMotion()) return;
+    void preview.play().catch(() => {});
+  }
+
+  function stopPreview() {
+    const preview = previewRef.current;
+    if (!preview || !loop) return;
+    preview.pause();
+    preview.currentTime = 0;
+  }
 
   function togglePlay() {
     const video = videoRef.current;
@@ -161,13 +184,19 @@ export function ProjectVideo({
       <button
         type="button"
         onClick={() => setOpen(true)}
+        onMouseEnter={startPreview}
+        onMouseLeave={stopPreview}
+        onFocus={startPreview}
+        onBlur={stopPreview}
         aria-label={`Смотреть видео: ${title}`}
         className="group media-frame hover:border-accent relative mt-4 block aspect-video w-full overflow-hidden transition-colors"
       >
         <video
-          src={src}
+          ref={previewRef}
+          src={loop ?? src}
           poster={poster}
-          preload="none"
+          preload={loop ? "metadata" : "none"}
+          loop={Boolean(loop)}
           muted
           playsInline
           tabIndex={-1}

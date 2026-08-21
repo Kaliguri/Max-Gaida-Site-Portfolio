@@ -192,6 +192,7 @@ export const projects = projectsSchema.parse([
     video: {
       src: "/videos/few-seconds-many-deaths-trailer.mp4",
       poster: "/videos/few-seconds-many-deaths-trailer.jpg",
+      loop: "/videos/few-seconds-many-deaths-trailer-loop.mp4",
       title: "Few Seconds, Many Deaths — Trailer",
     },
     gallery: [
@@ -237,6 +238,14 @@ export const projects = projectsSchema.parse([
         { label: "Движок", value: "Unity · C#" },
         { label: "Платформа", value: "Steam (страница + Steamworks)" },
         { label: "Охват", value: "~77k показов · 27.8k визитов · 36% CTR" },
+      ],
+      videos: [
+        {
+          src: "/videos/few-seconds-many-deaths-normalmaps.mp4",
+          poster: "/videos/few-seconds-many-deaths-normalmaps.jpg",
+          loop: "/videos/few-seconds-many-deaths-normalmaps-loop.mp4",
+          title: "2D normal maps — динамический свет на спрайтах",
+        },
       ],
       sections: [
         {
@@ -422,6 +431,7 @@ export const projects = projectsSchema.parse([
     video: {
       src: "/videos/metalhead-gameplay.mp4",
       poster: "/videos/metalhead-gameplay.jpg",
+      loop: "/videos/metalhead-gameplay-loop.mp4",
       title: "METALHEAD — Gameplay",
     },
     gallery: [
@@ -518,6 +528,7 @@ export const projects = projectsSchema.parse([
     video: {
       src: "/videos/the-silent-eclipse-promo.mp4",
       poster: "/videos/the-silent-eclipse-promo.jpg",
+      loop: "/videos/the-silent-eclipse-promo-loop.mp4",
       title: "The Silent Eclipse - Unreal Engine 5 - Trailer",
     },
   },
@@ -526,8 +537,16 @@ export const projects = projectsSchema.parse([
     title: "Parry This",
     role: "Команда · геймджем",
     description: "Игра с геймджема MosPolyJam (осень 2024), команда из двух человек.",
+    blurb: "Игра с геймджема MosPolyJam, команда из двух человек.",
     links: [{ label: "itch.io", href: "https://xgaida.itch.io/parry-this" }],
     status: "jam",
+    featured: true,
+    video: {
+      src: "/videos/parry-this-gameplay.mp4",
+      poster: "/videos/parry-this-gameplay.jpg",
+      loop: "/videos/parry-this-gameplay-loop.mp4",
+      title: "Parry This — Gameplay",
+    },
   },
   {
     slug: "type-faster-mp",

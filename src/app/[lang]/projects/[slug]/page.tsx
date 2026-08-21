@@ -152,6 +152,7 @@ export default async function ProjectCaseStudyPage({
               <ProjectVideo
                 src={project.video.src}
                 poster={project.video.poster}
+                loop={project.video.loop}
                 title={project.video.title ?? project.title}
               />
             </div>
@@ -211,6 +212,25 @@ export default async function ProjectCaseStudyPage({
               </section>
             );
           })}
+
+          {cs.videos.length > 0 && (
+            <section className="reveal border-border mt-16 border-t pt-8">
+              <h2 className="text-foreground text-xl font-semibold tracking-tight">
+                Видео из разработки
+              </h2>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                {cs.videos.map((clip) => (
+                  <ProjectVideo
+                    key={clip.src}
+                    src={clip.src}
+                    poster={clip.poster}
+                    loop={clip.loop}
+                    title={clip.title ?? project.title}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
 
           {project.gallery.length > 0 && (
             <section className="reveal border-border mt-16 border-t pt-8">

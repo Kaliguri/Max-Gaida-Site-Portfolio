@@ -91,6 +91,16 @@ export const projectLinkSchema = z.object({
 });
 export type ProjectLink = z.infer<typeof projectLinkSchema>;
 
+/** A clip attached to a project. `src` is the full video (lightbox); `loop` is
+ *  an optional short silent preview that plays in place of the poster on hover.
+ *  Both are paths under `public/`. `title` overrides the lightbox header. */
+export const projectVideoSchema = z.object({
+  src: z.string(),
+  poster: z.string().optional(),
+  loop: z.string().optional(),
+  title: z.string().optional(),
+});
+
 export const projectSchema = z.object({
   slug: z.string(),
   title: z.string(),
@@ -112,11 +122,8 @@ export const projectSchema = z.object({
    *  is "educational" (which is otherwise Education-only). Lets a study project
    *  be showcased in Projects while still listed under «Образование». */
   inShowcase: z.boolean().default(false),
-  /** Promo/gameplay clip — path under `public/`. No poster yet (placeholder; final media pass adds one). */
-  /** `title` overrides the lightbox header — falls back to the project title when absent. */
-  video: z
-    .object({ src: z.string(), poster: z.string().optional(), title: z.string().optional() })
-    .optional(),
+  /** Promo/gameplay clip — the full thing, opened in the lightbox on click. */
+  video: projectVideoSchema.optional(),
   /** Proof-shot gallery (gameplay / tech / design / metrics), each with a
    *  caption. Rendered on the case-study page as blur-until-hover thumbnails
    *  that open a lightbox. */
@@ -129,6 +136,9 @@ export const projectSchema = z.object({
       intro: z.string(),
       /** Quick-facts strip (role, team, engine, result …). */
       facts: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
+      /** Extra clips beyond the project's main `video` — dev/tech proof that
+       *  only belongs on the full write-up, not on the card. */
+      videos: z.array(projectVideoSchema).default([]),
       /** Ordered article sections: heading + prose paragraphs + optional images. */
       sections: z
         .array(

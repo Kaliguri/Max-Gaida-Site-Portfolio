@@ -44,6 +44,7 @@ export function ProjectCard({
         <ProjectVideo
           src={project.video.src}
           poster={project.video.poster}
+          loop={project.video.loop}
           title={project.video.title ?? project.title}
         />
       )}
