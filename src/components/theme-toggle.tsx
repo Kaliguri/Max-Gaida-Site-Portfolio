@@ -43,7 +43,6 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      aria-label={theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"}
       className="border-border text-muted hover:border-accent hover:text-foreground rounded-full border px-4 py-2 text-sm transition-colors"
     >
       {theme === "dark" ? "Светлая тема" : "Тёмная тема"}

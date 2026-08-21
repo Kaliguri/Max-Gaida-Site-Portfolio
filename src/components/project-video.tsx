@@ -132,6 +132,8 @@ export function ProjectVideo({
   function startPreview() {
     const preview = previewRef.current;
     if (!preview || !loop || prefersReducedMotion()) return;
+    // preload="none" means nothing is fetched until this first hover.
+    if (preview.readyState === 0) preview.load();
     void preview.play().catch(() => {});
   }
 
@@ -195,7 +197,7 @@ export function ProjectVideo({
           ref={previewRef}
           src={loop ?? src}
           poster={poster}
-          preload={loop ? "metadata" : "none"}
+          preload="none"
           loop={Boolean(loop)}
           muted
           playsInline

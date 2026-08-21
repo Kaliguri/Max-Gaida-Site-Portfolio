@@ -12,6 +12,7 @@ export function SiteHeader() {
     <header className="border-border bg-background/70 sticky top-0 z-40 border-b backdrop-blur">
       <div className="relative mx-auto flex max-w-5xl items-center justify-between px-6 py-4 sm:px-10">
         <Link
+          prefetch={false}
           href={`/${SITE.defaultLocale}`}
           className="text-foreground text-lg font-semibold tracking-tight"
         >
@@ -53,6 +54,7 @@ export function SiteHeader() {
                       {submenu.map((sub) => (
                         <li key={sub.key}>
                           <Link
+                            prefetch={false}
                             href={sub.href}
                             className="text-muted hover:bg-background hover:text-foreground block rounded-md px-3 py-2 text-sm transition-colors"
                           >

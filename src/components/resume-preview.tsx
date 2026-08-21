@@ -13,6 +13,7 @@ export function ResumePreview({ lang }: { lang: string }) {
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         {resumeRoles.map((role) => (
           <Link
+            prefetch={false}
             key={role.slug}
             href={`/${lang}/resume/${role.slug}`}
             className="group reveal surface-card hover:border-accent flex flex-col p-6 transition-colors"

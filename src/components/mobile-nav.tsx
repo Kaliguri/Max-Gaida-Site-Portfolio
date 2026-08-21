@@ -56,6 +56,7 @@ export function MobileNav() {
                       {resumeRoles.map((role) => (
                         <li key={role.slug}>
                           <Link
+                            prefetch={false}
                             href={`/${SITE.defaultLocale}/resume/${role.slug}`}
                             onClick={close}
                             className="text-muted hover:text-foreground block py-2 text-sm transition-colors"

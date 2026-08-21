@@ -13,7 +13,7 @@ export const projects = projectsSchema.parse([
     description:
       "Коммерческая rogue-like в Steam с DLC. Делал контент на ScriptableObject (существа, карты, ивенты), провёл глобальный реворк всех ивентов, собрал новую локацию с уникальной механикой и достижения.",
     highlight: "Коммерческий релиз · Steam + DLC",
-    image: "/images/projects/knock-on-the-coffin-lid/cover.jpg",
+    image: "/images/projects/knock-on-the-coffin-lid/cover.webp",
     links: [
       {
         label: "Steam",
@@ -24,15 +24,15 @@ export const projects = projectsSchema.parse([
     featured: true,
     gallery: [
       {
-        src: "/images/projects/knock-on-the-coffin-lid/gameplay-event.jpg",
+        src: "/images/projects/knock-on-the-coffin-lid/gameplay-event.webp",
         caption: "Ивенты — текстовые встречи с выборами и последствиями",
       },
       {
-        src: "/images/projects/knock-on-the-coffin-lid/gameplay-combat.jpg",
+        src: "/images/projects/knock-on-the-coffin-lid/gameplay-combat.webp",
         caption: "Пошаговые карточные бои",
       },
       {
-        src: "/images/projects/knock-on-the-coffin-lid/gameplay-boss.jpg",
+        src: "/images/projects/knock-on-the-coffin-lid/gameplay-boss.webp",
         caption: "Боссы и уникальные встречи",
       },
     ],
@@ -54,7 +54,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/knock-on-the-coffin-lid/gameplay-combat.jpg",
+              src: "/images/projects/knock-on-the-coffin-lid/gameplay-combat.webp",
               caption: "Карточный бой",
             },
           ],
@@ -72,7 +72,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/knock-on-the-coffin-lid/gameplay-event.jpg",
+              src: "/images/projects/knock-on-the-coffin-lid/gameplay-event.webp",
               caption: "Событие с выбором",
             },
           ],
@@ -84,7 +84,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/knock-on-the-coffin-lid/gameplay-boss.jpg",
+              src: "/images/projects/knock-on-the-coffin-lid/gameplay-boss.webp",
               caption: "Встреча с боссом",
             },
           ],
@@ -99,7 +99,7 @@ export const projects = projectsSchema.parse([
     description:
       "Собственный тёмный UI-набор для Unity, выпущен в Unity Asset Store и на itch.io. Доказывает, что довожу продукты до релиза сам — связка dev и UI/UX.",
     highlight: "Свой продукт в Asset Store",
-    image: "/images/projects/bloodlines-ui/cover.jpg",
+    image: "/images/projects/bloodlines-ui/cover.webp",
     links: [
       { label: "Asset Store", href: "https://assetstore.unity.com/packages/slug/328721" },
       { label: "itch.io", href: "https://xgaida.itch.io/bloodlines-ui" },
@@ -116,7 +116,7 @@ export const projects = projectsSchema.parse([
         caption: "Кнопки во всех состояниях и наборы иконок",
       },
       {
-        src: "/images/projects/bloodlines-ui/proof-asset-store.png",
+        src: "/images/projects/bloodlines-ui/proof-asset-store.webp",
         caption: "Публикация в Unity Asset Store · 5.0",
       },
     ],
@@ -162,7 +162,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/bloodlines-ui/proof-asset-store.png",
+              src: "/images/projects/bloodlines-ui/proof-asset-store.webp",
               caption: "Страница в Asset Store",
             },
           ],
@@ -179,7 +179,7 @@ export const projects = projectsSchema.parse([
     blurb:
       "Учебный пошаговый рогалик со страницей в Steam — тимлид и весь визуально-системный слой.",
     highlight: "Лид команды 10 · ~77k показов в Steam",
-    image: "/images/projects/few-seconds-many-deaths/cover.jpg",
+    image: "/images/projects/few-seconds-many-deaths/cover.webp",
     links: [
       {
         label: "Steam",
@@ -191,41 +191,41 @@ export const projects = projectsSchema.parse([
     inShowcase: true,
     video: {
       src: "/videos/few-seconds-many-deaths-trailer.mp4",
-      poster: "/videos/few-seconds-many-deaths-trailer.jpg",
+      poster: "/videos/few-seconds-many-deaths-trailer.webp",
       loop: "/videos/few-seconds-many-deaths-trailer-loop.mp4",
       title: "Few Seconds, Many Deaths — Trailer",
     },
     gallery: [
       {
-        src: "/images/projects/few-seconds-many-deaths/gameplay.jpg",
+        src: "/images/projects/few-seconds-many-deaths/gameplay.webp",
         caption: "Геймплей — пошаговые бои в подземелье",
       },
       {
-        src: "/images/projects/few-seconds-many-deaths/tech-shader-graph.jpg",
+        src: "/images/projects/few-seconds-many-deaths/tech-shader-graph.webp",
         caption: "Кастомный пиксельный шейдер (Shader Graph)",
       },
       {
-        src: "/images/projects/few-seconds-many-deaths/tech-normalmap-layer.jpg",
+        src: "/images/projects/few-seconds-many-deaths/tech-normalmap-layer.webp",
         caption: "2D normal maps — свет на спрайтах",
       },
       {
-        src: "/images/projects/few-seconds-many-deaths/tech-localization.jpg",
+        src: "/images/projects/few-seconds-many-deaths/tech-localization.webp",
         caption: "Локализация EN/RU (Unity Localization)",
       },
       {
-        src: "/images/projects/few-seconds-many-deaths/design-combat-cardinalline.jpg",
+        src: "/images/projects/few-seconds-many-deaths/design-combat-cardinalline.webp",
         caption: "Дизайн боевых систем — логика линий атаки",
       },
       {
-        src: "/images/projects/few-seconds-many-deaths/design-style-guide.jpg",
+        src: "/images/projects/few-seconds-many-deaths/design-style-guide.webp",
         caption: "Арт-дирекшн — стайлгайд пиксель-арта",
       },
       {
-        src: "/images/projects/few-seconds-many-deaths/process-discord-pm.jpg",
+        src: "/images/projects/few-seconds-many-deaths/process-discord-pm.webp",
         caption: "Ведение команды — недельные отчёты (PM)",
       },
       {
-        src: "/images/projects/few-seconds-many-deaths/proof-steam-stats.jpg",
+        src: "/images/projects/few-seconds-many-deaths/proof-steam-stats.webp",
         caption: "Steam: ~77k показов, 27.8k визитов, 36% CTR",
       },
     ],
@@ -242,7 +242,7 @@ export const projects = projectsSchema.parse([
       videos: [
         {
           src: "/videos/few-seconds-many-deaths-normalmaps.mp4",
-          poster: "/videos/few-seconds-many-deaths-normalmaps.jpg",
+          poster: "/videos/few-seconds-many-deaths-normalmaps.webp",
           loop: "/videos/few-seconds-many-deaths-normalmaps-loop.mp4",
           title: "2D normal maps — динамический свет на спрайтах",
         },
@@ -255,7 +255,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/few-seconds-many-deaths/gameplay.jpg",
+              src: "/images/projects/few-seconds-many-deaths/gameplay.webp",
               caption: "Пошаговый бой на сетке",
             },
           ],
@@ -268,7 +268,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/few-seconds-many-deaths/process-discord-pm.jpg",
+              src: "/images/projects/few-seconds-many-deaths/process-discord-pm.webp",
               caption: "Недельные отчёты и координация команды",
             },
           ],
@@ -281,7 +281,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/few-seconds-many-deaths/design-style-guide.jpg",
+              src: "/images/projects/few-seconds-many-deaths/design-style-guide.webp",
               caption: "Стайлгайд пиксель-арта",
             },
           ],
@@ -294,11 +294,11 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/few-seconds-many-deaths/tech-shader-graph.jpg",
+              src: "/images/projects/few-seconds-many-deaths/tech-shader-graph.webp",
               caption: "Пиксельный шейдер в Shader Graph",
             },
             {
-              src: "/images/projects/few-seconds-many-deaths/tech-normalmap-layer.jpg",
+              src: "/images/projects/few-seconds-many-deaths/tech-normalmap-layer.webp",
               caption: "Слой 2D normal maps для света",
             },
           ],
@@ -318,7 +318,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/few-seconds-many-deaths/design-combat-cardinalline.jpg",
+              src: "/images/projects/few-seconds-many-deaths/design-combat-cardinalline.webp",
               caption: "Логика линий атаки (CardinalLine)",
             },
           ],
@@ -331,7 +331,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/few-seconds-many-deaths/proof-steam-stats.jpg",
+              src: "/images/projects/few-seconds-many-deaths/proof-steam-stats.webp",
               caption: "Steam-аналитика страницы",
             },
           ],
@@ -356,15 +356,15 @@ export const projects = projectsSchema.parse([
     featured: true,
     gallery: [
       {
-        src: "/images/projects/rstudio-multiplayer/store-1.jpg",
+        src: "/images/projects/rstudio-multiplayer/store-1.webp",
         caption: "Стратегические бои — выставляй и толкай юнитов",
       },
       {
-        src: "/images/projects/rstudio-multiplayer/store-2.jpg",
+        src: "/images/projects/rstudio-multiplayer/store-2.webp",
         caption: "Real-time PvP-стратегия",
       },
       {
-        src: "/images/projects/rstudio-multiplayer/store-3.jpg",
+        src: "/images/projects/rstudio-multiplayer/store-3.webp",
         caption: "От обороны к захвату",
       },
     ],
@@ -386,7 +386,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/rstudio-multiplayer/store-2.jpg",
+              src: "/images/projects/rstudio-multiplayer/store-2.webp",
               caption: "Real-time PvP",
             },
           ],
@@ -399,7 +399,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/rstudio-multiplayer/store-1.jpg",
+              src: "/images/projects/rstudio-multiplayer/store-1.webp",
               caption: "Бой в реальном времени",
             },
           ],
@@ -409,7 +409,7 @@ export const projects = projectsSchema.parse([
           body: ["Проект вышел в релиз на Google Play."],
           images: [
             {
-              src: "/images/projects/rstudio-multiplayer/store-3.jpg",
+              src: "/images/projects/rstudio-multiplayer/store-3.webp",
               caption: "Промо Google Play",
             },
           ],
@@ -424,23 +424,23 @@ export const projects = projectsSchema.parse([
     description:
       "Игра с межвузовского геймджема «Ctrl + Shift + Create 2.0», где команда из трёх человек заняла первое место. Был лидом команды.",
     highlight: "1 место на межвузовском геймджеме среди студентов Москвы",
-    image: "/images/projects/metalhead/cover.jpg",
+    image: "/images/projects/metalhead/cover.webp",
     links: [{ label: "itch.io", href: "https://xgaida.itch.io/metalhead" }],
     status: "jam",
     featured: true,
     video: {
       src: "/videos/metalhead-gameplay.mp4",
-      poster: "/videos/metalhead-gameplay.jpg",
+      poster: "/videos/metalhead-gameplay.webp",
       loop: "/videos/metalhead-gameplay-loop.mp4",
       title: "METALHEAD — Gameplay",
     },
     gallery: [
       {
-        src: "/images/projects/metalhead/gameplay.png",
+        src: "/images/projects/metalhead/gameplay.webp",
         caption: "Геймплей — survival-экшн на пиксель-арте",
       },
       {
-        src: "/images/projects/metalhead/proof-award.jpg",
+        src: "/images/projects/metalhead/proof-award.webp",
         caption: "1 место на «Ctrl + Shift + Create 2.0»",
       },
     ],
@@ -462,7 +462,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/metalhead/proof-award.jpg",
+              src: "/images/projects/metalhead/proof-award.webp",
               caption: "Диплом за 1 место",
             },
           ],
@@ -474,7 +474,7 @@ export const projects = projectsSchema.parse([
           ],
           images: [
             {
-              src: "/images/projects/metalhead/gameplay.png",
+              src: "/images/projects/metalhead/gameplay.webp",
               caption: "Выживание на арене",
             },
           ],
@@ -527,7 +527,7 @@ export const projects = projectsSchema.parse([
     inShowcase: true,
     video: {
       src: "/videos/the-silent-eclipse-promo.mp4",
-      poster: "/videos/the-silent-eclipse-promo.jpg",
+      poster: "/videos/the-silent-eclipse-promo.webp",
       loop: "/videos/the-silent-eclipse-promo-loop.mp4",
       title: "The Silent Eclipse - Unreal Engine 5 - Trailer",
     },
@@ -543,7 +543,7 @@ export const projects = projectsSchema.parse([
     featured: true,
     video: {
       src: "/videos/parry-this-gameplay.mp4",
-      poster: "/videos/parry-this-gameplay.jpg",
+      poster: "/videos/parry-this-gameplay.webp",
       loop: "/videos/parry-this-gameplay-loop.mp4",
       title: "Parry This — Gameplay",
     },

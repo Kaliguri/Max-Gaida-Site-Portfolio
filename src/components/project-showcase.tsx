@@ -96,6 +96,11 @@ export function ProjectShowcase() {
   const project = items[active];
   const showTimer = items.length > 1 && !reduced;
 
+  const isNearby = (i: number) =>
+    i === active ||
+    i === (active + 1) % items.length ||
+    i === (active - 1 + items.length) % items.length;
+
   return (
     <section
       id="showcase"
@@ -145,7 +150,7 @@ export function ProjectShowcase() {
                     opacity; only the active one is visible. */}
                 <div className="media-frame relative aspect-[3/2] w-full overflow-hidden">
                   {items.map((p, i) =>
-                    p.image ? (
+                    p.image && isNearby(i) ? (
                       <div
                         key={p.slug}
                         aria-hidden={i !== active}
@@ -158,6 +163,8 @@ export function ProjectShowcase() {
                           src={p.image}
                           alt=""
                           aria-hidden="true"
+                          decoding="async"
+                          fetchPriority={i === active ? "high" : "low"}
                           className="absolute inset-0 h-full w-full scale-110 object-cover opacity-45 blur-2xl"
                         />
                         <div className="bg-background/25 absolute inset-0" />
@@ -166,6 +173,8 @@ export function ProjectShowcase() {
                           src={p.image}
                           alt=""
                           aria-hidden="true"
+                          decoding="async"
+                          fetchPriority={i === active ? "high" : "low"}
                           className="absolute inset-0 h-full w-full object-contain"
                         />
                       </div>

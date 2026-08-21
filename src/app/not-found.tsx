@@ -8,6 +8,7 @@ export default function NotFound() {
       <h1 className="text-foreground text-2xl font-semibold tracking-tight">Страница не найдена</h1>
       <p className="text-muted max-w-sm">Похоже, такой страницы нет. Вернёмся на главную.</p>
       <Link
+        prefetch={false}
         href={`/${SITE.defaultLocale}`}
         className="bg-accent text-accent-foreground hover:bg-accent-hover mt-2 rounded-full px-6 py-3 text-sm font-medium transition-colors"
       >

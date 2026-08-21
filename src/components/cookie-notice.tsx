@@ -64,6 +64,7 @@ export function CookieNotice() {
         <p className="text-muted flex-1 text-sm leading-snug">
           Сайт использует cookie и Яндекс.Метрику, чтобы понимать, какие разделы читают.{" "}
           <Link
+            prefetch={false}
             href={`/${SITE.defaultLocale}/privacy`}
             className="text-accent hover:text-accent-hover underline underline-offset-2 transition-colors"
           >

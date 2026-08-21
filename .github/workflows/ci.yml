@@ -39,7 +39,6 @@ jobs:
 
       - name: Lighthouse CI
         run: npm run lhci
-        continue-on-error: true
 
       - name: Upload Playwright report
         if: ${{ !cancelled() }}

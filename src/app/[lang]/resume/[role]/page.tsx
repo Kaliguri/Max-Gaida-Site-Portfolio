@@ -46,6 +46,7 @@ export default async function ResumePage({
       <article className="mx-auto w-full max-w-3xl px-6 py-16 sm:px-10">
         <div className="flex items-center justify-between gap-4">
           <Link
+            prefetch={false}
             href={`/${lang}`}
             className="text-muted hover:text-foreground text-sm transition-colors"
           >
@@ -201,7 +202,11 @@ export default async function ResumePage({
 
         <aside className="surface-card mt-12 p-5 text-sm">
           <span className="text-muted">Я также работаю как </span>
-          <Link href={`/${lang}/resume/${other.slug}`} className="text-accent hover:underline">
+          <Link
+            prefetch={false}
+            href={`/${lang}/resume/${other.slug}`}
+            className="text-accent underline underline-offset-2"
+          >
             {other.title}
           </Link>
           <span className="text-muted"> — посмотреть второе резюме.</span>

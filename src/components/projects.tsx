@@ -68,6 +68,7 @@ export function ProjectCard({
 
       {detailHref && (
         <Link
+          prefetch={false}
           href={detailHref}
           className={`text-accent hover:text-foreground inline-flex items-center gap-1 text-sm font-medium transition-colors ${
             project.links.length > 0 || project.video ? "mt-4" : "mt-auto pt-5"

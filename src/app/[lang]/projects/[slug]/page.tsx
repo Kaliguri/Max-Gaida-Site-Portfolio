@@ -56,6 +56,7 @@ export default async function ProjectCaseStudyPage({
       <div className="border-border bg-background/80 sticky top-[70px] z-30 border-b backdrop-blur">
         <div className="mx-auto flex max-w-[88rem] items-center gap-4 px-6 py-3 sm:px-10">
           <Link
+            prefetch={false}
             href={`/${lang}#projects`}
             className="text-accent hover:text-accent-hover shrink-0 text-sm font-medium transition-colors"
           >
@@ -246,6 +247,7 @@ export default async function ProjectCaseStudyPage({
 
           <div className="border-border mt-14 border-t pt-8">
             <Link
+              prefetch={false}
               href={`/${lang}#projects`}
               className="text-accent hover:text-accent-hover text-sm font-medium transition-colors"
             >

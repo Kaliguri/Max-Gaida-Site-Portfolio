@@ -30,6 +30,7 @@ export function SiteFooter() {
           </p>
           <span aria-hidden="true">·</span>
           <Link
+            prefetch={false}
             href={`/${SITE.defaultLocale}/privacy`}
             className="hover:text-accent transition-colors"
           >

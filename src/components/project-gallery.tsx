@@ -71,8 +71,9 @@ export function ProjectGallery({
                   {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimizer */}
                   <img
                     src={img.src}
-                    alt={img.caption}
+                    alt=""
                     loading="lazy"
+                    decoding="async"
                     className="h-full w-full scale-105 object-cover blur-[3px] brightness-[.6] transition duration-300 will-change-transform group-hover:scale-100 group-hover:blur-[0px] group-hover:brightness-100 group-focus-visible:scale-100 group-focus-visible:blur-[0px] group-focus-visible:brightness-100 motion-reduce:transition-none"
                   />
                 </span>

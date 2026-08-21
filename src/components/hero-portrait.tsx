@@ -18,9 +18,12 @@ export function HeroPortrait() {
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimizer */}
       <img
-        src="/images/hero-portrait.jpg"
+        src="/images/hero-portrait.webp"
         alt=""
         aria-hidden="true"
+        width={720}
+        height={900}
+        decoding="async"
         className="hero-portrait-img h-full w-full object-cover"
       />
     </div>

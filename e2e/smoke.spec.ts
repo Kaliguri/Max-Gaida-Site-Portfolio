@@ -25,6 +25,8 @@ test("theme toggle flips the html class", async ({ page }) => {
   await page.goto("/ru/");
   const html = page.locator("html");
   await expect(html).toHaveClass(/dark/);
-  await page.getByRole("button", { name: /светлую тему/i }).click();
+  // The button's visible label IS its accessible name — it carries no aria-label
+  // (a differently-declined one tripped Lighthouse's label-content-name-mismatch).
+  await page.getByRole("button", { name: /светлая тема/i }).click();
   await expect(html).toHaveClass(/light/);
 });
