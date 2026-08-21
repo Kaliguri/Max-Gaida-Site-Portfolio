@@ -1,6 +1,8 @@
 import { SiteHeader } from "./site-header";
 import { SiteFooter } from "./site-footer";
 import { BackToTop } from "./back-to-top";
+import { CookieNotice } from "./cookie-notice";
+import { Metrika } from "./metrika";
 
 /**
  * Standard page shell: header, footer, back-to-top. Used by normal pages.
@@ -13,6 +15,8 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <main className="flex-1">{children}</main>
       <SiteFooter />
       <BackToTop />
+      <CookieNotice />
+      <Metrika />
     </div>
   );
 }

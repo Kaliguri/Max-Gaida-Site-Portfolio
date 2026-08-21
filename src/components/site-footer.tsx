@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SITE } from "@/lib/site";
 import { profile } from "@content/index";
 import { ContactLink } from "./contact-link";
@@ -23,9 +24,18 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <p className="border-border text-muted mt-10 border-t pt-6 text-xs">
-          © {year} {SITE.name} · {SITE.domain} · в разработке
-        </p>
+        <div className="border-border text-muted mt-10 flex flex-wrap items-center gap-x-2 gap-y-1 border-t pt-6 text-xs">
+          <p>
+            © {year} {SITE.name} · {SITE.domain} · в разработке
+          </p>
+          <span aria-hidden="true">·</span>
+          <Link
+            href={`/${SITE.defaultLocale}/privacy`}
+            className="hover:text-accent transition-colors"
+          >
+            Политика обработки данных
+          </Link>
+        </div>
       </div>
     </footer>
   );

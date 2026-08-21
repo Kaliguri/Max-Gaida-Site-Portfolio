@@ -94,6 +94,17 @@ export type ProjectLink = z.infer<typeof projectLinkSchema>;
 /** A clip attached to a project. `src` is the full video (lightbox); `loop` is
  *  an optional short silent preview that plays in place of the poster on hover.
  *  Both are paths under `public/`. `title` overrides the lightbox header. */
+/** Privacy policy (152-ФЗ). Prose lives in content, not in the page JSX. */
+export const legalSchema = z.object({
+  /** Human-readable date of the last revision, shown at the top of the page. */
+  updated: z.string(),
+  /** The data operator, as named in the policy. */
+  operator: z.object({ name: z.string(), email: z.string() }),
+  sections: z.array(z.object({ heading: z.string(), body: z.array(z.string()).min(1) })).min(1),
+});
+
+export type Legal = z.infer<typeof legalSchema>;
+
 export const projectVideoSchema = z.object({
   src: z.string(),
   poster: z.string().optional(),

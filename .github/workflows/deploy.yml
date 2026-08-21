@@ -34,6 +34,8 @@ jobs:
         # If deploying to the bare github.io/<repo> URL, set NEXT_PUBLIC_BASE_PATH here.
         env:
           NEXT_PUBLIC_BASE_PATH: ""
+          # Yandex Metrica counter id. Unset -> analytics simply doesn't load.
+          NEXT_PUBLIC_YM_ID: ${{ secrets.YM_ID }}
         run: npm run build
 
       - name: Install Playwright browser

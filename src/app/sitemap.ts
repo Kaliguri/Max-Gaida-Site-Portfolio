@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: `${SITE.url}/${lang}/`, lastModified: now, priority: 1 },
+    { url: `${SITE.url}/${lang}/privacy/`, lastModified: now, priority: 0.2 },
     ...resumeRoles.map((r) => ({
       url: `${SITE.url}/${lang}/resume/${r.slug}/`,
       lastModified: now,
