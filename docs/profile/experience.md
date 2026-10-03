@@ -1,6 +1,6 @@
 # Опыт работы (студии)
 
-Суммарно по PDF-резюме: ~2 года 2 месяца в студиях (RedBoon 1 г 3 мес + R-Studio 11 мес); Alebardium — отдельно, см. work-texts-hh-ru.md.
+Суммарно по PDF-резюме: ~2 года 2 месяца в студиях (RedBoon 1 г 3 мес + R-Studio 11 мес); Alebardium — отдельно, см. work-texts-hh/alebardium.md.
 
 ## RedBoon — Технический геймдизайнер (Unity)
 
