@@ -18,7 +18,7 @@ export const experience = experiencesSchema.parse([
   {
     company: "R-Studio",
     role: "Unity Developer (C#)",
-    period: "апр 2025 — май 2025 · 2 мес",
+    period: "апр 2025 — фев 2026 · 11 мес",
     bullets: [
       "MVP проектов разных жанров (стратегии, автобаттлеры, idle-RPG, tower defense) и их поддержка.",
       "P2P-мультиплеер для нескольких игр: лобби, матчмейкинг, геймплей 1×1 и кооператив (Photon, NGO).",

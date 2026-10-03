@@ -8,6 +8,7 @@
 - [`personal.md`](personal.md) — личные данные, контакты, локация, образование.
 - [`positioning.md`](positioning.md) — позиционирование, нарратив, tagline, грейд, тон, AI-подход.
 - [`experience.md`](experience.md) — опыт работы (студии): RedBoon, R-Studio.
+- [`work-texts-hh-ru.md`](work-texts-hh-ru.md) — готовые тексты опыта для hh: RedBoon, R-Studio, Alebardium.
 - [`projects.md`](projects.md) — проекты: ассеты/продукты, геймджемы, учебные/ПД.
 - [`skills.md`](skills.md) — навыки, стек, движки, GD, инструменты, языки.
 - [`open-questions.md`](open-questions.md) — расхождения и что надо уточнить у Макса.
